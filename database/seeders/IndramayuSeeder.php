@@ -11,6 +11,7 @@ use App\Models\Shelter;
 use App\Models\DisasterZone;
 use App\Models\AppInfo;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 
@@ -30,6 +31,7 @@ class IndramayuSeeder extends Seeder
         $usersData = [
             [
                 'name' => 'Super Administrator',
+                'username' => 'superadmin',
                 'email' => 'superadmin@kaliwedi.id',
                 'password' => Hash::make('password'),
                 'phone' => '081100000000',
@@ -38,6 +40,7 @@ class IndramayuSeeder extends Seeder
             ],
             [
                 'name' => 'Administrator',
+                'username' => 'admin',
                 'email' => 'admin@kaliwedi.id',
                 'password' => Hash::make('password'),
                 'phone' => '081122334455',
@@ -46,6 +49,7 @@ class IndramayuSeeder extends Seeder
             ],
             [
                 'name' => 'Petugas Lohbener',
+                'username' => 'officer_lohbener',
                 'email' => 'officer_lohbener@kaliwedi.id',
                 'password' => Hash::make('password'),
                 'phone' => '087722334455',
@@ -54,6 +58,7 @@ class IndramayuSeeder extends Seeder
             ],
             [
                 'name' => 'Petugas Jatibarang',
+                'username' => 'officer_jatibarang',
                 'email' => 'officer_jatibarang@kaliwedi.id',
                 'password' => Hash::make('password'),
                 'phone' => '085222334455',
@@ -62,6 +67,7 @@ class IndramayuSeeder extends Seeder
             ],
             [
                 'name' => 'Budi Santoso (Indramayu Kota)',
+                'username' => 'budisantoso',
                 'email' => 'budi@gmail.com',
                 'password' => Hash::make('password'),
                 'phone' => '081234567890',
@@ -70,6 +76,7 @@ class IndramayuSeeder extends Seeder
             ],
             [
                 'name' => 'Siti Aminah (Haurgeulis)',
+                'username' => 'sitiaminah',
                 'email' => 'siti@gmail.com',
                 'password' => Hash::make('password'),
                 'phone' => '081234567891',
@@ -78,6 +85,7 @@ class IndramayuSeeder extends Seeder
             ],
             [
                 'name' => 'Ahmad Fauzi (Patrol)',
+                'username' => 'ahmadfauzi',
                 'email' => 'ahmad@gmail.com',
                 'password' => Hash::make('password'),
                 'phone' => '081234567892',
@@ -86,6 +94,7 @@ class IndramayuSeeder extends Seeder
             ],
             [
                 'name' => 'Dewi Lestari (Cantigi)',
+                'username' => 'dewilestari',
                 'email' => 'dewi@gmail.com',
                 'password' => Hash::make('password'),
                 'phone' => '081234567893',
@@ -332,19 +341,19 @@ class IndramayuSeeder extends Seeder
         $disasterZones = [
             [
                 'name' => 'Zona Rawan Luapan Cimanuk Lohbener',
-                'polygon' => 'POLYGON((108.2750 -6.4000, 108.2950 -6.4000, 108.2950 -6.4200, 108.2750 -6.4200, 108.2750 -6.4000))',
+                'polygon' => DB::raw("ST_GeomFromText('POLYGON((108.2750 -6.4000, 108.2950 -6.4000, 108.2950 -6.4200, 108.2750 -6.4200, 108.2750 -6.4000))')"),
                 'risk_level' => 'high',
                 'description' => 'Daerah aliran sungai Cimanuk di kecamatan Lohbener yang rawan terkena luapan air saat debit hulu meningkat tajam.',
             ],
             [
                 'name' => 'Kawasan Tanggul Kritis Jatibarang',
-                'polygon' => 'POLYGON((108.3000 -6.4650, 108.3200 -6.4650, 108.3200 -6.4850, 108.3000 -6.4850, 108.3000 -6.4650))',
+                'polygon' => DB::raw("ST_GeomFromText('POLYGON((108.3000 -6.4650, 108.3200 -6.4650, 108.3200 -6.4850, 108.3000 -6.4850, 108.3000 -6.4650))')"),
                 'risk_level' => 'critical',
                 'description' => 'Zona sekitar kelokan sungai Cimanuk Jatibarang dengan konstruksi tanggul tanah yang rentan rembes dan jebol.',
             ],
             [
                 'name' => 'Zona Rob Cantigi',
-                'polygon' => 'POLYGON((108.2500 -6.2800, 108.2750 -6.2800, 108.2750 -6.3100, 108.2500 -6.3100, 108.2500 -6.2800))',
+                'polygon' => DB::raw("ST_GeomFromText('POLYGON((108.2500 -6.2800, 108.2750 -6.2800, 108.2750 -6.3100, 108.2500 -6.3100, 108.2500 -6.2800))')"),
                 'risk_level' => 'medium',
                 'description' => 'Area pesisir Cantigi yang sering tergenang air pasang laut (banjir rob), terutama saat bulan purnama.',
             ],
