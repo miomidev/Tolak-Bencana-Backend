@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[Fillable([
     'user_id',
     'place_name',
+    'address',
     'latitude',
     'longitude',
-    'address',
     'is_primary',
     'icon_type'
 ])]
@@ -24,14 +24,14 @@ class SavedLocation extends Model
     protected function casts(): array
     {
         return [
-            'is_primary' => 'boolean',
             'latitude' => 'decimal:8',
             'longitude' => 'decimal:8',
+            'is_primary' => 'boolean',
         ];
     }
 
     /**
-     * Get the user that saved this location.
+     * Get the user that owns the saved location.
      */
     public function user(): BelongsTo
     {

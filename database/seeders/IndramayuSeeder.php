@@ -10,6 +10,8 @@ use App\Models\SavedLocation;
 use App\Models\Shelter;
 use App\Models\DisasterZone;
 use App\Models\AppInfo;
+use App\Models\ReportLike;
+use App\Models\ReportComment;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -105,6 +107,7 @@ class IndramayuSeeder extends Seeder
 
         $users = [];
         foreach ($usersData as $userData) {
+            $userData['avatar_url'] = 'https://ui-avatars.com/api/?name=' . urlencode($userData['name']) . '&background=0F767E&color=fff';
             $user = User::create($userData);
             $users[$user->email] = $user;
 
@@ -193,6 +196,7 @@ class IndramayuSeeder extends Seeder
                 'photo_url' => 'https://images.unsplash.com/photo-1547683905-f686c993aae5',
                 'severity' => 'high',
                 'status' => 'verified',
+                'category' => 'Banjir',
                 'reported_at' => Carbon::now()->subHours(2),
             ],
             [
@@ -204,6 +208,7 @@ class IndramayuSeeder extends Seeder
                 'photo_url' => 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c',
                 'severity' => 'critical',
                 'status' => 'pending',
+                'category' => 'Tanggul Kritis',
                 'reported_at' => Carbon::now()->subMinutes(30),
             ],
             [
@@ -215,6 +220,7 @@ class IndramayuSeeder extends Seeder
                 'photo_url' => null,
                 'severity' => 'medium',
                 'status' => 'resolved',
+                'category' => 'Banjir Rob',
                 'reported_at' => Carbon::now()->subDays(1),
             ],
             [
@@ -226,6 +232,7 @@ class IndramayuSeeder extends Seeder
                 'photo_url' => 'https://images.unsplash.com/photo-1547683905-f686c993aae5',
                 'severity' => 'low',
                 'status' => 'verified',
+                'category' => 'Genangan Air',
                 'reported_at' => Carbon::now()->subHours(4),
             ],
         ];
@@ -242,6 +249,7 @@ class IndramayuSeeder extends Seeder
                     'photo_url' => $rep['photo_url'],
                     'severity' => $rep['severity'],
                     'status' => $rep['status'],
+                    'category' => $rep['category'],
                     'reported_at' => $rep['reported_at'],
                 ]);
             }
@@ -338,22 +346,30 @@ class IndramayuSeeder extends Seeder
         }
 
         // 7. Seed Disaster Zones
+        $isSqlite = DB::connection()->getDriverName() === 'sqlite';
+
         $disasterZones = [
             [
                 'name' => 'Zona Rawan Luapan Cimanuk Lohbener',
-                'polygon' => DB::raw("ST_GeomFromText('POLYGON((108.2750 -6.4000, 108.2950 -6.4000, 108.2950 -6.4200, 108.2750 -6.4200, 108.2750 -6.4000))')"),
+                'polygon' => $isSqlite 
+                    ? 'POLYGON((108.2750 -6.4000, 108.2950 -6.4000, 108.2950 -6.4200, 108.2750 -6.4200, 108.2750 -6.4000))'
+                    : DB::raw("ST_GeomFromText('POLYGON((108.2750 -6.4000, 108.2950 -6.4000, 108.2950 -6.4200, 108.2750 -6.4200, 108.2750 -6.4000))')"),
                 'risk_level' => 'high',
                 'description' => 'Daerah aliran sungai Cimanuk di kecamatan Lohbener yang rawan terkena luapan air saat debit hulu meningkat tajam.',
             ],
             [
                 'name' => 'Kawasan Tanggul Kritis Jatibarang',
-                'polygon' => DB::raw("ST_GeomFromText('POLYGON((108.3000 -6.4650, 108.3200 -6.4650, 108.3200 -6.4850, 108.3000 -6.4850, 108.3000 -6.4650))')"),
+                'polygon' => $isSqlite
+                    ? 'POLYGON((108.3000 -6.4650, 108.3200 -6.4650, 108.3200 -6.4850, 108.3000 -6.4850, 108.3000 -6.4650))'
+                    : DB::raw("ST_GeomFromText('POLYGON((108.3000 -6.4650, 108.3200 -6.4650, 108.3200 -6.4850, 108.3000 -6.4850, 108.3000 -6.4650))')"),
                 'risk_level' => 'critical',
                 'description' => 'Zona sekitar kelokan sungai Cimanuk Jatibarang dengan konstruksi tanggul tanah yang rentan rembes dan jebol.',
             ],
             [
                 'name' => 'Zona Rob Cantigi',
-                'polygon' => DB::raw("ST_GeomFromText('POLYGON((108.2500 -6.2800, 108.2750 -6.2800, 108.2750 -6.3100, 108.2500 -6.3100, 108.2500 -6.2800))')"),
+                'polygon' => $isSqlite
+                    ? 'POLYGON((108.2500 -6.2800, 108.2750 -6.2800, 108.2750 -6.3100, 108.2500 -6.3100, 108.2500 -6.2800))'
+                    : DB::raw("ST_GeomFromText('POLYGON((108.2500 -6.2800, 108.2750 -6.2800, 108.2750 -6.3100, 108.2500 -6.3100, 108.2500 -6.2800))')"),
                 'risk_level' => 'medium',
                 'description' => 'Area pesisir Cantigi yang sering tergenang air pasang laut (banjir rob), terutama saat bulan purnama.',
             ],
@@ -373,5 +389,37 @@ class IndramayuSeeder extends Seeder
             'privacy_policy_url' => 'https://bpbd.indramayukab.go.id/privacy-policy',
             'terms_url' => 'https://bpbd.indramayukab.go.id/terms-of-service',
         ]);
+
+        // 9. Seed Likes and Comments
+        $allReports = Report::all();
+        $allUsers = User::all();
+
+        foreach ($allReports as $report) {
+            // Seed 2-4 random likes
+            $likedUsers = $allUsers->random(rand(2, 4));
+            foreach ($likedUsers as $u) {
+                ReportLike::create([
+                    'user_id' => $u->id,
+                    'report_id' => $report->id,
+                ]);
+            }
+
+            // Seed 1-2 random comments
+            $commentedUsers = $allUsers->random(rand(1, 2));
+            $sampleComments = [
+                'Tetap waspada semuanya!',
+                'Apakah bantuan sudah tiba?',
+                'Lokasi terpantau hujan gerimis sekarang.',
+                'Terima kasih atas laporannya.',
+                'Semoga lekas surut airnya.',
+            ];
+            foreach ($commentedUsers as $u) {
+                ReportComment::create([
+                    'user_id' => $u->id,
+                    'report_id' => $report->id,
+                    'comment' => $sampleComments[array_rand($sampleComments)],
+                ]);
+            }
+        }
     }
 }

@@ -168,4 +168,87 @@ class AuthController extends Controller
             'message' => 'Kata sandi berhasil diatur ulang.'
         ]);
     }
+
+    /**
+     * Update user profile.
+     */
+    public function updateProfile(Request $request)
+    {
+        $user = $request->user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'phone' => 'nullable|string|max:20',
+            'photo' => 'nullable|image|max:2048', // 2MB max
+        ]);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+
+        if ($request->hasFile('photo')) {
+            // Delete old photo if exists
+            if ($user->avatar_url) {
+                $oldPath = str_replace(asset('storage/'), '', $user->avatar_url);
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($oldPath);
+            }
+            
+            $path = $request->file('photo')->store('avatars', 'public');
+            $user->avatar_url = asset('storage/' . $path);
+        }
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'Profil berhasil diperbarui',
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * Change password.
+     */
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required|string',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = $request->user();
+
+        if (! Hash::check($request->current_password, $user->password)) {
+            throw ValidationException::withMessages([
+                'current_password' => ['Kata sandi saat ini salah.'],
+            ]);
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return response()->json([
+            'message' => 'Kata sandi berhasil diperbarui'
+        ]);
+    }
+
+    /**
+     * Delete user profile photo.
+     */
+    public function deleteProfilePhoto(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->avatar_url) {
+            $oldPath = str_replace(asset('storage/'), '', $user->avatar_url);
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($oldPath);
+            $user->avatar_url = null;
+            $user->save();
+        }
+
+        return response()->json([
+            'message' => 'Foto profil berhasil dihapus',
+            'user' => $user
+        ]);
+    }
 }

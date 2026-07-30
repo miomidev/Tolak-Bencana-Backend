@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Sanctum\HasApiTokens;
 
-#[Fillable(['name', 'username', 'email', 'password', 'phone', 'role', 'fcm_token'])]
+#[Fillable(['name', 'avatar_url', 'username', 'email', 'password', 'phone', 'role', 'fcm_token'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -66,4 +66,21 @@ class User extends Authenticatable
     {
         return $this->hasMany(SavedLocation::class);
     }
+
+    /**
+     * Get the likes given by this user.
+     */
+    public function reportLikes(): HasMany
+    {
+        return $this->hasMany(ReportLike::class);
+    }
+
+    /**
+     * Get the comments made by this user.
+     */
+    public function reportComments(): HasMany
+    {
+        return $this->hasMany(ReportComment::class);
+    }
 }
+
