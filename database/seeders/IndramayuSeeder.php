@@ -387,7 +387,29 @@ class IndramayuSeeder extends Seeder
             'website' => 'https://bpbd.indramayukab.go.id',
             'support_email' => 'hubungi@bpbd.indramayukab.go.id',
             'privacy_policy_url' => 'https://bpbd.indramayukab.go.id/privacy-policy',
+            'privacy_policy_content' => 'Kaliwedi berkomitmen melindungi privasi seluruh penggunanya.
+
+Data yang dikumpulkan: Nama, email, nomor telepon, dan lokasi yang Anda berikan saat membuat laporan.
+
+Penggunaan data: Data digunakan semata-mata untuk memproses laporan warga dan mengirimkan notifikasi terkait status laporan Anda.
+
+Keamanan data: Data Anda disimpan dengan enkripsi dan tidak dibagikan kepada pihak ketiga tanpa persetujuan Anda, kecuali diwajibkan hukum.
+
+Hak pengguna: Anda berhak mengakses, memperbarui, atau menghapus data pribadi Anda kapan saja melalui menu Edit Profil.
+
+Kebijakan ini berlaku sejak 15 Januari 2026 dan dapat diperbarui sewaktu-waktu.',
             'terms_url' => 'https://bpbd.indramayukab.go.id/terms-of-service',
+            'terms_content' => 'Dengan menggunakan Kaliwedi, Anda menyetujui syarat berikut:
+
+Penggunaan yang diperbolehkan: Aplikasi ini hanya untuk melaporkan kondisi banjir nyata di wilayah Kabupaten Indramayu. Laporan harus berisi informasi yang akurat dan dapat dipertanggungjawabkan.
+
+Larangan: Dilarang menyampaikan laporan palsu, konten provokatif, SARA, atau informasi yang menyesatkan. Pelanggaran dapat mengakibatkan penonaktifan akun.
+
+Tanggung jawab pemerintah: Pemerintah Kabupaten Indramayu berkomitmen menindaklanjuti laporan dalam 3–7 hari kerja sesuai kategori dan prioritas.
+
+Perubahan ketentuan: Ketentuan dapat diperbarui sewaktu-waktu. Pengguna akan diberitahu melalui notifikasi aplikasi.
+
+Berlaku sejak 15 Januari 2026.',
         ]);
 
         // 9. Seed Likes and Comments

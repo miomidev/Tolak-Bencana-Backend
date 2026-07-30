@@ -40,19 +40,13 @@ class ReportController extends Controller
             $severity = 'medium';
         }
 
-        // Prepend height info to description
-        $fullDescription = $request->input('description');
-        if ($height > 0) {
-            $fullDescription = "[Tinggi Air: {$height} cm] " . $fullDescription;
-        }
-
         $report = Report::create([
             'user_id' => auth()->id(),
             'latitude' => $request->input('latitude'),
             'longitude' => $request->input('longitude'),
             'address' => $request->input('address'),
             'category' => $request->input('category'),
-            'description' => $fullDescription,
+            'description' => $request->input('description'),
             'photo_url' => $photoUrl,
             'severity' => $severity,
             'status' => 'pending',

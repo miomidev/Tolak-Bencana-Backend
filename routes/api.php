@@ -4,7 +4,10 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\ReportLikeController;
 use App\Http\Controllers\Api\ReportCommentController;
+use App\Http\Controllers\Api\AppInfoController;
+use App\Http\Controllers\Api\MapDataController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\ShelterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +16,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/verify-reset-token', [AuthController::class, 'verifyResetToken']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+Route::get('/help', [\App\Http\Controllers\Api\HelpController::class, 'index']);
+Route::get('/app-info', [AppInfoController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
@@ -39,6 +44,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/reports/{id}/comments', [ReportCommentController::class, 'index']);
     Route::post('/reports/{id}/comments', [ReportCommentController::class, 'store']);
     
+    // Map Data
+    Route::get('/map-data', [MapDataController::class, 'index']);
+
+    // Shelters
+    Route::get('/shelters', [ShelterController::class, 'index']);
+
     // Notifications
     Route::get('/notifications', [NotificationController::class, 'index']);
     Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead']);
