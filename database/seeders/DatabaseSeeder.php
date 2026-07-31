@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(IndramayuSeeder::class);
         $this->call(HelpSeeder::class);
+        $this->call(MasterDataSeeder::class);
     }
 }
