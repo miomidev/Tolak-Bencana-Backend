@@ -18,8 +18,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     'photo_url',
     'severity',
     'status',
+    'rejection_reason',
     'reported_at',
-    'category'
+    'category',
 ])]
 class Report extends Model
 {
@@ -56,5 +57,13 @@ class Report extends Model
     public function comments(): HasMany
     {
         return $this->hasMany(ReportComment::class);
+    }
+
+    /**
+     * Get the active (visible) comments on this report.
+     */
+    public function activeComments(): HasMany
+    {
+        return $this->hasMany(ReportComment::class)->active();
     }
 }

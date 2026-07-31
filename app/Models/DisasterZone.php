@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
     'name',
     'polygon',
     'risk_level',
-    'description'
+    'description',
 ])]
 class DisasterZone extends Model
 {

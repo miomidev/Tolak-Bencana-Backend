@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
+use App\Models\NotificationSetting;
 use App\Models\Report;
+use App\Support\Audit;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\StreamedResponse;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ReportController extends Controller
 {
@@ -62,7 +67,9 @@ class ReportController extends Controller
             'status.in' => 'Status tidak valid.',
         ]);
 
-        $report->status = $request->input('status');
+        $status = $request->input('status');
+        $report->status = $status;
+        $report->rejection_reason = $status === 'rejected' ? $request->input('rejection_reason') : null;
         $report->save();
 
         $labels = [
@@ -71,8 +78,45 @@ class ReportController extends Controller
             'rejected' => 'Ditolak',
         ];
 
+        $this->notifyReporter($report, $status);
+
+        Audit::log(
+            'report.status_changed',
+            'Laporan "'.$report->address.'" dari "'.($report->user?->name ?? 'Pengguna').'" ditandai: '.($labels[$status] ?? $status).'.',
+            $report
+        );
+
         return redirect()->back()
-            ->with('success', 'Laporan dari "'.($report->user?->name ?? 'Pengguna').'" ditandai: '.($labels[$report->status] ?? $report->status).'.');
+            ->with('success', 'Laporan dari "'.($report->user?->name ?? 'Pengguna').'" ditandai: '.($labels[$status] ?? $status).'.');
+    }
+
+    /**
+     * Notify the reporting citizen about the moderation result.
+     */
+    private function notifyReporter(Report $report, string $status): void
+    {
+        $setting = NotificationSetting::where('user_id', $report->user_id)->first();
+
+        if ($setting && ! $setting->report_update) {
+            return;
+        }
+
+        $messages = [
+            'verified' => ['Laporan Anda Terverifikasi', 'Laporan banjir Anda di "'.$report->address.'" telah diverifikasi oleh tim BPBD. Terima kasih atas partisipasinya.'],
+            'resolved' => ['Laporan Anda Selesai Ditangani', 'Kondisi di "'.$report->address.'" telah surut dan laporan Anda ditandai selesai.'],
+            'rejected' => ['Laporan Anda Ditolak', 'Laporan Anda di "'.$report->address.'" ditolak. '.($report->rejection_reason ? 'Alasan: '.$report->rejection_reason : 'Silakan kirim laporan ulang dengan data yang lebih lengkap.')],
+        ];
+
+        [$title, $body] = $messages[$status] ?? ['Pembaruan Laporan', 'Status laporan Anda telah diperbarui.'];
+
+        Notification::create([
+            'user_id' => $report->user_id,
+            'title' => $title,
+            'body' => $body,
+            'type' => 'report_update',
+            'is_read' => false,
+            'sent_at' => now(),
+        ]);
     }
 
     public function exportExcel(Request $request)
@@ -91,13 +135,48 @@ class ReportController extends Controller
             ->orderBy('reported_at', 'desc')
             ->get();
 
-        $filename = 'laporan-banjir-'.now()->format('Y-m-d-His').'.xls';
+        $filename = 'laporan-banjir-'.now()->format('Y-m-d-His').'.xlsx';
 
-        return response()->view('admin.reports.excel', compact('reports'), 200, [
-            'Content-Type' => 'application/vnd.ms-excel; charset=UTF-8',
-            'Content-Disposition' => 'attachment; filename="'.$filename.'"',
-            'Pragma' => 'no-cache',
-            'Expires' => '0',
+        $spreadsheet = new Spreadsheet;
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('Laporan Banjir');
+
+        $headers = ['No', 'Nama Pelapor', 'Kategori', 'Lokasi / Alamat', 'Deskripsi Kejadian', 'Tingkat Keparahan', 'Status', 'Koordinat', 'Tanggal Laporan'];
+        $sheet->fromArray($headers, null, 'A1');
+        $sheet->getStyle('A1:I1')->getFont()->setBold(true)->getColor()->setARGB('FFFFFFFF');
+        $sheet->getStyle('A1:I1')->getFill()
+            ->setFillType(Fill::FILL_SOLID)
+            ->getStartColor()->setARGB('FF0F767E');
+
+        $severityLabels = ['low' => 'Rendah', 'medium' => 'Waspada', 'high' => 'Siaga', 'critical' => 'Awas / Kritis'];
+        $statusLabels = ['pending' => 'Pending', 'verified' => 'Terverifikasi', 'resolved' => 'Selesai', 'rejected' => 'Ditolak'];
+
+        $row = 2;
+        foreach ($reports as $index => $report) {
+            $sheet->fromArray([
+                $index + 1,
+                $report->user?->name ?? 'Warga',
+                $report->category,
+                $report->address,
+                $report->description,
+                $severityLabels[$report->severity] ?? $report->severity,
+                $statusLabels[$report->status] ?? $report->status,
+                $report->latitude.', '.$report->longitude,
+                $report->reported_at?->format('d-m-Y H:i'),
+            ], null, 'A'.$row);
+            $row++;
+        }
+
+        foreach (range('A', 'I') as $col) {
+            $sheet->getColumnDimension($col)->setAutoSize(true);
+        }
+
+        $writer = new Xlsx($spreadsheet);
+
+        return response()->streamDownload(function () use ($writer) {
+            $writer->save('php://output');
+        }, $filename, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         ]);
     }
 }

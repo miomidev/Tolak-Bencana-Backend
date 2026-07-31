@@ -75,6 +75,18 @@
                     @endif
                 </a>
 
+                <a href="{{ route('admin.comments.index') }}" title="Komentar" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.comments.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                    <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.comments.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
+                    <i class="sb-icon fa-solid fa-comment-dots w-5 text-center text-lg"></i>
+                    <span class="sb-text">Komentar</span>
+                </a>
+
+                <a href="{{ route('admin.broadcast.create') }}" title="Broadcast Siaga" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.broadcast.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                    <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.broadcast.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
+                    <i class="sb-icon fa-solid fa-bullhorn w-5 text-center text-lg"></i>
+                    <span class="sb-text">Broadcast Siaga</span>
+                </a>
+
                 <!-- Master Data -->
                 <div class="sb-section px-3 pt-5 pb-1.5">
                     <span class="text-[9px] uppercase tracking-widest text-white/35 font-bold">Master Data</span>
@@ -121,6 +133,12 @@
                     <span class="sb-text">FAQ</span>
                 </a>
 
+                <a href="{{ route('admin.announcements.index') }}" title="Pemberitahuan" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.announcements.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                    <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.announcements.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
+                    <i class="sb-icon fa-solid fa-bullhorn w-5 text-center text-lg"></i>
+                    <span class="sb-text">Pemberitahuan</span>
+                </a>
+
                 <!-- Pengaturan -->
                 <div class="sb-section px-3 pt-5 pb-1.5">
                     <span class="text-[9px] uppercase tracking-widest text-white/35 font-bold">Pengaturan</span>
@@ -136,6 +154,18 @@
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.app-info.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-gears w-5 text-center text-lg"></i>
                     <span class="sb-text">Konfigurasi Aplikasi</span>
+                </a>
+
+                <a href="{{ route('admin.audit-logs.index') }}" title="Audit Log" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.audit-logs.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                    <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.audit-logs.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
+                    <i class="sb-icon fa-solid fa-clock-rotate-left w-5 text-center text-lg"></i>
+                    <span class="sb-text">Audit Log</span>
+                </a>
+
+                <a href="{{ route('admin.profile.edit') }}" title="Profil Saya" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.profile.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                    <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.profile.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
+                    <i class="sb-icon fa-solid fa-user-gear w-5 text-center text-lg"></i>
+                    <span class="sb-text">Profil Saya</span>
                 </a>
             </nav>
 

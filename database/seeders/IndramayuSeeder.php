@@ -2,20 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use App\Models\Report;
+use App\Models\Announcement;
+use App\Models\AppInfo;
+use App\Models\DisasterZone;
 use App\Models\Notification;
 use App\Models\NotificationSetting;
+use App\Models\Report;
+use App\Models\ReportComment;
+use App\Models\ReportLike;
 use App\Models\SavedLocation;
 use App\Models\Shelter;
-use App\Models\DisasterZone;
-use App\Models\AppInfo;
-use App\Models\ReportLike;
-use App\Models\ReportComment;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Carbon;
 
 class IndramayuSeeder extends Seeder
 {
@@ -107,7 +108,7 @@ class IndramayuSeeder extends Seeder
 
         $users = [];
         foreach ($usersData as $userData) {
-            $userData['avatar_url'] = 'https://ui-avatars.com/api/?name=' . urlencode($userData['name']) . '&background=0F767E&color=fff';
+            $userData['avatar_url'] = 'https://ui-avatars.com/api/?name='.urlencode($userData['name']).'&background=0F767E&color=fff';
             $user = User::create($userData);
             $users[$user->email] = $user;
 
@@ -351,7 +352,7 @@ class IndramayuSeeder extends Seeder
         $disasterZones = [
             [
                 'name' => 'Zona Rawan Luapan Cimanuk Lohbener',
-                'polygon' => $isSqlite 
+                'polygon' => $isSqlite
                     ? 'POLYGON((108.2750 -6.4000, 108.2950 -6.4000, 108.2950 -6.4200, 108.2750 -6.4200, 108.2750 -6.4000))'
                     : DB::raw("ST_GeomFromText('POLYGON((108.2750 -6.4000, 108.2950 -6.4000, 108.2950 -6.4200, 108.2750 -6.4200, 108.2750 -6.4000))')"),
                 'risk_level' => 'high',
@@ -443,5 +444,13 @@ Berlaku sejak 15 Januari 2026.',
                 ]);
             }
         }
+
+        // 10. Seed Announcements (Running Text Landing Page)
+        Announcement::create([
+            'key' => 'SIAGA ROB',
+            'message' => 'Peringatan Dini Banjir Pasang Air Laut (Rob) Wilayah Pesisir Indramayu: Tetap Waspada untuk Daerah Cantigi, Sukra, Kandanghaur, dan Krangkeng. Pantau Jalur Evakuasi dan Shelter Aktif Melalui Aplikasi KALIWEDI. Layanan Call Center BPBD Indramayu Aktif 24 Jam.',
+            'sort_order' => 0,
+            'is_active' => true,
+        ]);
     }
 }

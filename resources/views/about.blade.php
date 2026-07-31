@@ -26,7 +26,7 @@
             font-family: 'Fredoka', sans-serif;
         }
         
-        .alhazen-glow-1 {
+        .kw-glow-1 {
             position: absolute;
             width: 350px;
             height: 350px;
@@ -38,7 +38,7 @@
             pointer-events: none;
         }
 
-        .alhazen-glow-2 {
+        .kw-glow-2 {
             position: absolute;
             width: 300px;
             height: 300px;
@@ -69,8 +69,8 @@
 <body class="min-h-screen text-slate-800 antialiased flex flex-col relative overflow-x-hidden">
 
     <!-- Glow bubbles -->
-    <div class="alhazen-glow-1 top-20 right-0"></div>
-    <div class="alhazen-glow-2 top-[50vh] left-0"></div>
+    <div class="kw-glow-1 top-20 right-0"></div>
+    <div class="kw-glow-2 top-[50vh] left-0"></div>
 
     <!-- Navigation Bar -->
     <header class="sticky top-0 z-40 nav-backdrop">

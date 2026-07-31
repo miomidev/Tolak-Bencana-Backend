@@ -14,17 +14,18 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return redirect()->route('admin.login')->withErrors([
                 'login' => 'Silakan masuk terlebih dahulu untuk mengakses dashboard.',
             ]);
         }
 
         $user = Auth::user();
-        if (!in_array($user->role, ['admin', 'superadmin'])) {
+        if (! in_array($user->role, ['admin', 'superadmin'])) {
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
+
             return redirect()->route('admin.login')->withErrors([
                 'login' => 'Akses ditolak. Anda tidak memiliki hak akses Administrator.',
             ]);

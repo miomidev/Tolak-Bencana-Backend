@@ -4,9 +4,14 @@
 @section('header_title', 'Manajemen Pengguna')
 
 @section('content')
-<div class="mb-6">
-    <h3 class="text-lg font-extrabold text-[#1F2937]">Daftar Pengguna</h3>
-    <p class="text-sm text-gray-400">Kelola akun pengguna aplikasi KALIWEDI</p>
+<div class="mb-6 flex items-end justify-between gap-4">
+    <div>
+        <h3 class="text-lg font-extrabold text-[#1F2937]">Daftar Pengguna</h3>
+        <p class="text-sm text-gray-400">Kelola akun pengguna aplikasi KALIWEDI</p>
+    </div>
+    <a href="{{ route('admin.users.create') }}" class="shrink-0 bg-[#0F767E] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors">
+        <i class="fa-solid fa-user-plus mr-1.5"></i> Tambah Pengguna
+    </a>
 </div>
 
 <!-- Filter bar -->

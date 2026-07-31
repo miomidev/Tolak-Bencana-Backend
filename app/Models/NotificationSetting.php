@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'flood_alert',
     'report_update',
     'emergency_alert',
-    'location_alert'
+    'location_alert',
 ])]
 class NotificationSetting extends Model
 {

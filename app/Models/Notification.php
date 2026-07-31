@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'body',
     'type',
     'is_read',
-    'sent_at'
+    'sent_at',
 ])]
 class Notification extends Model
 {

@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
     'capacity',
     'current_occupancy',
     'status',
-    'contact'
+    'contact',
 ])]
 class Shelter extends Model
 {

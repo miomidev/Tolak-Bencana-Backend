@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\HelpContact;
 use App\Models\Faq;
+use App\Models\HelpContact;
 
 class HelpController extends Controller
 {
@@ -25,7 +25,7 @@ class HelpController extends Controller
             'success' => true,
             'data' => [
                 'contacts' => $contacts,
-                'faqs'     => $faqs,
+                'faqs' => $faqs,
             ],
         ]);
     }

@@ -17,6 +17,7 @@ class ReportCommentController extends Controller
         $report = Report::findOrFail($reportId);
 
         $comments = ReportComment::where('report_id', $report->id)
+            ->active()
             ->with('user:id,name,username,avatar_url')
             ->orderBy('created_at', 'asc')
             ->get();

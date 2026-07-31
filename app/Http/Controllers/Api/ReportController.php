@@ -26,7 +26,7 @@ class ReportController extends Controller
         $photoUrl = null;
         if ($request->hasFile('photo')) {
             $path = $request->file('photo')->store('reports', 'public');
-            $photoUrl = asset('storage/' . $path);
+            $photoUrl = asset('storage/'.$path);
         }
 
         // Determine severity based on water height in cm
@@ -56,7 +56,7 @@ class ReportController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Laporan banjir berhasil dikirim!',
-            'data' => $report->load('user')
+            'data' => $report->load('user'),
         ], 201);
     }
 
@@ -67,13 +67,20 @@ class ReportController extends Controller
     {
         $reports = Report::where('user_id', $request->user()->id)
             ->with(['user:id,name,username,avatar_url'])
-            ->withCount(['likes', 'comments'])
+            ->withCount(['likes', 'activeComments'])
             ->latest()
-            ->get();
+            ->get()
+            ->map(function ($report) {
+                $data = $report->toArray();
+                $data['comments_count'] = $report->active_comments_count ?? 0;
+                unset($data['active_comments_count']);
+
+                return $data;
+            });
 
         return response()->json([
             'success' => true,
-            'reports' => $reports
+            'reports' => $reports,
         ]);
     }
 }

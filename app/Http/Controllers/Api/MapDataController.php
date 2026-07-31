@@ -14,7 +14,7 @@ class MapDataController extends Controller
         $user = $request->user();
 
         $reportsQuery = Report::with(['user:id,name,username,avatar_url'])
-            ->withCount(['likes', 'comments'])
+            ->withCount(['likes', 'activeComments'])
             ->orderBy('reported_at', 'desc');
 
         if ($user) {
@@ -37,7 +37,7 @@ class MapDataController extends Controller
                 'reported_at' => $report->reported_at->toIso8601String(),
                 'time_ago' => $report->reported_at->diffForHumans(),
                 'likes_count' => $report->likes_count ?? 0,
-                'comments_count' => $report->comments_count ?? 0,
+                'comments_count' => $report->active_comments_count ?? 0,
                 'is_liked' => (bool) ($report->is_liked ?? false),
                 'user' => $report->user,
             ];

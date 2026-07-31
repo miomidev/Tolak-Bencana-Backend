@@ -20,13 +20,13 @@ class DashboardController extends Controller
         $activeReports = Report::whereIn('status', ['pending', 'verified'])->count();
         $verifiedReports = Report::where('status', 'verified')->count();
 
-        $percentageVerified = $totalReports > 0 
-            ? round(($verifiedReports / $totalReports) * 100) 
+        $percentageVerified = $totalReports > 0
+            ? round(($verifiedReports / $totalReports) * 100)
             : 0;
 
         // 2. Fetch reports with counts and is_liked status
         $reportsQuery = Report::with(['user:id,name,username,avatar_url'])
-            ->withCount(['likes', 'comments'])
+            ->withCount(['likes', 'activeComments'])
             ->orderBy('reported_at', 'desc');
 
         if ($user) {
@@ -53,7 +53,7 @@ class DashboardController extends Controller
                 'reported_at' => $report->reported_at->toIso8601String(),
                 'time_ago' => $report->reported_at->diffForHumans(),
                 'likes_count' => $report->likes_count ?? 0,
-                'comments_count' => $report->comments_count ?? 0,
+                'comments_count' => $report->active_comments_count ?? 0,
                 'is_liked' => (bool) ($report->is_liked ?? false),
                 'user' => $report->user,
             ];

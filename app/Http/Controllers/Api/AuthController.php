@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -38,7 +40,7 @@ class AuthController extends Controller
             'message' => 'Registrasi berhasil',
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'user' => $user
+            'user' => $user,
         ], 201);
     }
 
@@ -68,7 +70,7 @@ class AuthController extends Controller
             'message' => 'Login berhasil',
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -80,9 +82,10 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
 
         return response()->json([
-            'message' => 'Logout berhasil'
+            'message' => 'Logout berhasil',
         ]);
     }
+
     /**
      * Send password reset OTP.
      */
@@ -92,13 +95,13 @@ class AuthController extends Controller
             'email' => 'required|email|exists:users,email',
         ]);
 
-        $otp = sprintf("%06d", mt_rand(1, 999999));
+        $otp = sprintf('%06d', mt_rand(1, 999999));
 
-        \Illuminate\Support\Facades\DB::table('password_reset_tokens')->updateOrInsert(
+        DB::table('password_reset_tokens')->updateOrInsert(
             ['email' => $request->email],
             [
                 'token' => Hash::make($otp),
-                'created_at' => now()
+                'created_at' => now(),
             ]
         );
 
@@ -106,7 +109,7 @@ class AuthController extends Controller
         // For now, return OTP in response for development/testing
         return response()->json([
             'message' => 'Kode OTP berhasil dibuat.',
-            'otp' => $otp // HAPUS INI JIKA SUDAH PRODUCTION / PAKAI SMTP
+            'otp' => $otp, // HAPUS INI JIKA SUDAH PRODUCTION / PAKAI SMTP
         ]);
     }
 
@@ -120,7 +123,7 @@ class AuthController extends Controller
             'otp' => 'required|string',
         ]);
 
-        $record = \Illuminate\Support\Facades\DB::table('password_reset_tokens')
+        $record = DB::table('password_reset_tokens')
             ->where('email', $request->email)
             ->first();
 
@@ -131,7 +134,7 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            'message' => 'Kode OTP valid.'
+            'message' => 'Kode OTP valid.',
         ]);
     }
 
@@ -146,7 +149,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        $record = \Illuminate\Support\Facades\DB::table('password_reset_tokens')
+        $record = DB::table('password_reset_tokens')
             ->where('email', $request->email)
             ->first();
 
@@ -160,12 +163,12 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        \Illuminate\Support\Facades\DB::table('password_reset_tokens')
+        DB::table('password_reset_tokens')
             ->where('email', $request->email)
             ->delete();
 
         return response()->json([
-            'message' => 'Kata sandi berhasil diatur ulang.'
+            'message' => 'Kata sandi berhasil diatur ulang.',
         ]);
     }
 
@@ -178,7 +181,7 @@ class AuthController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
             'phone' => 'nullable|string|max:20',
             'photo' => 'nullable|image|max:2048', // 2MB max
         ]);
@@ -191,18 +194,18 @@ class AuthController extends Controller
             // Delete old photo if exists
             if ($user->avatar_url) {
                 $oldPath = str_replace(asset('storage/'), '', $user->avatar_url);
-                \Illuminate\Support\Facades\Storage::disk('public')->delete($oldPath);
+                Storage::disk('public')->delete($oldPath);
             }
-            
+
             $path = $request->file('photo')->store('avatars', 'public');
-            $user->avatar_url = asset('storage/' . $path);
+            $user->avatar_url = asset('storage/'.$path);
         }
 
         $user->save();
 
         return response()->json([
             'message' => 'Profil berhasil diperbarui',
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -228,7 +231,7 @@ class AuthController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'Kata sandi berhasil diperbarui'
+            'message' => 'Kata sandi berhasil diperbarui',
         ]);
     }
 
@@ -241,14 +244,14 @@ class AuthController extends Controller
 
         if ($user->avatar_url) {
             $oldPath = str_replace(asset('storage/'), '', $user->avatar_url);
-            \Illuminate\Support\Facades\Storage::disk('public')->delete($oldPath);
+            Storage::disk('public')->delete($oldPath);
             $user->avatar_url = null;
             $user->save();
         }
 
         return response()->json([
             'message' => 'Foto profil berhasil dihapus',
-            'user' => $user
+            'user' => $user,
         ]);
     }
 }

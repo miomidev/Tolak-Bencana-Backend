@@ -1,12 +1,17 @@
 <?php
 
 use App\Http\Controllers\Admin\AlertLevelController;
+use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\AppInfoController;
+use App\Http\Controllers\Admin\AuditLogController;
+use App\Http\Controllers\Admin\BroadcastController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DisasterZoneController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HelpContactController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReportCategoryController;
+use App\Http\Controllers\Admin\ReportCommentController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ShelterController;
 use App\Http\Controllers\Admin\UserController;
@@ -19,19 +24,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
+Route::get('/download-apk', [HomeController::class, 'downloadApk'])->name('download.apk');
 
 // Admin Auth Routes
 Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.post');
+Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.post')->middleware('throttle:admin-login');
 
 Route::get('/admin/forgot-password', [AdminAuthController::class, 'showForgotPasswordForm'])->name('admin.forgot-password');
-Route::post('/admin/forgot-password', [AdminAuthController::class, 'sendResetOtp'])->name('admin.forgot-password.post');
+Route::post('/admin/forgot-password', [AdminAuthController::class, 'sendResetOtp'])->name('admin.forgot-password.post')->middleware('throttle:admin-login');
 
 Route::get('/admin/forgot-password/otp', [AdminAuthController::class, 'showOtpForm'])->name('admin.forgot-password.otp');
-Route::post('/admin/forgot-password/otp', [AdminAuthController::class, 'verifyOtp'])->name('admin.forgot-password.otp.post');
+Route::post('/admin/forgot-password/otp', [AdminAuthController::class, 'verifyOtp'])->name('admin.forgot-password.otp.post')->middleware('throttle:admin-login');
 
 Route::get('/admin/reset-password', [AdminAuthController::class, 'showResetPasswordForm'])->name('admin.reset-password');
-Route::post('/admin/reset-password', [AdminAuthController::class, 'resetPassword'])->name('admin.reset-password.post');
+Route::post('/admin/reset-password', [AdminAuthController::class, 'resetPassword'])->name('admin.reset-password.post')->middleware('throttle:admin-login');
 
 // Protected Admin Routes
 Route::middleware([AdminMiddleware::class])->group(function () {
@@ -78,6 +84,8 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     // Konfigurasi Aplikasi (single row)
     Route::get('/admin/app-info', [AppInfoController::class, 'edit'])->name('admin.app-info.edit');
     Route::put('/admin/app-info', [AppInfoController::class, 'update'])->name('admin.app-info.update');
+    Route::post('/admin/app-info/apk', [AppInfoController::class, 'uploadApk'])->name('admin.app-info.apk.upload');
+    Route::post('/admin/app-info/apk/remove', [AppInfoController::class, 'removeApk'])->name('admin.app-info.apk.remove');
 
     // Master Data: Kategori Laporan
     Route::get('/admin/categories', [ReportCategoryController::class, 'index'])->name('admin.categories.index');
@@ -97,12 +105,42 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::delete('/admin/alert-levels/{level}', [AlertLevelController::class, 'destroy'])->name('admin.alert-levels.destroy');
     Route::post('/admin/alert-levels/{level}/toggle', [AlertLevelController::class, 'toggle'])->name('admin.alert-levels.toggle');
 
+    // Pemberitahuan (Running Text Landing Page)
+    Route::get('/admin/announcements', [AnnouncementController::class, 'index'])->name('admin.announcements.index');
+    Route::get('/admin/announcements/create', [AnnouncementController::class, 'create'])->name('admin.announcements.create');
+    Route::post('/admin/announcements', [AnnouncementController::class, 'store'])->name('admin.announcements.store');
+    Route::get('/admin/announcements/{announcement}/edit', [AnnouncementController::class, 'edit'])->name('admin.announcements.edit');
+    Route::put('/admin/announcements/{announcement}', [AnnouncementController::class, 'update'])->name('admin.announcements.update');
+    Route::delete('/admin/announcements/{announcement}', [AnnouncementController::class, 'destroy'])->name('admin.announcements.destroy');
+    Route::post('/admin/announcements/{announcement}/toggle', [AnnouncementController::class, 'toggle'])->name('admin.announcements.toggle');
+
     // Manajemen Pengguna
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
+    Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
     Route::get('/admin/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
     Route::put('/admin/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
     Route::post('/admin/users/{user}/toggle', [UserController::class, 'toggle'])->name('admin.users.toggle');
     Route::post('/admin/users/{user}/reset-password', [UserController::class, 'resetPassword'])->name('admin.users.reset-password');
+    Route::post('/admin/users/{user}/notifications', [UserController::class, 'updateNotifications'])->name('admin.users.notifications');
+
+    // Profil Admin
+    Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::put('/admin/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
+    Route::put('/admin/profile/password', [ProfileController::class, 'updatePassword'])->name('admin.profile.password');
+
+    // Broadcast Siaga
+    Route::get('/admin/broadcast/create', [BroadcastController::class, 'create'])->name('admin.broadcast.create');
+    Route::post('/admin/broadcast/send', [BroadcastController::class, 'send'])->name('admin.broadcast.send');
+
+    // Moderasi Komentar
+    Route::get('/admin/comments', [ReportCommentController::class, 'index'])->name('admin.comments.index');
+    Route::get('/admin/comments/{comment}', [ReportCommentController::class, 'show'])->name('admin.comments.show');
+    Route::post('/admin/comments/{comment}/toggle', [ReportCommentController::class, 'toggle'])->name('admin.comments.toggle');
+    Route::delete('/admin/comments/{comment}', [ReportCommentController::class, 'destroy'])->name('admin.comments.destroy');
+
+    // Audit Log
+    Route::get('/admin/audit-logs', [AuditLogController::class, 'index'])->name('admin.audit-logs.index');
 
     // Moderasi Laporan
     Route::get('/admin/reports', [ReportController::class, 'index'])->name('admin.reports.index');

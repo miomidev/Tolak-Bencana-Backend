@@ -43,7 +43,7 @@ class NotificationController extends Controller
     public function markAsRead(Request $request, $id)
     {
         $user = $request->user();
-        
+
         $notification = Notification::where('user_id', $user->id)
             ->findOrFail($id);
 
@@ -55,7 +55,7 @@ class NotificationController extends Controller
             'notification' => [
                 'id' => $notification->id,
                 'is_read' => true,
-            ]
+            ],
         ]);
     }
 }

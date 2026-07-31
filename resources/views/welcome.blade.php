@@ -29,8 +29,8 @@
             font-family: 'Fredoka', sans-serif;
         }
         
-        /* Alhazen-style background radial circles */
-        .alhazen-glow-1 {
+        /* Premium background radial circles */
+        .kw-glow-1 {
             position: absolute;
             width: 350px;
             height: 350px;
@@ -42,7 +42,7 @@
             pointer-events: none;
         }
 
-        .alhazen-glow-2 {
+        .kw-glow-2 {
             position: absolute;
             width: 400px;
             height: 400px;
@@ -54,7 +54,7 @@
             pointer-events: none;
         }
 
-        .alhazen-glow-3 {
+        .kw-glow-3 {
             position: absolute;
             width: 300px;
             height: 300px;
@@ -76,18 +76,19 @@
 
         /* Swiper / Hero Banner shadow and layout */
         .hero-banner {
-            background: linear-gradient(135deg, #1e3a8a 0%, #0f767e 100%);
+            background: linear-gradient(135deg, rgba(30, 59, 138, 0.48) 0%, rgba(15, 119, 126, 0.45) 100%), url('{{ asset('images/hero.png') }}') no-repeat center center;
+            background-size: cover;
             box-shadow: 0 20px 40px -15px rgba(30, 58, 138, 0.3);
         }
 
-        /* Program / Feature Cards - Alhazen Card Style */
-        .alhazen-card {
+        /* Program / Feature Cards Style */
+        .kw-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(229, 231, 235, 0.6);
             will-change: transform;
         }
 
-        .alhazen-card:hover {
+        .kw-card:hover {
             transform: translateY(-6px) scale(1.01);
             box-shadow: 0 20px 30px -10px rgba(15, 118, 126, 0.15);
             border-color: rgba(15, 118, 126, 0.3);
@@ -97,6 +98,14 @@
         .leaflet-container {
             background-color: #f3f4f6 !important;
         }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
     </style>
 
     <!-- Vite Styles and Scripts -->
@@ -104,10 +113,26 @@
 </head>
 <body class="min-h-screen text-slate-800 antialiased flex flex-col relative overflow-x-hidden">
 
-    <!-- Background Decoration Bubbles (Alhazen Style) -->
-    <div class="alhazen-glow-1 top-20 -left-20"></div>
-    <div class="alhazen-glow-2 top-[120vh] -right-20"></div>
-    <div class="alhazen-glow-3 top-[220vh] left-[20vw]"></div>
+    <!-- Running Text Warning Ticker -->
+    @if(isset($announcements) && $announcements->isNotEmpty())
+    <div class="bg-gradient-to-r from-red-600 via-orange-500 to-red-600 text-white text-[11px] font-bold py-2.5 px-4 shadow-sm z-50 relative overflow-hidden flex items-center gap-3">
+        <span class="bg-white text-red-600 px-2 py-0.5 rounded-md font-extrabold uppercase shrink-0 tracking-wider animate-pulse flex items-center gap-1">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ $announcements->first()->key }}
+        </span>
+        <div class="relative w-full overflow-hidden whitespace-nowrap">
+            <div class="inline-block animate-marquee">
+                @foreach($announcements as $index => $announcement)
+                    {{ $announcement->message }}@if(!$loop->last) &nbsp;&nbsp;&nbsp;••&nbsp;&nbsp;&nbsp; @endif
+                @endforeach
+            </div>
+        </div>
+    </div>
+    @endif
+
+    <!-- Background Decoration Bubbles -->
+    <div class="kw-glow-1 top-20 -left-20"></div>
+    <div class="kw-glow-2 top-[120vh] -right-20"></div>
+    <div class="kw-glow-3 top-[220vh] left-[20vw]"></div>
 
     <!-- Navigation Bar -->
     <header class="sticky top-0 z-40 nav-backdrop">
@@ -147,7 +172,7 @@
     <section id="beranda" class="relative overflow-hidden py-6" aria-labelledby="hero-title">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             
-            <!-- Main Hero Banner with Rounded-3xl (Mimicking Alhazen Swiper structure) -->
+            <!-- Main Hero Banner with Rounded-3xl -->
             <div class="relative h-[550px] md:h-[600px] lg:h-[65vh] rounded-3xl overflow-hidden mb-8 hero-banner flex flex-col justify-center items-center text-center p-8 sm:p-12 text-white relative">
                 
                 <!-- Overlay subtle pattern background -->
@@ -167,7 +192,7 @@
                     </p>
 
                     <!-- CTA Button -->
-                    <a href="#unduh" class="inline-flex items-center gap-2 rounded-xl px-8 py-3.5 bg-[#F97316] text-white font-extrabold text-sm shadow-xl hover:scale-105 hover:bg-[#EA580C] transition-all duration-200">
+                    <a href="{{ $appInfo && $appInfo->apk_path ? route('download.apk') : '#unduh' }}" class="inline-flex items-center gap-2 rounded-xl px-8 py-3.5 bg-[#F97316] text-white font-extrabold text-sm shadow-xl hover:scale-105 hover:bg-[#EA580C] transition-all duration-200">
                         <i class="fa-brands fa-android text-base"></i>
                         <span>Unduh Aplikasi Sekarang</span>
                     </a>
@@ -188,49 +213,36 @@
         </div>
     </section>
 
-    <!-- Interactive Mockup & About (Alhazen-style content columns) -->
+    <!-- Real-time Stats Section -->
+    <section class="relative z-10 -mt-10 mx-auto max-w-6xl px-4">
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 sm:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="flex flex-col items-center">
+                <span class="text-3xl sm:text-4xl font-black text-[#1E3A8A] tracking-tight">{{ $stats['total_reports'] ?? 0 }}</span>
+                <span class="text-[10px] uppercase font-extrabold text-slate-400 mt-1">Laporan Warga</span>
+            </div>
+            <div class="flex flex-col items-center border-l border-slate-100">
+                <span class="text-3xl sm:text-4xl font-black text-[#0F767E] tracking-tight">{{ $stats['active_shelters'] ?? 0 }}</span>
+                <span class="text-[10px] uppercase font-extrabold text-slate-400 mt-1">Shelter Siaga</span>
+            </div>
+            <div class="flex flex-col items-center border-l border-slate-100">
+                <span class="text-3xl sm:text-4xl font-black text-emerald-600 tracking-tight">{{ $stats['resolved_cases'] ?? 0 }}</span>
+                <span class="text-[10px] uppercase font-extrabold text-slate-400 mt-1">Selesai / Surut</span>
+            </div>
+            <div class="flex flex-col items-center border-l border-slate-100">
+                <span class="text-3xl sm:text-4xl font-black text-[#F97316] tracking-tight">{{ $stats['monitored_points'] ?? 0 }}</span>
+                <span class="text-[10px] uppercase font-extrabold text-slate-400 mt-1">Titik Dipantau</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Mockup & About (Premium content columns) -->
     <section class="py-16 bg-white border-y border-slate-100 relative z-10">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Left: Mascot/Laptop Mockup representation -->
+                <!-- Left: Smartphone Mockup Image -->
                 <div class="relative flex justify-center items-center">
                     <div class="absolute w-72 h-72 sm:w-80 sm:h-80 bg-[#0F767E] rounded-full opacity-10 blur-2xl z-0"></div>
-                    <!-- Rounded floating app preview card -->
-                    <div class="relative z-10 w-72 h-[480px] bg-slate-900 rounded-[36px] p-3 shadow-2xl border border-slate-800 flex flex-col overflow-hidden">
-                        <div class="w-full h-full bg-[#f8fafc] rounded-[26px] overflow-hidden flex flex-col relative border border-white/5">
-                            <!-- App Header -->
-                            <div class="bg-[#1E3A8A] text-white p-3.5 flex items-center justify-between shadow-sm">
-                                <span class="font-extrabold text-xs tracking-wider flex items-center gap-1">
-                                    <img src="{{ asset('images/logo.png') }}" class="w-4.5 h-4.5 rounded bg-white p-0.5" alt=""> KALIWEDI
-                                </span>
-                                <i class="fa-regular fa-bell text-xs text-white/80"></i>
-                            </div>
-                            <!-- Mock Content -->
-                            <div class="p-3 flex flex-col gap-2 flex-grow bg-slate-55 relative">
-                                <div class="bg-red-50 border border-red-200 text-red-700 p-2.5 rounded-xl text-[9px] font-semibold">
-                                    <span class="font-bold">SIAGA MERAH</span> - Air rob laut naik 80cm di Sukra.
-                                </div>
-                                <div class="flex-grow bg-slate-100 rounded-2xl relative overflow-hidden border border-slate-200/60">
-                                    <!-- Mini map screen -->
-                                    <div class="absolute inset-0 bg-cover bg-center opacity-50" style="background-image: url('https://tile.openstreetmap.org/10/300/300.png');"></div>
-                                    <!-- Pins -->
-                                    <span class="absolute top-1/3 left-1/3 w-3 h-3 bg-red-650 rounded-full border border-white shadow animate-ping"></span>
-                                    <span class="absolute top-1/3 left-1/3 w-2 h-2 bg-red-605 rounded-full border border-white shadow"></span>
-                                    <span class="absolute top-1/2 right-1/4 w-2 h-2 bg-[#F97316] rounded-full border border-white shadow"></span>
-                                    <!-- Evacuation route drawing representation -->
-                                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-                                        <line x1="33" y1="33" x2="60" y2="40" stroke="#10B981" stroke-width="2.5" stroke-dasharray="3 3"></line>
-                                        <line x1="60" y1="40" x2="80" y2="70" stroke="#10B981" stroke-width="2.5"></line>
-                                    </svg>
-                                    <!-- Floating shelter card -->
-                                    <div class="absolute bottom-2 left-2 right-2 bg-white/95 border border-slate-200/50 p-2 rounded-xl shadow-md text-[8px] flex flex-col gap-0.5">
-                                        <span class="font-bold text-[#1E3A8A]"><i class="fa-solid fa-house-chimney"></i> Shelter Balai Desa Sukra</span>
-                                        <span class="text-emerald-600 font-bold">RUTE AMAN DISARANKAN</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="{{ asset('images/phone.png') }}" alt="KALIWEDI Smartphone Mockup" class="relative z-10 w-72 sm:w-80 h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-300" loading="lazy">
                 </div>
 
                 <!-- Right: Text Content -->
@@ -252,7 +264,7 @@
         </div>
     </section>
 
-    <!-- Why Us Section (Mimicking Alhazen's Why Us) -->
+    <!-- Why Us Section (Why Us features) -->
     <section id="fitur" class="py-20 bg-slate-50 border-b border-slate-100 relative z-10"> 
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -264,7 +276,7 @@
             
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Box 1 -->
-                <div class="alhazen-card bg-white p-7 rounded-2xl flex flex-col gap-4">
+                <div class="kw-card bg-white p-7 rounded-2xl flex flex-col gap-4">
                     <img src="https://alhazen.academy/assets/kids/index-why/icon-why1.png" alt="Laporan Cepat" class="w-12 h-12 object-contain" loading="lazy" decoding="async">
                     <h3 class="text-lg font-bold text-slate-800">Laporan Cepat 3-Ketuk</h3>
                     <p class="text-xs text-slate-500 leading-relaxed text-justify">
@@ -273,7 +285,7 @@
                 </div>
 
                 <!-- Box 2 -->
-                <div class="alhazen-card bg-white p-7 rounded-2xl flex flex-col gap-4">
+                <div class="kw-card bg-white p-7 rounded-2xl flex flex-col gap-4">
                     <img src="https://alhazen.academy/assets/kids/index-why/icon-why2.png" alt="Rute Evakuasi" class="w-12 h-12 object-contain" loading="lazy" decoding="async">
                     <h3 class="text-lg font-bold text-slate-800">Rute Evakuasi Dinamis</h3>
                     <p class="text-xs text-slate-500 leading-relaxed text-justify">
@@ -282,7 +294,7 @@
                 </div>
 
                 <!-- Box 3 -->
-                <div class="alhazen-card bg-white p-7 rounded-2xl flex flex-col gap-4">
+                <div class="kw-card bg-white p-7 rounded-2xl flex flex-col gap-4">
                     <img src="https://alhazen.academy/assets/kids/index-why/icon-why3.png" alt="Alarm Suara" class="w-12 h-12 object-contain" loading="lazy" decoding="async">
                     <h3 class="text-lg font-bold text-slate-800">Notifikasi Suara "Banjar ati!"</h3>
                     <p class="text-xs text-slate-500 leading-relaxed text-justify">
@@ -291,7 +303,7 @@
                 </div>
 
                 <!-- Box 4 -->
-                <div class="alhazen-card bg-white p-7 rounded-2xl flex flex-col gap-4">
+                <div class="kw-card bg-white p-7 rounded-2xl flex flex-col gap-4">
                     <img src="https://alhazen.academy/assets/kids/index-why/icon-why4.png" alt="Offline Mode" class="w-12 h-12 object-contain" loading="lazy" decoding="async">
                     <h3 class="text-lg font-bold text-slate-800">Penyimpanan Offline</h3>
                     <p class="text-xs text-slate-500 leading-relaxed text-justify">
@@ -300,7 +312,7 @@
                 </div>
 
                 <!-- Box 5 -->
-                <div class="alhazen-card bg-white p-7 rounded-2xl flex flex-col gap-4">
+                <div class="kw-card bg-white p-7 rounded-2xl flex flex-col gap-4">
                     <img src="https://alhazen.academy/assets/kids/index-why/icon-why5.png" alt="BPBD Validation" class="w-12 h-12 object-contain" loading="lazy" decoding="async">
                     <h3 class="text-lg font-bold text-slate-800">Dashboard Kontrol BPBD</h3>
                     <p class="text-xs text-slate-500 leading-relaxed text-justify">
@@ -309,11 +321,68 @@
                 </div>
 
                 <!-- Box 6 -->
-                <div class="alhazen-card bg-white p-7 rounded-2xl flex flex-col gap-4">
+                <div class="kw-card bg-white p-7 rounded-2xl flex flex-col gap-4">
                     <img src="https://alhazen.academy/assets/kids/index-why/icon-why6.png" alt="STEM/GIS" class="w-12 h-12 object-contain" loading="lazy" decoding="async">
                     <h3 class="text-lg font-bold text-slate-800">Analisis Spasial GIS</h3>
                     <p class="text-xs text-slate-500 leading-relaxed text-justify">
                         Melakukan visualisasi data titik banjir secara geografis (SIG) untuk mempermudah pemerintah dalam menganalisis daerah rawan genangan rob.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mitigasi Guide Section -->
+    <section class="py-20 bg-white border-b border-slate-100 relative z-10">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#F97316]">Panduan Siaga</span>
+                <h2 class="text-3xl font-extrabold text-[#1E3A8A] leading-tight mt-2">
+                    Langkah Mitigasi Saat Banjir Rob Melanda
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-amber-50 text-[#F97316] flex items-center justify-center text-2xl font-black mb-4 relative shadow-sm border border-amber-100/50">
+                        1
+                        <span class="absolute -right-4 top-1/2 -translate-y-1/2 hidden md:block text-slate-200"><i class="fa-solid fa-angle-right"></i></span>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-800 mb-2">Pantau Peta Distribusi</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-xs">
+                        Buka website KALIWEDI untuk memantau sebaran tinggi genangan rob terbaru secara real-time.
+                    </p>
+                </div>
+                <!-- Step 2 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-50 text-[#1E3A8A] flex items-center justify-center text-2xl font-black mb-4 relative shadow-sm border border-blue-100/50">
+                        2
+                        <span class="absolute -right-4 top-1/2 -translate-y-1/2 hidden md:block text-slate-200"><i class="fa-solid fa-angle-right"></i></span>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-800 mb-2">Siapkan Tas Siaga</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-xs">
+                        Kemas berkas penting, obat-obatan, senter, makanan instan, dan air bersih dalam tas antiair.
+                    </p>
+                </div>
+                <!-- Step 3 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl font-black mb-4 relative shadow-sm border border-emerald-100/50">
+                        3
+                        <span class="absolute -right-4 top-1/2 -translate-y-1/2 hidden md:block text-slate-200"><i class="fa-solid fa-angle-right"></i></span>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-800 mb-2">Ikuti Rute Evakuasi</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-xs">
+                        Gunakan rute hijau bebas genangan di peta KALIWEDI menuju shelter terdekat yang aman.
+                    </p>
+                </div>
+                <!-- Step 4 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-red-50 text-red-500 flex items-center justify-center text-2xl font-black mb-4 shadow-sm border border-red-100/50">
+                        4
+                    </div>
+                    <h3 class="text-base font-bold text-slate-800 mb-2">Hubungi Kontak Darurat</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-xs">
+                        Segera tekan tombol panggil bantuan darurat jika membutuhkan evakuasi atau pertolongan medis.
                     </p>
                 </div>
             </div>
@@ -331,17 +400,105 @@
                 </p>
             </div>
 
-            <!-- Leaflet Map Container with Alhazen card roundings -->
-            <div class="w-full h-[500px] rounded-3xl shadow-xl border border-slate-200/60 overflow-hidden relative bg-slate-100" id="public-map">
-                <!-- Map loading overlay -->
-                <div class="absolute inset-0 bg-slate-50 z-40 flex items-center justify-center font-semibold text-[#1E3A8A]" id="map-loader">
-                    <i class="fa-solid fa-spinner animate-spin text-2xl mr-3"></i> Memuat Peta Distribusi...
+            <!-- Map and Shelter Grid layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <!-- Map (8 Columns) -->
+                <div class="lg:col-span-8 h-[500px] rounded-3xl shadow-xl border border-slate-200/60 overflow-hidden relative bg-slate-100" id="public-map">
+                    <!-- Map loading overlay -->
+                    <div class="absolute inset-0 bg-slate-50 z-40 flex items-center justify-center font-semibold text-[#1E3A8A]" id="map-loader">
+                        <i class="fa-solid fa-spinner animate-spin text-2xl mr-3"></i> Memuat Peta Distribusi...
+                    </div>
+                </div>
+                
+                <!-- Shelter List (4 Columns) -->
+                <div class="lg:col-span-4 flex flex-col gap-4 max-h-[500px] overflow-y-auto bg-slate-50 rounded-3xl border border-slate-200/60 p-4 sm:p-5">
+                    <h3 class="font-bold text-sm text-[#1E3A8A] flex items-center gap-2 mb-1"><i class="fa-solid fa-house-chimney text-[#0F767E]"></i> Shelter Evakuasi Siaga</h3>
+                    
+                    @forelse($shelters as $shelter)
+                        <div class="bg-white rounded-2xl p-4 border border-slate-200/40 shadow-sm flex flex-col gap-2 hover:scale-[1.01] transition-transform">
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="font-bold text-xs text-slate-800 line-clamp-1">{{ $shelter->name }}</span>
+                                <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded {{ $shelter->status === 'active' ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500' }}">
+                                    {{ $shelter->status === 'active' ? 'AKTIF' : 'PENUH' }}
+                                </span>
+                            </div>
+                            <p class="text-[10px] text-slate-400 line-clamp-2"><i class="fa-solid fa-location-dot"></i> {{ $shelter->address }}</p>
+                            
+                            <div class="grid grid-cols-2 gap-2 mt-1 text-[10px]">
+                                <div class="bg-slate-50 rounded-lg p-1.5 flex flex-col">
+                                    <span class="text-slate-400 font-medium">Kapasitas</span>
+                                    <span class="font-bold text-slate-700">{{ $shelter->capacity }} Jiwa</span>
+                                </div>
+                                <div class="bg-slate-50 rounded-lg p-1.5 flex flex-col">
+                                    <span class="text-slate-400 font-medium">Keterisian</span>
+                                    <span class="font-bold {{ $shelter->current_occupancy >= $shelter->capacity ? 'text-red-500' : 'text-[#0F767E]' }}">
+                                        {{ $shelter->current_occupancy }} Jiwa
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            @if($shelter->contact)
+                                <a href="tel:{{ $shelter->contact }}" class="text-center font-bold text-[9px] text-[#0F767E] hover:text-[#0a5258] mt-1 border-t border-slate-100 pt-2 flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-phone"></i> Hubungi Penanggung Jawab
+                                </a>
+                            @endif
+                        </div>
+                    @empty
+                        <div class="text-center text-xs text-slate-400 py-12">
+                            <i class="fa-solid fa-house-circle-xmark text-2xl block mb-2 text-slate-300"></i> Belum ada shelter terdaftar.
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Download CTA Section (Alhazen-style banner call) -->
+    <!-- Dynamic Help Contacts Section -->
+    <section id="kontak-siaga" class="py-20 bg-slate-50 border-b border-slate-100 relative z-10">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#0F767E]">Bantuan Segera</span>
+                <h2 class="text-3xl font-extrabold text-[#1E3A8A] leading-tight mt-2">
+                    Kontak Siaga & Darurat Bencana
+                </h2>
+                <p class="text-slate-500 max-w-xl mx-auto text-xs leading-relaxed mt-2">
+                    Gunakan daftar kontak darurat di bawah ini untuk melaporkan kondisi genting atau mendapatkan pertolongan evakuasi langsung.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                @forelse($helpContacts as $contact)
+                    @php
+                        $btnPrefix = ($contact->icon === 'whatsapp') ? 'fa-brands' : 'fa-solid';
+                        $actionUrl = '#';
+                        if ($contact->type === 'phone') $actionUrl = 'tel:' . $contact->value;
+                        elseif ($contact->type === 'email') $actionUrl = 'mailto:' . $contact->value;
+                        elseif ($contact->type === 'website') $actionUrl = $contact->value;
+                        elseif ($contact->type === 'whatsapp') $actionUrl = 'https://wa.me/' . preg_replace('/[^0-9]/', '', $contact->value);
+                    @endphp
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/40 shadow-sm flex flex-col gap-4 hover:scale-[1.02] transition-transform">
+                        <div class="w-12 h-12 rounded-xl bg-[#E0F2F1] text-[#0F767E] flex items-center justify-center text-xl shrink-0">
+                            <i class="{{ $btnPrefix }} fa-{{ $contact->icon }}"></i>
+                        </div>
+                        <div>
+                            <span class="text-[9px] text-[#0F767E] uppercase font-bold tracking-wider">{{ \App\Support\UiHelper::contactType($contact->type) }}</span>
+                            <h3 class="font-bold text-sm text-slate-800 line-clamp-1 mt-0.5">{{ $contact->title }}</h3>
+                            <p class="text-xs text-slate-500 font-semibold truncate mt-1">{{ $contact->value }}</p>
+                        </div>
+                        <a href="{{ $actionUrl }}" target="_blank" class="w-full text-center font-bold text-xs bg-[#0F767E] hover:bg-[#0a5258] text-white py-2 rounded-xl mt-auto transition-colors flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-paper-plane"></i> Hubungi Sekarang
+                        </a>
+                    </div>
+                @empty
+                    <div class="col-span-full text-center text-slate-400 text-xs py-8">
+                        <i class="fa-solid fa-phone-slash text-2xl block mb-2 text-slate-300"></i> Belum ada kontak siaga terdaftar.
+                    </div>
+                @endforelse
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CTA Section -->
     <section id="unduh" class="py-16 px-6 sm:px-8 bg-gradient-to-r from-[#1E3A8A] to-[#0F767E] text-white text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto relative z-10 flex flex-col gap-6 items-center">
             <h2 class="text-3xl font-black tracking-tight leading-tight">Bersama Tangguh Hadapi Bencana Rob</h2>
@@ -349,15 +506,22 @@
                 Unduh KALIWEDI Apps secara gratis. Laporkan genangan air di sekitar Anda dan dapatkan panduan evakuasi tercepat ke shelter terdekat.
             </p>
             <div class="flex gap-4 justify-center mt-2">
-                <a href="#" class="inline-flex items-center gap-3 bg-white text-slate-900 hover:bg-gray-100 font-extrabold px-6 py-3 rounded-xl shadow-md transition-all hover:scale-105">
-                    <i class="fa-brands fa-android text-base"></i>
-                    <span>Download APK Android</span>
-                </a>
+                @if($appInfo && $appInfo->apk_path)
+                    <a href="{{ route('download.apk') }}" class="inline-flex items-center gap-3 bg-white text-slate-900 hover:bg-gray-100 font-extrabold px-6 py-3 rounded-xl shadow-md transition-all hover:scale-105">
+                        <i class="fa-brands fa-android text-base"></i>
+                        <span>Download APK Android</span>
+                    </a>
+                    @if($appInfo->apk_version)
+                        <span class="text-white/70 text-xs self-center">Versi {{ $appInfo->apk_version }} · {{ $appInfo->apk_uploaded_at?->format('d M Y') }}</span>
+                    @endif
+                @else
+                    <span class="text-white/60 text-sm">APK akan segera tersedia.</span>
+                @endif
             </div>
         </div>
     </section>
 
-    <!-- Footer (Alhazen Dark Slate Style) -->
+    <!-- Footer (Premium Dark Slate Style) -->
     <footer class="bg-[#0F172A] text-white py-16 px-6 sm:px-8 border-t border-slate-800">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10">
             <!-- Left Info -->
@@ -485,6 +649,31 @@
                         "<span class='font-bold text-xs block " + colorClass + "'>" + severityLabel + "</span>" +
                         "<span class='font-bold text-sm block mt-0.5 text-gray-900'>" + (report.address || 'Pesisir Indramayu') + "</span>" +
                         "<span class='text-[10px] text-gray-500 block mt-1 leading-relaxed'>" + (report.description || 'Laporan banjir rob') + "</span>" +
+                        "</div>"
+                    );
+            });
+
+            // Add Custom Shelter Icon
+            const shelterIcon = L.divIcon({
+                className: 'custom-div-icon',
+                html: "<div class='w-7 h-7 rounded-full bg-[#0F767E] border-2 border-white shadow-lg flex items-center justify-center text-white'><i class='fa-solid fa-house-chimney-medical text-[11px]'></i></div>",
+                iconSize: [28, 28],
+                iconAnchor: [14, 14]
+            });
+
+            // Load real shelters from database via HomeController
+            const shelters = @json($shelters);
+            shelters.forEach(function (s) {
+                if (!s.latitude || !s.longitude) return;
+
+                L.marker([parseFloat(s.latitude), parseFloat(s.longitude)], {icon: shelterIcon})
+                    .addTo(map)
+                    .bindPopup(
+                        "<div class='p-1.5 w-44 text-[#1F2937] bg-white rounded-lg'>" +
+                        "<span class='font-bold text-xs block text-[#0F767E]'><i class='fa-solid fa-house-shield'></i> SHELTER SIAGA</span>" +
+                        "<span class='font-bold text-sm block mt-0.5 text-gray-900'>" + s.name + "</span>" +
+                        "<span class='text-[10px] text-gray-500 block mt-1 leading-relaxed'>" + s.address + "</span>" +
+                        "<span class='text-[9px] font-bold text-slate-650 block mt-1'>Kapasitas: " + s.capacity + " Jiwa</span>" +
                         "</div>"
                     );
             });

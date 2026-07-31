@@ -19,7 +19,7 @@ class SavedLocationController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $locations
+            'data' => $locations,
         ]);
     }
 
@@ -38,7 +38,7 @@ class SavedLocationController extends Controller
 
         // Default icon_type based on place name if not provided
         $iconType = $request->input('icon_type');
-        if (!$iconType) {
+        if (! $iconType) {
             $nameLower = strtolower($request->input('place_name'));
             if (str_contains($nameLower, 'rumah') || str_contains($nameLower, 'home') || str_contains($nameLower, 'kost')) {
                 $iconType = 'home';
@@ -64,7 +64,7 @@ class SavedLocationController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Lokasi berhasil disimpan!',
-            'data' => $location
+            'data' => $location,
         ], 201);
     }
 
@@ -75,10 +75,10 @@ class SavedLocationController extends Controller
     {
         $location = SavedLocation::where('user_id', auth()->id())->find($id);
 
-        if (!$location) {
+        if (! $location) {
             return response()->json([
                 'success' => false,
-                'message' => 'Lokasi tidak ditemukan!'
+                'message' => 'Lokasi tidak ditemukan!',
             ], 404);
         }
 
@@ -92,7 +92,7 @@ class SavedLocationController extends Controller
 
         // Default icon_type based on place name if not provided
         $iconType = $request->input('icon_type');
-        if (!$iconType) {
+        if (! $iconType) {
             $nameLower = strtolower($request->input('place_name'));
             if (str_contains($nameLower, 'rumah') || str_contains($nameLower, 'home') || str_contains($nameLower, 'kost')) {
                 $iconType = 'home';
@@ -116,7 +116,7 @@ class SavedLocationController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Lokasi berhasil diperbarui!',
-            'data' => $location
+            'data' => $location,
         ]);
     }
 
@@ -127,10 +127,10 @@ class SavedLocationController extends Controller
     {
         $location = SavedLocation::where('user_id', auth()->id())->find($id);
 
-        if (!$location) {
+        if (! $location) {
             return response()->json([
                 'success' => false,
-                'message' => 'Lokasi tidak ditemukan!'
+                'message' => 'Lokasi tidak ditemukan!',
             ], 404);
         }
 
@@ -138,7 +138,7 @@ class SavedLocationController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Lokasi berhasil dihapus!'
+            'message' => 'Lokasi berhasil dihapus!',
         ]);
     }
 }

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[Fillable([
     'user_id',
-    'report_id'
+    'report_id',
 ])]
 class ReportLike extends Model
 {

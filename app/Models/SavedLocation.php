@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'latitude',
     'longitude',
     'is_primary',
-    'icon_type'
+    'icon_type',
 ])]
 class SavedLocation extends Model
 {

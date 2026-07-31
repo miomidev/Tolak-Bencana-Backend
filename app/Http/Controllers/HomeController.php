@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use App\Models\AppInfo;
+use App\Models\DisasterZone;
 use App\Models\Faq;
+use App\Models\HelpContact;
 use App\Models\Report;
-use Illuminate\Http\Request;
+use App\Models\Shelter;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class HomeController extends Controller
 {
@@ -18,7 +23,29 @@ class HomeController extends Controller
             ->whereIn('status', ['pending', 'verified', 'resolved'])
             ->get();
 
-        return view('welcome', compact('reports'));
+        $shelters = Shelter::all();
+
+        $helpContacts = HelpContact::where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        // Statistics counters
+        $stats = [
+            'total_reports' => Report::count(),
+            'active_shelters' => Shelter::where('status', 'active')->count(),
+            'resolved_cases' => Report::where('status', 'resolved')->count(),
+            'monitored_points' => DisasterZone::count(),
+        ];
+
+        // Running text warning announcements (from admin CRUD)
+        $announcements = Announcement::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $appInfo = AppInfo::first();
+
+        return view('welcome', compact('reports', 'shelters', 'helpContacts', 'stats', 'announcements', 'appInfo'));
     }
 
     /**
@@ -27,6 +54,7 @@ class HomeController extends Controller
     public function about()
     {
         $appInfo = AppInfo::first();
+
         return view('about', compact('appInfo'));
     }
 
@@ -36,6 +64,21 @@ class HomeController extends Controller
     public function faq()
     {
         $faqs = Faq::where('is_active', true)->orderBy('sort_order')->get();
+
         return view('faq', compact('faqs'));
+    }
+
+    /**
+     * Download the latest uploaded APK from storage.
+     */
+    public function downloadApk(): StreamedResponse
+    {
+        $appInfo = AppInfo::first();
+
+        if (! $appInfo || ! $appInfo->apk_path || ! Storage::disk('public')->exists($appInfo->apk_path)) {
+            abort(404, 'File APK belum tersedia.');
+        }
+
+        return Storage::disk('public')->download($appInfo->apk_path, $appInfo->apk_filename ?? 'kaliwedi.apk');
     }
 }

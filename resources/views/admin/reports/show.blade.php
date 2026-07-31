@@ -57,10 +57,14 @@
                     <form action="{{ route('admin.reports.status', $report) }}" method="POST" onsubmit="return confirm('Tolak laporan ini?')">
                         @csrf
                         <input type="hidden" name="status" value="rejected">
-                        <button type="submit" class="w-full bg-red-50 hover:bg-red-100 border border-red-200 text-red-600 text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
+                        <textarea name="rejection_reason" rows="2" class="w-full text-sm border border-red-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500/40" placeholder="Alasan penolakan (opsional)">{{ old('rejection_reason', $report->rejection_reason) }}</textarea>
+                        <button type="submit" class="w-full mt-2 bg-red-50 hover:bg-red-100 border border-red-200 text-red-600 text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
                             <i class="fa-solid fa-xmark mr-1.5"></i> Tolak Laporan
                         </button>
                     </form>
+                    @if($report->status === 'rejected' && $report->rejection_reason)
+                        <p class="text-xs text-rose-600 bg-rose-50 border border-rose-100 rounded-lg px-3 py-2"><i class="fa-solid fa-info-circle mr-1"></i> Alasan penolakan saat ini: {{ $report->rejection_reason }}</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -122,6 +126,19 @@
                             <p class="text-xs"><span class="font-bold text-[#1F2937]">{{ $comment->user?->name ?? 'Pengguna' }}</span> <span class="text-gray-400">· {{ $comment->created_at?->diffForHumans() }}</span></p>
                             <p class="text-sm text-gray-600 mt-0.5">{{ $comment->comment }}</p>
                         </div>
+                        <form action="{{ route('admin.comments.toggle', $comment) }}" method="POST" title="{{ $comment->is_active ? 'Sembunyikan' : 'Tampilkan' }}">
+                            @csrf
+                            <button type="submit" class="{{ $comment->is_active ? 'text-gray-400 hover:text-amber-600' : 'text-emerald-500 hover:text-emerald-700' }} p-1.5 rounded-lg transition-colors">
+                                <i class="fa-solid {{ $comment->is_active ? 'fa-eye-slash' : 'fa-eye' }} text-xs"></i>
+                            </button>
+                        </form>
+                        <form action="{{ route('admin.comments.destroy', $comment) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus komentar ini?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-rose-400 hover:text-rose-600 p-1.5 rounded-lg transition-colors" title="Hapus komentar">
+                                <i class="fa-solid fa-trash text-xs"></i>
+                            </button>
+                        </form>
                     </div>
                 @empty
                     <p class="text-sm text-gray-400">Belum ada komentar.</p>

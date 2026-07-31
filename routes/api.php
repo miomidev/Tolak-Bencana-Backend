@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\Api\AppInfoController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DashboardController;
-use App\Http\Controllers\Api\ReportLikeController;
-use App\Http\Controllers\Api\ReportCommentController;
-use App\Http\Controllers\Api\AppInfoController;
+use App\Http\Controllers\Api\HelpController;
 use App\Http\Controllers\Api\MapDataController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\ReportCommentController;
+use App\Http\Controllers\Api\ReportController;
+use App\Http\Controllers\Api\ReportLikeController;
+use App\Http\Controllers\Api\SavedLocationController;
 use App\Http\Controllers\Api\ShelterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +19,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/verify-reset-token', [AuthController::class, 'verifyResetToken']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
-Route::get('/help', [\App\Http\Controllers\Api\HelpController::class, 'index']);
+Route::get('/help', [HelpController::class, 'index']);
 Route::get('/app-info', [AppInfoController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -30,20 +33,20 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Dashboard & Reports API
     Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::post('/reports', [\App\Http\Controllers\Api\ReportController::class, 'store']);
-    Route::get('/my-reports', [\App\Http\Controllers\Api\ReportController::class, 'myReports']);
+    Route::post('/reports', [ReportController::class, 'store']);
+    Route::get('/my-reports', [ReportController::class, 'myReports']);
 
     // Saved Locations API
-    Route::get('/saved-locations', [\App\Http\Controllers\Api\SavedLocationController::class, 'index']);
-    Route::post('/saved-locations', [\App\Http\Controllers\Api\SavedLocationController::class, 'store']);
-    Route::put('/saved-locations/{id}', [\App\Http\Controllers\Api\SavedLocationController::class, 'update']);
-    Route::delete('/saved-locations/{id}', [\App\Http\Controllers\Api\SavedLocationController::class, 'destroy']);
-    
+    Route::get('/saved-locations', [SavedLocationController::class, 'index']);
+    Route::post('/saved-locations', [SavedLocationController::class, 'store']);
+    Route::put('/saved-locations/{id}', [SavedLocationController::class, 'update']);
+    Route::delete('/saved-locations/{id}', [SavedLocationController::class, 'destroy']);
+
     // Likes & Comments
     Route::post('/reports/{id}/like', [ReportLikeController::class, 'toggleLike']);
     Route::get('/reports/{id}/comments', [ReportCommentController::class, 'index']);
     Route::post('/reports/{id}/comments', [ReportCommentController::class, 'store']);
-    
+
     // Map Data
     Route::get('/map-data', [MapDataController::class, 'index']);
 

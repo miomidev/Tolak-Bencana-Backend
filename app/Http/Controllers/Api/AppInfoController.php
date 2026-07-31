@@ -11,7 +11,7 @@ class AppInfoController extends Controller
     {
         $appInfo = AppInfo::first();
 
-        if (!$appInfo) {
+        if (! $appInfo) {
             return response()->json([
                 'success' => false,
                 'message' => 'Info aplikasi tidak ditemukan',
