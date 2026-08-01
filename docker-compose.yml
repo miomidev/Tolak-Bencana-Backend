@@ -6,7 +6,7 @@ services:
     container_name: kaliwedi-web
     restart: always
     ports:
-      - "8089:80"
+      - "8091:80"
     volumes:
       # Persist storage directory untuk uploads (foto laporan, avatar, APK)
       - ./storage:/var/www/html/storage
