@@ -146,7 +146,7 @@
             </a>
             
             <!-- Desktop Menu -->
-            <div class="flex items-center gap-6">
+            <div class="hidden md:flex items-center gap-6">
                 <ul class="flex items-center gap-6">
                     <li>
                         <a href="{{ route('home') }}" class="font-semibold text-sm text-[#1E3A8A] transition-colors pb-1">Home</a>
@@ -165,7 +165,26 @@
                     </li>
                 </ul>
             </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button type="button" id="mobile-menu-toggle" aria-label="Buka menu" aria-expanded="false" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl text-[#1E3A8A] hover:bg-slate-100 transition-colors focus:outline-none">
+                <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
+            </button>
         </nav>
+
+        <!-- Mobile Overlay Menu -->
+        <div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-16 bottom-0 z-30">
+            <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+            <div class="relative bg-white/95 backdrop-blur-sm shadow-2xl border-b border-slate-100">
+                <nav class="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex flex-col gap-1">
+                    <a href="{{ route('home') }}" class="mobile-nav-link font-semibold text-sm text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Home</a>
+                    <a href="/#fitur" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Fitur Utama</a>
+                    <a href="/#peta" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Peta Sebaran</a>
+                    <a href="{{ route('about') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Tentang Aplikasi</a>
+                    <a href="{{ route('faq') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Tanya Jawab (FAQ)</a>
+                </nav>
+            </div>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -173,7 +192,7 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             
             <!-- Main Hero Banner with Rounded-3xl -->
-            <div class="relative h-[550px] md:h-[600px] lg:h-[65vh] rounded-3xl overflow-hidden mb-8 hero-banner flex flex-col justify-center items-center text-center p-8 sm:p-12 text-white relative">
+            <div class="relative h-[420px] sm:h-[500px] md:h-[600px] lg:h-[65vh] rounded-3xl overflow-hidden mb-8 hero-banner flex flex-col justify-center items-center text-center p-6 sm:p-12 text-white relative">
                 
                 <!-- Overlay subtle pattern background -->
                 <div class="absolute inset-0 bg-cover bg-center opacity-10 pointer-events-none rounded-3xl" style="background-image: url('https://tile.openstreetmap.org/10/300/300.png');"></div>
@@ -183,7 +202,7 @@
                 <div class="relative z-10 max-w-3xl flex flex-col items-center gap-6">
 
 
-                    <h1 id="hero-title" class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight drop-shadow-lg">
+                    <h1 id="hero-title" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight drop-shadow-lg">
                         Build the <span class="text-[#F97316]">Resilience</span>, One Report at a Time!
                     </h1>
                     
@@ -192,7 +211,7 @@
                     </p>
 
                     <!-- CTA Button -->
-                    <a href="{{ $appInfo && $appInfo->apk_path ? route('download.apk') : '#unduh' }}" class="inline-flex items-center gap-2 rounded-xl px-8 py-3.5 bg-[#F97316] text-white font-extrabold text-sm shadow-xl hover:scale-105 hover:bg-[#EA580C] transition-all duration-200">
+                    <a href="{{ $appInfo && $appInfo->apk_path ? route('download.apk') : '#unduh' }}" class="inline-flex items-center gap-2 rounded-xl px-6 sm:px-8 py-3.5 bg-[#F97316] text-white font-extrabold text-sm shadow-xl hover:scale-105 hover:bg-[#EA580C] transition-all duration-200">
                         <i class="fa-brands fa-android text-base"></i>
                         <span>Unduh Aplikasi Sekarang</span>
                     </a>
@@ -403,7 +422,7 @@
             <!-- Map and Shelter Grid layout -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                 <!-- Map (8 Columns) -->
-                <div class="lg:col-span-8 h-[500px] rounded-3xl shadow-xl border border-slate-200/60 overflow-hidden relative bg-slate-100" id="public-map">
+                <div class="lg:col-span-8 h-[350px] sm:h-[450px] md:h-[500px] rounded-3xl shadow-xl border border-slate-200/60 overflow-hidden relative bg-slate-100" id="public-map">
                     <!-- Map loading overlay -->
                     <div class="absolute inset-0 bg-slate-50 z-40 flex items-center justify-center font-semibold text-[#1E3A8A]" id="map-loader">
                         <i class="fa-solid fa-spinner animate-spin text-2xl mr-3"></i> Memuat Peta Distribusi...
@@ -411,8 +430,7 @@
                 </div>
                 
                 <!-- Shelter List (4 Columns) -->
-                <div class="lg:col-span-4 flex flex-col gap-4 max-h-[500px] overflow-y-auto bg-slate-50 rounded-3xl border border-slate-200/60 p-4 sm:p-5">
-                    <h3 class="font-bold text-sm text-[#1E3A8A] flex items-center gap-2 mb-1"><i class="fa-solid fa-house-chimney text-[#0F767E]"></i> Shelter Evakuasi Siaga</h3>
+                <div class="lg:col-span-4 flex flex-col gap-4 max-h-[500px] overflow-y-auto bg-slate-50 rounded-3xl border border-slate-200/60 p-4 sm:p-5">                    <h3 class="font-bold text-sm text-[#1E3A8A] flex items-center gap-2 mb-1"><i class="fa-solid fa-house-chimney text-[#0F767E]"></i> Shelter Evakuasi Siaga</h3>
                     
                     @forelse($shelters as $shelter)
                         <div class="bg-white rounded-2xl p-4 border border-slate-200/40 shadow-sm flex flex-col gap-2 hover:scale-[1.01] transition-transform">
@@ -505,14 +523,14 @@
             <p class="text-white/80 text-sm max-w-lg leading-relaxed">
                 Unduh KALIWEDI Apps secara gratis. Laporkan genangan air di sekitar Anda dan dapatkan panduan evakuasi tercepat ke shelter terdekat.
             </p>
-            <div class="flex gap-4 justify-center mt-2">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-2 items-center">
                 @if($appInfo && $appInfo->apk_path)
-                    <a href="{{ route('download.apk') }}" class="inline-flex items-center gap-3 bg-white text-slate-900 hover:bg-gray-100 font-extrabold px-6 py-3 rounded-xl shadow-md transition-all hover:scale-105">
+                    <a href="{{ route('download.apk') }}" class="inline-flex items-center gap-3 bg-white text-slate-900 hover:bg-gray-100 font-extrabold px-6 py-3 rounded-xl shadow-md transition-all hover:scale-105 w-full sm:w-auto justify-center">
                         <i class="fa-brands fa-android text-base"></i>
                         <span>Download APK Android</span>
                     </a>
                     @if($appInfo->apk_version)
-                        <span class="text-white/70 text-xs self-center">Versi {{ $appInfo->apk_version }} · {{ $appInfo->apk_uploaded_at?->format('d M Y') }}</span>
+                        <span class="text-white/70 text-xs">Versi {{ $appInfo->apk_version }} · {{ $appInfo->apk_uploaded_at?->format('d M Y') }}</span>
                     @endif
                 @else
                     <span class="text-white/60 text-sm">APK akan segera tersedia.</span>
@@ -572,6 +590,41 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Mobile menu toggle
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', function () {
+                    const isOpen = mobileMenu.classList.toggle('hidden') === false;
+                    mobileMenuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    if (mobileMenuIcon) {
+                        mobileMenuIcon.className = isOpen ? 'fa-solid fa-xmark text-xl' : 'fa-solid fa-bars text-xl';
+                    }
+                });
+                mobileMenu.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+                    link.addEventListener('click', function () {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                        if (mobileMenuIcon) {
+                            mobileMenuIcon.className = 'fa-solid fa-bars text-xl';
+                        }
+                    });
+                });
+
+                // Close when tapping the backdrop
+                const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+                if (mobileMenuBackdrop) {
+                    mobileMenuBackdrop.addEventListener('click', function () {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                        if (mobileMenuIcon) {
+                            mobileMenuIcon.className = 'fa-solid fa-bars text-xl';
+                        }
+                    });
+                }
+            }
+
             // Remove Map Loader
             const mapLoader = document.getElementById('map-loader');
             if (mapLoader) mapLoader.remove();

@@ -50,6 +50,28 @@
             pointer-events: none;
         }
 
+        .kw-glow-3 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: #f97316;
+            opacity: 0.04;
+            filter: blur(40px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Running text marquee animation */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+
         .nav-backdrop {
             background: rgba(249, 250, 251, 0.85);
             backdrop-filter: blur(10px);
@@ -86,9 +108,26 @@
 </head>
 <body class="min-h-screen text-slate-800 antialiased flex flex-col relative overflow-x-hidden">
 
-    <!-- Glow bubbles -->
-    <div class="kw-glow-1 top-20 right-0"></div>
-    <div class="kw-glow-2 top-[50vh] left-0"></div>
+    <!-- Running Text Warning Ticker -->
+    @if(isset($announcements) && $announcements->isNotEmpty())
+    <div class="bg-gradient-to-r from-red-600 via-orange-500 to-red-600 text-white text-[11px] font-bold py-2.5 px-4 shadow-sm z-50 relative overflow-hidden flex items-center gap-3">
+        <span class="bg-white text-red-600 px-2 py-0.5 rounded-md font-extrabold uppercase shrink-0 tracking-wider animate-pulse flex items-center gap-1">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ $announcements->first()->key }}
+        </span>
+        <div class="relative w-full overflow-hidden whitespace-nowrap">
+            <div class="inline-block animate-marquee">
+                @foreach($announcements as $index => $announcement)
+                    {{ $announcement->message }}@if(!$loop->last) &nbsp;&nbsp;&nbsp;••&nbsp;&nbsp;&nbsp; @endif
+                @endforeach
+            </div>
+        </div>
+    </div>
+    @endif
+
+    <!-- Background Decoration Bubbles -->
+    <div class="kw-glow-1 top-20 -left-20"></div>
+    <div class="kw-glow-2 top-[120vh] -right-20"></div>
+    <div class="kw-glow-3 top-[220vh] left-[20vw]"></div>
 
     <!-- Navigation Bar -->
     <header class="sticky top-0 z-40 nav-backdrop">
@@ -101,7 +140,7 @@
                 </div>
             </a>
             
-            <div class="flex items-center gap-6">
+            <div class="hidden md:flex items-center gap-6">
                 <ul class="flex items-center gap-6">
                     <li>
                         <a href="{{ route('home') }}" class="font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] transition-colors pb-1">Home</a>
@@ -120,7 +159,26 @@
                     </li>
                 </ul>
             </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button type="button" id="mobile-menu-toggle" aria-label="Buka menu" aria-expanded="false" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl text-[#1E3A8A] hover:bg-slate-100 transition-colors focus:outline-none">
+                <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
+            </button>
         </nav>
+
+        <!-- Mobile Overlay Menu -->
+        <div id="mobile-menu" class="md:hidden hidden fixed inset-x-0 top-16 bottom-0 z-30">
+            <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+            <div class="relative bg-white/95 backdrop-blur-sm shadow-2xl border-b border-slate-100">
+                <nav class="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex flex-col gap-1">
+                    <a href="{{ route('home') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Home</a>
+                    <a href="/#fitur" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Fitur Utama</a>
+                    <a href="/#peta" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Peta Sebaran</a>
+                    <a href="{{ route('about') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Tentang Aplikasi</a>
+                    <a href="{{ route('faq') }}" class="mobile-nav-link font-semibold text-sm text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Tanya Jawab (FAQ)</a>
+                </nav>
+            </div>
+        </div>
     </header>
 
     <!-- Main Content -->
@@ -164,19 +222,90 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-[#0F172A] text-white py-12 px-6 sm:px-8 border-t border-slate-800 mt-auto">
-        <div class="max-w-3xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-            <div class="flex items-center gap-3">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo KALIWEDI" class="w-8 h-8 rounded-lg bg-white p-0.5 object-contain">
-                <span class="font-extrabold text-sm tracking-wider">KALIWEDI PKM-KC</span>
+    <!-- Footer (Premium Dark Slate Style) -->
+    <footer class="bg-[#0F172A] text-white py-16 px-6 sm:px-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10">
+            <!-- Left Info -->
+            <div class="md:col-span-5 flex flex-col gap-4">
+                <div class="flex items-center gap-3">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo KALIWEDI" class="w-8 h-8 rounded-lg bg-white p-0.5 object-contain">
+                    <span class="font-extrabold text-lg tracking-wider">KALIWEDI</span>
+                </div>
+                <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+                    Kanal Laporan Informasi Warga dan Evakuasi Dinamis Indramayu. Dikembangkan dalam Program Kreativitas Mahasiswa bidang Karsa Cipta (PKM-KC) 2026.
+                </p>
+                <span class="text-[10px] text-slate-500 block mt-2">&copy; 2026 Tim PKM-KC KALIWEDI. Politeknik Negeri Indramayu.</span>
             </div>
-            <span class="text-[10px] text-slate-500">&copy; 2026 Tim PKM-KC KALIWEDI. Politeknik Negeri Indramayu.</span>
+
+            <!-- Middle links -->
+            <div class="md:col-span-3 flex flex-col gap-3.5">
+                <h4 class="font-bold text-sm tracking-wider uppercase text-[#0F767E]">Navigasi Web</h4>
+                <div class="flex flex-col gap-2 text-xs text-slate-400">
+                    <a href="{{ route('home') }}" class="hover:text-white transition-colors">Home</a>
+                    <a href="/#fitur" class="hover:text-white transition-colors">Fitur Utama</a>
+                    <a href="/#peta" class="hover:text-white transition-colors">Peta Sebaran</a>
+                    <a href="{{ route('about') }}" class="hover:text-white transition-colors">Tentang Aplikasi</a>
+                    <a href="{{ route('faq') }}" class="hover:text-white transition-colors">Tanya Jawab (FAQ)</a>
+                </div>
+            </div>
+
+            <!-- Right Contacts -->
+            <div class="md:col-span-4 flex flex-col gap-3.5">
+                <h4 class="font-bold text-sm tracking-wider uppercase text-[#F97316]">Kontak Siaga Darurat</h4>
+                <div class="flex flex-col gap-2 text-xs text-slate-400 mb-4">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-phone w-4 text-center"></i> BPBD Indramayu: (0234) 276996</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot w-4 text-center"></i> Jl. Gatot Subroto No.10, Indramayu</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-envelope w-4 text-center"></i> support@kaliwedi.id</span>
+                </div>
+                
+                <!-- Discreet Admin Login portal link in footer -->
+                <div class="border-t border-slate-800 pt-3">
+                    <a href="{{ route('admin.login') }}" class="text-[10px] text-slate-500 hover:text-white transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-lock"></i> Portal Admin BPBD
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- Accordion toggle script -->
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', function () {
+                    const isOpen = mobileMenu.classList.toggle('hidden') === false;
+                    mobileMenuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    if (mobileMenuIcon) {
+                        mobileMenuIcon.className = isOpen ? 'fa-solid fa-xmark text-xl' : 'fa-solid fa-bars text-xl';
+                    }
+                });
+                mobileMenu.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+                    link.addEventListener('click', function () {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                        if (mobileMenuIcon) {
+                            mobileMenuIcon.className = 'fa-solid fa-bars text-xl';
+                        }
+                    });
+                });
+
+                // Close when tapping the backdrop
+                const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+                if (mobileMenuBackdrop) {
+                    mobileMenuBackdrop.addEventListener('click', function () {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                        if (mobileMenuIcon) {
+                            mobileMenuIcon.className = 'fa-solid fa-bars text-xl';
+                        }
+                    });
+                }
+            }
+        });
+
         function toggleFaq(element) {
             const isActive = element.classList.contains('active');
             

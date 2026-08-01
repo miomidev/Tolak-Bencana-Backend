@@ -55,7 +55,12 @@ class HomeController extends Controller
     {
         $appInfo = AppInfo::first();
 
-        return view('about', compact('appInfo'));
+        $announcements = Announcement::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('about', compact('appInfo', 'announcements'));
     }
 
     /**
@@ -65,7 +70,12 @@ class HomeController extends Controller
     {
         $faqs = Faq::where('is_active', true)->orderBy('sort_order')->get();
 
-        return view('faq', compact('faqs'));
+        $announcements = Announcement::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('faq', compact('faqs', 'announcements'));
     }
 
     /**

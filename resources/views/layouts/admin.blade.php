@@ -36,7 +36,7 @@
 
     <div class="flex flex-1 min-h-0 overflow-hidden">
         <!-- Sidebar -->
-        <aside id="sidebar" class="sidebar fixed inset-y-0 left-0 lg:static bg-gradient-to-b from-[#1E3A8A] via-[#1A2F74] to-[#14265E] text-white flex-shrink-0 flex flex-col shadow-2xl z-40">
+        <aside id="sidebar" class="sidebar fixed inset-y-0 left-0 lg:static bg-gradient-to-b from-[#1E3A8A] via-[#1A2F74] to-[#14265E] text-white flex-shrink-0 flex flex-col shadow-2xl z-[9999]">
             <!-- Sidebar Header -->
             <div class="sb-header h-16 flex items-center justify-between px-4 bg-white/5 border-b border-white/10">
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 min-w-0">
