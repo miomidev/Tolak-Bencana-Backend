@@ -24,9 +24,10 @@ class DashboardController extends Controller
             ? round(($verifiedReports / $totalReports) * 100)
             : 0;
 
-        // 2. Fetch reports with counts and is_liked status
+        // 2. Fetch only VERIFIED reports with counts and is_liked status
         $reportsQuery = Report::with(['user:id,name,username,avatar_url'])
             ->withCount(['likes', 'activeComments'])
+            ->where('status', 'verified')
             ->orderBy('reported_at', 'desc');
 
         if ($user) {
