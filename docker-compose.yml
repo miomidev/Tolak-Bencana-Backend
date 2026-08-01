@@ -12,3 +12,10 @@ services:
       - ./storage:/var/www/html/storage
       # Mount environment file agar tidak hilang saat rebuild
       - ./.env:/var/www/html/.env
+    networks:
+      - shared_network
+
+networks:
+  shared_network:
+    external: true
+    name: miomidev-web_miomidev-network
