@@ -11,7 +11,7 @@ class MapDataController extends Controller
 {
     public function index(Request $request)
     {
-        $user = $request->user();
+        $user = $request->user('sanctum');
 
         $reportsQuery = Report::with(['user:id,name,username,avatar_url'])
             ->withCount(['likes', 'activeComments'])

@@ -83,4 +83,56 @@ class ReportController extends Controller
             'reports' => $reports,
         ]);
     }
+    /**
+     * Update an existing report (only owner and only if still pending).
+     */
+    public function update(Request $request, $id)
+    {
+        $report = Report::where('id', $id)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+
+        if ($report->status !== 'pending') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Laporan yang sudah diproses tidak dapat diedit.',
+            ], 422);
+        }
+
+        $request->validate([
+            'description' => 'sometimes|string',
+            'category'    => 'sometimes|string',
+            'height'      => 'nullable|integer',
+        ]);
+
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('reports', 'public');
+            $report->photo_url = asset('storage/'.$path);
+        }
+
+        if ($request->has('description')) {
+            $report->description = $request->input('description');
+        }
+
+        if ($request->has('category')) {
+            $report->category = $request->input('category');
+        }
+
+        if ($request->has('height')) {
+            $height = intval($request->input('height'));
+            $severity = 'low';
+            if ($height >= 50) $severity = 'critical';
+            elseif ($height >= 35) $severity = 'high';
+            elseif ($height >= 20) $severity = 'medium';
+            $report->severity = $severity;
+        }
+
+        $report->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Laporan berhasil diperbarui!',
+            'data'    => $report->load('user'),
+        ]);
+    }
 }

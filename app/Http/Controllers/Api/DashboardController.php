@@ -13,7 +13,7 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        $user = $request->user();
+        $user = $request->user('sanctum');
 
         // 1. Calculate statistics
         $totalReports = Report::count();

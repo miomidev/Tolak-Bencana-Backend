@@ -22,6 +22,12 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 Route::get('/help', [HelpController::class, 'index']);
 Route::get('/app-info', [AppInfoController::class, 'index']);
 
+// Public endpoints (or optional auth)
+Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/map-data', [MapDataController::class, 'index']);
+Route::get('/shelters', [ShelterController::class, 'index']);
+Route::get('/reports/{id}/comments', [ReportCommentController::class, 'index']);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
@@ -32,8 +38,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     // Dashboard & Reports API
-    Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::post('/reports', [ReportController::class, 'store']);
+    Route::put('/reports/{id}', [ReportController::class, 'update']);
     Route::get('/my-reports', [ReportController::class, 'myReports']);
 
     // Saved Locations API
@@ -44,14 +50,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Likes & Comments
     Route::post('/reports/{id}/like', [ReportLikeController::class, 'toggleLike']);
-    Route::get('/reports/{id}/comments', [ReportCommentController::class, 'index']);
     Route::post('/reports/{id}/comments', [ReportCommentController::class, 'store']);
-
-    // Map Data
-    Route::get('/map-data', [MapDataController::class, 'index']);
-
-    // Shelters
-    Route::get('/shelters', [ShelterController::class, 'index']);
 
     // Notifications
     Route::get('/notifications', [NotificationController::class, 'index']);
