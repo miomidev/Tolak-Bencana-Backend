@@ -16,6 +16,36 @@ class BroadcastController extends Controller
         return view('admin.broadcast.create');
     }
 
+    public function history(Request $request)
+    {
+        $query = Notification::with('user')
+            ->orderBy('sent_at', 'desc');
+
+        // Filter by type
+        if ($request->filled('type')) {
+            $query->where('type', $request->type);
+        }
+
+        // Filter by date range
+        if ($request->filled('date_from')) {
+            $query->whereDate('sent_at', '>=', $request->date_from);
+        }
+        if ($request->filled('date_to')) {
+            $query->whereDate('sent_at', '<=', $request->date_to);
+        }
+
+        // Get unique broadcasts (group by title + body + sent_at minute)
+        // We show one row per broadcast "batch" (same title+body sent at same time)
+        $broadcasts = $query->select('title', 'body', 'type', 'sent_at')
+            ->selectRaw('COUNT(*) as recipient_count')
+            ->selectRaw('SUM(CASE WHEN is_read = 1 THEN 1 ELSE 0 END) as read_count')
+            ->groupBy('title', 'body', 'type', 'sent_at')
+            ->paginate(20)
+            ->withQueryString();
+
+        return view('admin.broadcast.history', compact('broadcasts'));
+    }
+
     public function send(Request $request)
     {
         $data = $request->validate([
@@ -57,7 +87,7 @@ class BroadcastController extends Controller
 
         Audit::log('broadcast.sent', 'Siaran "'.$data['title'].'" ('.($data['type']).') dikirim ke '.$sent.' pengguna.');
 
-        return redirect()->route('admin.broadcast.create')
+        return redirect()->route('admin.broadcast.history')
             ->with('success', 'Siaran berhasil dikirim ke '.$sent.' pengguna aktif.');
     }
 }
