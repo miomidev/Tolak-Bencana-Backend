@@ -49,7 +49,7 @@
                 @forelse($logs as $log)
                     <tr class="hover:bg-gray-50 transition-colors">
                         <td class="px-5 py-3.5">
-                            <span class="text-[11px] bg-[#1E3A8A]/10 text-[#1E3A8A] border border-[#1E3A8A]/20 px-2.5 py-1 rounded font-bold uppercase whitespace-nowrap">{{ str_replace('_', ' ', $log->action) }}</span>
+                            <span class="text-[11px] bg-[#0F767E]/10 text-[#0F767E] border border-[#0F767E]/20 px-2.5 py-1 rounded font-bold uppercase whitespace-nowrap">{{ str_replace('_', ' ', $log->action) }}</span>
                         </td>
                         <td class="px-5 py-3.5 text-gray-600 max-w-md">{{ $log->description }}</td>
                         <td class="px-5 py-3.5 text-gray-600">{{ $log->user?->name ?? '-' }}</td>

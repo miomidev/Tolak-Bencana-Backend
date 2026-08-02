@@ -31,7 +31,7 @@
             width: 350px;
             height: 350px;
             border-radius: 50%;
-            background-color: #1e3a8a;
+            background-color: #0f767e;
             opacity: 0.05;
             filter: blur(50px);
             z-index: 0;
@@ -43,7 +43,7 @@
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            background-color: #0f767e;
+            background-color: #1e3a8a;
             opacity: 0.04;
             filter: blur(50px);
             z-index: 0;
@@ -135,33 +135,33 @@
             <a href="{{ route('home') }}" class="flex items-center gap-3">
                 <img src="{{ asset('images/logo.png') }}" alt="KALIWEDI Logo" class="h-10 w-auto rounded-xl bg-white p-0.5 shadow-sm object-contain" loading="lazy">
                 <div>
-                    <span class="font-extrabold text-xl tracking-wider text-[#1E3A8A] block">KALIWEDI</span>
-                    <span class="text-[9px] text-[#0F767E] uppercase tracking-widest font-extrabold block -mt-1">PKM-KC Mitigasi Banjir</span>
+                    <span class="font-extrabold text-xl tracking-wider text-[#0F767E] block">KALIWEDI</span>
+                    <span class="text-[9px] text-[#1E3A8A] uppercase tracking-widest font-extrabold block -mt-1">PKM-KC Mitigasi Banjir</span>
                 </div>
             </a>
             
             <div class="hidden md:flex items-center gap-6">
                 <ul class="flex items-center gap-6">
                     <li>
-                        <a href="{{ route('home') }}" class="font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] transition-colors pb-1">Home</a>
+                        <a href="{{ route('home') }}" class="font-semibold text-sm text-slate-500 hover:text-[#0F767E] transition-colors pb-1">Home</a>
                     </li>
                     <li>
-                        <a href="/#fitur" class="font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] transition-colors pb-1">Fitur Utama</a>
+                        <a href="/#fitur" class="font-semibold text-sm text-slate-500 hover:text-[#0F767E] transition-colors pb-1">Fitur Utama</a>
                     </li>
                     <li>
-                        <a href="/#peta" class="font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] transition-colors pb-1">Peta Sebaran</a>
+                        <a href="/#peta" class="font-semibold text-sm text-slate-500 hover:text-[#0F767E] transition-colors pb-1">Peta Sebaran</a>
                     </li>
                     <li>
-                        <a href="{{ route('about') }}" class="font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] transition-colors pb-1">Tentang Aplikasi</a>
+                        <a href="{{ route('about') }}" class="font-semibold text-sm text-slate-500 hover:text-[#0F767E] transition-colors pb-1">Tentang Aplikasi</a>
                     </li>
                     <li>
-                        <a href="{{ route('faq') }}" class="font-semibold text-sm text-[#1E3A8A] transition-colors pb-1 border-b-2 border-[#1E3A8A]">Tanya Jawab (FAQ)</a>
+                        <a href="{{ route('faq') }}" class="font-semibold text-sm text-[#0F767E] transition-colors pb-1 border-b-2 border-[#0F767E]">Tanya Jawab (FAQ)</a>
                     </li>
                 </ul>
             </div>
 
             <!-- Mobile Menu Toggle -->
-            <button type="button" id="mobile-menu-toggle" aria-label="Buka menu" aria-expanded="false" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl text-[#1E3A8A] hover:bg-slate-100 transition-colors focus:outline-none">
+            <button type="button" id="mobile-menu-toggle" aria-label="Buka menu" aria-expanded="false" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl text-[#0F767E] hover:bg-slate-100 transition-colors focus:outline-none">
                 <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
             </button>
         </nav>
@@ -171,11 +171,11 @@
             <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
             <div class="relative bg-white/95 backdrop-blur-sm shadow-2xl border-b border-slate-100">
                 <nav class="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex flex-col gap-1">
-                    <a href="{{ route('home') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Home</a>
-                    <a href="/#fitur" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Fitur Utama</a>
-                    <a href="/#peta" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Peta Sebaran</a>
-                    <a href="{{ route('about') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Tentang Aplikasi</a>
-                    <a href="{{ route('faq') }}" class="mobile-nav-link font-semibold text-sm text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Tanya Jawab (FAQ)</a>
+                    <a href="{{ route('home') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Home</a>
+                    <a href="/#fitur" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Fitur Utama</a>
+                    <a href="/#peta" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Peta Sebaran</a>
+                    <a href="{{ route('about') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Tentang Aplikasi</a>
+                    <a href="{{ route('faq') }}" class="mobile-nav-link font-semibold text-sm text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Tanya Jawab (FAQ)</a>
                 </nav>
             </div>
         </div>
@@ -189,7 +189,7 @@
             <div class="w-12 h-12 rounded-2xl bg-[#E0F2F1] text-[#0F767E] flex items-center justify-center text-xl shadow-sm font-bold">
                 <i class="fa-solid fa-comments"></i>
             </div>
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-[#1E3A8A] mt-2">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-[#0F767E] mt-2">
                 Tanya Jawab (FAQ)
             </h1>
             <p class="text-slate-550 max-w-md mx-auto text-sm leading-relaxed">
@@ -203,7 +203,7 @@
                 <div class="faq-item rounded-2xl p-5 cursor-pointer hover:border-gray-300" onclick="toggleFaq(this)">
                     <div class="flex items-center justify-between gap-4 select-none">
                         <span class="font-bold text-sm text-slate-800">{{ $faq->question }}</span>
-                        <div class="w-7 h-7 rounded-full bg-slate-50 border border-gray-200 flex items-center justify-center text-[#1E3A8A] shrink-0 transition-transform duration-300 faq-icon">
+                        <div class="w-7 h-7 rounded-full bg-slate-50 border border-gray-200 flex items-center justify-center text-[#0F767E] shrink-0 transition-transform duration-300 faq-icon">
                             <i class="fa-solid fa-chevron-down text-[10px]"></i>
                         </div>
                     </div>
@@ -239,7 +239,7 @@
 
             <!-- Middle links -->
             <div class="md:col-span-3 flex flex-col gap-3.5">
-                <h4 class="font-bold text-sm tracking-wider uppercase text-[#0F767E]">Navigasi Web</h4>
+                <h4 class="font-bold text-sm tracking-wider uppercase text-[#1E3A8A]">Navigasi Web</h4>
                 <div class="flex flex-col gap-2 text-xs text-slate-400">
                     <a href="{{ route('home') }}" class="hover:text-white transition-colors">Home</a>
                     <a href="/#fitur" class="hover:text-white transition-colors">Fitur Utama</a>

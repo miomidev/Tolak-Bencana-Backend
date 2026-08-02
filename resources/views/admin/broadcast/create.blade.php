@@ -7,7 +7,7 @@
 <div class="max-w-3xl">
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
         <div class="p-5 border-b border-gray-150 bg-gray-50">
-            <h4 class="font-extrabold text-base text-[#1E3A8A]"><i class="fa-solid fa-bullhorn mr-2 text-[#F97316]"></i> Kirim Siaran Peringatan</h4>
+            <h4 class="font-extrabold text-base text-[#0F767E]"><i class="fa-solid fa-bullhorn mr-2 text-[#F97316]"></i> Kirim Siaran Peringatan</h4>
             <p class="text-[11px] text-gray-400 font-normal mt-0.5">Pesan akan dikirim sebagai notifikasi ke semua pengguna aktif aplikasi KALIWEDI.</p>
         </div>
 
@@ -43,10 +43,10 @@
                             <span class="block text-[10px] text-gray-500 mt-0.5">Siaga banjir / rob</span>
                         </span>
                     </label>
-                    <label class="cursor-pointer border rounded-xl p-4 flex items-start gap-3 transition-colors has-[:checked]:border-[#1E3A8A] has-[:checked]:bg-blue-50">
-                        <input type="radio" name="type" value="info" class="mt-0.5 accent-[#1E3A8A]" {{ old('type') === 'info' ? 'checked' : '' }}>
+                    <label class="cursor-pointer border rounded-xl p-4 flex items-start gap-3 transition-colors has-[:checked]:border-[#0F767E] has-[:checked]:bg-[#E0F2F1]">
+                        <input type="radio" name="type" value="info" class="mt-0.5 accent-[#0F767E]" {{ old('type') === 'info' ? 'checked' : '' }}>
                         <span>
-                            <span class="block text-sm font-extrabold text-blue-700"><i class="fa-solid fa-circle-info mr-1"></i> Informasi</span>
+                            <span class="block text-sm font-extrabold text-[#0F767E]"><i class="fa-solid fa-circle-info mr-1"></i> Informasi</span>
                             <span class="block text-[10px] text-gray-500 mt-0.5">Pemberitahuan umum</span>
                         </span>
                     </label>

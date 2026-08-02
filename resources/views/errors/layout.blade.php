@@ -19,7 +19,7 @@
     <div class="pointer-events-none absolute inset-0 overflow-hidden">
         <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[#0F767E]/20 blur-3xl"></div>
         <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-[#F97316]/20 blur-3xl"></div>
-        <div class="absolute top-1/3 left-1/2 w-72 h-72 rounded-full bg-[#1E3A8A]/30 blur-3xl -translate-x-1/2"></div>
+        <div class="absolute top-1/3 left-1/2 w-72 h-72 rounded-full bg-[#0F767E]/30 blur-3xl -translate-x-1/2"></div>
     </div>
 
     <div class="relative z-10 w-full max-w-lg px-6 py-12 text-center">

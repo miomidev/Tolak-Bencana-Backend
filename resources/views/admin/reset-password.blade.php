@@ -23,10 +23,10 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 via-slate-100 to-teal-50 min-h-screen flex items-center justify-center p-6 sm:p-8 relative overflow-hidden">
+<body class="bg-gradient-to-br from-[#E0F2F1] via-slate-100 to-teal-50 min-h-screen flex items-center justify-center p-6 sm:p-8 relative overflow-hidden">
     
     <!-- Floating background blur shapes -->
-    <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-100/30 rounded-full blur-3xl -translate-y-16 translate-x-16"></div>
+    <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-teal-100/30 rounded-full blur-3xl -translate-y-16 translate-x-16"></div>
     <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-amber-100/20 rounded-full blur-3xl translate-y-16 -translate-x-16"></div>
 
     <div class="w-full max-w-md relative z-10">
@@ -34,7 +34,7 @@
         <div class="flex flex-col items-center mb-8">
             <a href="{{ route('home') }}" class="flex flex-col items-center gap-3">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo KALIWEDI" class="w-16 h-16 rounded-2xl bg-white p-1.5 shadow-md object-contain hover:scale-105 transition-transform">
-                <span class="font-extrabold text-3xl tracking-widest text-[#1E3A8A] mt-1">KALIWEDI</span>
+                <span class="font-extrabold text-3xl tracking-widest text-[#0F767E] mt-1">KALIWEDI</span>
                 <span class="text-xs text-[#0F767E] uppercase tracking-widest font-extrabold -mt-1">PKM-KC Admin Console</span>
             </a>
         </div>
@@ -70,7 +70,7 @@
                             <i class="fa-solid fa-lock text-sm"></i>
                         </span>
                         <input type="password" name="password" id="password" required autofocus placeholder="Minimal 8 karakter" 
-                               class="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm focus:bg-white focus:ring-2 focus:ring-[#1E3A8A]/25 focus:border-[#1E3A8A] focus:outline-none transition-all">
+                               class="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm focus:bg-white focus:ring-2 focus:ring-[#0F767E]/25 focus:border-[#0F767E] focus:outline-none transition-all">
                     </div>
                 </div>
 
@@ -82,12 +82,12 @@
                             <i class="fa-solid fa-lock text-sm"></i>
                         </span>
                         <input type="password" name="password_confirmation" id="password_confirmation" required placeholder="Ulangi kata sandi baru" 
-                               class="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm focus:bg-white focus:ring-2 focus:ring-[#1E3A8A]/25 focus:border-[#1E3A8A] focus:outline-none transition-all">
+                               class="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm focus:bg-white focus:ring-2 focus:ring-[#0F767E]/25 focus:border-[#0F767E] focus:outline-none transition-all">
                     </div>
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="w-full bg-[#1E3A8A] hover:bg-[#172554] text-white font-bold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-[1.01] mt-2 flex items-center justify-center gap-2">
+                <button type="submit" class="w-full bg-[#0F767E] hover:bg-[#0a5258] text-white font-bold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-[1.01] mt-2 flex items-center justify-center gap-2">
                     <span>Simpan Kata Sandi</span>
                     <i class="fa-solid fa-floppy-disk"></i>
                 </button>

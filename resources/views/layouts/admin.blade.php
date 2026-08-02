@@ -36,7 +36,7 @@
 
     <div class="flex flex-1 min-h-0 overflow-hidden">
         <!-- Sidebar -->
-        <aside id="sidebar" class="sidebar fixed inset-y-0 left-0 lg:static bg-gradient-to-b from-[#1E3A8A] via-[#1A2F74] to-[#14265E] text-white flex-shrink-0 flex flex-col shadow-2xl z-[9999]">
+        <aside id="sidebar" class="sidebar fixed inset-y-0 left-0 lg:static bg-[#0F767E] text-white flex-shrink-0 flex flex-col shadow-2xl z-[9999]">
             <!-- Sidebar Header -->
             <div class="sb-header h-16 flex items-center justify-between px-4 bg-white/5 border-b border-white/10">
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 min-w-0">
@@ -55,7 +55,7 @@
             <nav class="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto overflow-x-hidden">
 
                 <!-- Dashboard -->
-                <a href="{{ route('admin.dashboard') }}" title="Dashboard" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.dashboard') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.dashboard') }}" title="Dashboard" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.dashboard') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.dashboard') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-chart-line w-5 text-center text-lg"></i>
                     <span class="sb-text">Dashboard</span>
@@ -66,7 +66,7 @@
                     <span class="text-[9px] uppercase tracking-widest text-white/35 font-bold">Pemantauan</span>
                 </div>
 
-                <a href="{{ route('admin.reports.index') }}" title="Laporan Banjir" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.reports.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.reports.index') }}" title="Laporan Banjir" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.reports.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.reports.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-file-waveform w-5 text-center text-lg"></i>
                     <span class="sb-text">Laporan Banjir</span>
@@ -75,13 +75,13 @@
                     @endif
                 </a>
 
-                <a href="{{ route('admin.comments.index') }}" title="Komentar" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.comments.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.comments.index') }}" title="Komentar" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.comments.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.comments.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-comment-dots w-5 text-center text-lg"></i>
                     <span class="sb-text">Komentar</span>
                 </a>
 
-                <a href="{{ route('admin.broadcast.create') }}" title="Broadcast Siaga" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.broadcast.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.broadcast.create') }}" title="Broadcast Siaga" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.broadcast.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.broadcast.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-bullhorn w-5 text-center text-lg"></i>
                     <span class="sb-text">Broadcast Siaga</span>
@@ -92,25 +92,25 @@
                     <span class="text-[9px] uppercase tracking-widest text-white/35 font-bold">Master Data</span>
                 </div>
 
-                <a href="{{ route('admin.shelters.index') }}" title="Shelter Evakuasi" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.shelters.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.shelters.index') }}" title="Shelter Evakuasi" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.shelters.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.shelters.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-warehouse w-5 text-center text-lg"></i>
                     <span class="sb-text">Shelter Evakuasi</span>
                 </a>
 
-                <a href="{{ route('admin.zones.index') }}" title="Zona Rawan Banjir" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.zones.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.zones.index') }}" title="Zona Rawan Banjir" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.zones.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.zones.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-circle-exclamation w-5 text-center text-lg"></i>
                     <span class="sb-text">Zona Rawan Banjir</span>
                 </a>
 
-                <a href="{{ route('admin.categories.index') }}" title="Kategori Laporan" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.categories.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.categories.index') }}" title="Kategori Laporan" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.categories.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.categories.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-tags w-5 text-center text-lg"></i>
                     <span class="sb-text">Kategori Laporan</span>
                 </a>
 
-                <a href="{{ route('admin.alert-levels.index') }}" title="Level Siaga" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.alert-levels.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.alert-levels.index') }}" title="Level Siaga" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.alert-levels.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.alert-levels.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-gauge-high w-5 text-center text-lg"></i>
                     <span class="sb-text">Level Siaga</span>
@@ -121,19 +121,19 @@
                     <span class="text-[9px] uppercase tracking-widest text-white/35 font-bold">Dukungan</span>
                 </div>
 
-                <a href="{{ route('admin.contacts.index') }}" title="Kontak Darurat" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.contacts.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.contacts.index') }}" title="Kontak Darurat" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.contacts.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.contacts.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-phone-flip w-5 text-center text-lg"></i>
                     <span class="sb-text">Kontak Darurat</span>
                 </a>
 
-                <a href="{{ route('admin.faqs.index') }}" title="FAQ" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.faqs.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.faqs.index') }}" title="FAQ" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.faqs.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.faqs.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-circle-question w-5 text-center text-lg"></i>
                     <span class="sb-text">FAQ</span>
                 </a>
 
-                <a href="{{ route('admin.announcements.index') }}" title="Pemberitahuan" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.announcements.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.announcements.index') }}" title="Pemberitahuan" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.announcements.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.announcements.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-bullhorn w-5 text-center text-lg"></i>
                     <span class="sb-text">Pemberitahuan</span>
@@ -144,25 +144,25 @@
                     <span class="text-[9px] uppercase tracking-widest text-white/35 font-bold">Pengaturan</span>
                 </div>
 
-                <a href="{{ route('admin.users.index') }}" title="Pengguna" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.users.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.users.index') }}" title="Pengguna" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.users.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.users.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-users w-5 text-center text-lg"></i>
                     <span class="sb-text">Pengguna</span>
                 </a>
 
-                <a href="{{ route('admin.app-info.edit') }}" title="Konfigurasi Aplikasi" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.app-info.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.app-info.edit') }}" title="Konfigurasi Aplikasi" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.app-info.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.app-info.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-gears w-5 text-center text-lg"></i>
                     <span class="sb-text">Konfigurasi Aplikasi</span>
                 </a>
 
-                <a href="{{ route('admin.audit-logs.index') }}" title="Audit Log" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.audit-logs.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.audit-logs.index') }}" title="Audit Log" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.audit-logs.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.audit-logs.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-clock-rotate-left w-5 text-center text-lg"></i>
                     <span class="sb-text">Audit Log</span>
                 </a>
 
-                <a href="{{ route('admin.profile.edit') }}" title="Profil Saya" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.profile.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.profile.edit') }}" title="Profil Saya" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.profile.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.profile.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-user-gear w-5 text-center text-lg"></i>
                     <span class="sb-text">Profil Saya</span>
@@ -195,10 +195,10 @@
             <!-- Header -->
             <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 md:px-8 shadow-sm z-10">
                 <div class="flex items-center gap-3 md:gap-4">
-                    <button type="button" id="sidebar-toggle" title="Buka/Tutup menu" class="text-[#1E3A8A] hover:bg-gray-100 p-2 rounded-lg transition-colors focus:outline-none">
+                    <button type="button" id="sidebar-toggle" title="Buka/Tutup menu" class="text-[#0F767E] hover:bg-gray-100 p-2 rounded-lg transition-colors focus:outline-none">
                         <i class="fa-solid fa-bars text-lg"></i>
                     </button>
-                    <h2 class="text-base md:text-xl font-bold text-[#1E3A8A] truncate">@yield('header_title', 'Dashboard')</h2>
+                    <h2 class="text-base md:text-xl font-bold text-[#0F767E] truncate">@yield('header_title', 'Dashboard')</h2>
                 </div>
                 
                 <div class="flex items-center gap-6">
@@ -217,7 +217,7 @@
                         <div id="notif-dropdown" class="hidden absolute right-0 mt-2 w-80 bg-white border border-gray-200 rounded-2xl shadow-xl z-50 overflow-hidden">
                             <!-- Dropdown Header -->
                             <div class="px-5 py-3.5 border-b border-gray-100 bg-[#F9FAFB] flex items-center justify-between">
-                                <span class="font-bold text-sm text-[#1E3A8A]">Notifikasi Laporan</span>
+                                <span class="font-bold text-sm text-[#0F767E]">Notifikasi Laporan</span>
                                 @if (($adminUnreadCount ?? 0) > 0)
                                     <span class="bg-[#F97316]/10 text-[#F97316] text-[10px] font-bold px-2 py-0.5 rounded-full">
                                         {{ $adminUnreadCount }} Pending
@@ -229,7 +229,7 @@
                             <div class="max-h-[300px] overflow-y-auto divide-y divide-gray-100">
                                 @forelse ($adminNotifications ?? [] as $notif)
                                     <a href="{{ route('admin.reports.show', $notif->id) }}" class="flex gap-3 px-5 py-3.5 hover:bg-[#E0F2F1]/30 transition-colors">
-                                        <div class="w-8 h-8 rounded-full bg-[#1E3A8A]/10 text-[#1E3A8A] flex items-center justify-center shrink-0">
+                                        <div class="w-8 h-8 rounded-full bg-[#0F767E]/10 text-[#0F767E] flex items-center justify-center shrink-0">
                                             <i class="fa-solid fa-droplet text-xs"></i>
                                         </div>
                                         <div class="min-w-0 flex-1">
@@ -250,7 +250,7 @@
 
                             <!-- Dropdown Footer -->
                             <div class="border-t border-gray-100 bg-slate-50/50">
-                                <a href="{{ route('admin.reports.index', ['status' => 'pending']) }}" class="block text-center py-2.5 text-xs font-bold text-[#0F767E] hover:text-[#1E3A8A] transition-colors">
+                                <a href="{{ route('admin.reports.index', ['status' => 'pending']) }}" class="block text-center py-2.5 text-xs font-bold text-[#0F767E] hover:text-[#0a5258] transition-colors">
                                     Lihat Semua Laporan Pending
                                 </a>
                             </div>
@@ -275,12 +275,12 @@
                 @endif
 
                 @if (session('info'))
-                    <div class="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg flex items-center justify-between shadow-sm">
-                        <div class="flex items-center gap-3 text-blue-800 text-sm">
-                            <i class="fa-solid fa-circle-info text-lg text-blue-500"></i>
+                    <div class="mb-6 p-4 bg-[#E0F2F1] border-l-4 border-[#0F767E] rounded-r-lg flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-3 text-[#0F767E] text-sm">
+                            <i class="fa-solid fa-circle-info text-lg text-[#0F767E]"></i>
                             <span class="font-medium">{{ session('info') }}</span>
                         </div>
-                        <button onclick="this.parentElement.remove()" class="text-blue-500 hover:text-blue-700">
+                        <button onclick="this.parentElement.remove()" class="text-[#0F767E] hover:text-[#0a5258]">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>

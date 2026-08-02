@@ -35,7 +35,7 @@
             width: 350px;
             height: 350px;
             border-radius: 50%;
-            background-color: #1e3a8a;
+            background-color: #0f767e;
             opacity: 0.06;
             filter: blur(50px);
             z-index: 0;
@@ -47,7 +47,7 @@
             width: 400px;
             height: 400px;
             border-radius: 50%;
-            background-color: #0f767e;
+            background-color: #1e3a8a;
             opacity: 0.05;
             filter: blur(60px);
             z-index: 0;
@@ -76,9 +76,9 @@
 
         /* Swiper / Hero Banner shadow and layout */
         .hero-banner {
-            background: linear-gradient(135deg, rgba(30, 59, 138, 0.48) 0%, rgba(15, 119, 126, 0.45) 100%), url('{{ asset('images/hero.png') }}') no-repeat center center;
+            background: linear-gradient(135deg, rgba(15, 119, 126, 0.48) 0%, rgba(30, 59, 138, 0.45) 100%), url('{{ asset('images/hero.png') }}') no-repeat center center;
             background-size: cover;
-            box-shadow: 0 20px 40px -15px rgba(30, 58, 138, 0.3);
+            box-shadow: 0 20px 40px -15px rgba(15, 118, 126, 0.3);
         }
 
         /* Program / Feature Cards Style */
@@ -140,8 +140,8 @@
             <a href="{{ route('home') }}" class="flex items-center gap-3">
                 <img src="{{ asset('images/logo.png') }}" alt="KALIWEDI Logo" class="h-10 w-auto rounded-xl bg-white p-0.5 shadow-sm object-contain" loading="lazy">
                 <div>
-                    <span class="font-extrabold text-xl tracking-wider text-[#1E3A8A] block">KALIWEDI</span>
-                    <span class="text-[9px] text-[#0F767E] uppercase tracking-widest font-extrabold block -mt-1">PKM-KC Mitigasi Banjir</span>
+                    <span class="font-extrabold text-xl tracking-wider text-[#0F767E] block">KALIWEDI</span>
+                    <span class="text-[9px] text-[#1E3A8A] uppercase tracking-widest font-extrabold block -mt-1">PKM-KC Mitigasi Banjir</span>
                 </div>
             </a>
             
@@ -149,25 +149,25 @@
             <div class="hidden md:flex items-center gap-6">
                 <ul class="flex items-center gap-6">
                     <li>
-                        <a href="{{ route('home') }}" class="font-semibold text-sm text-[#1E3A8A] transition-colors pb-1">Home</a>
+                        <a href="{{ route('home') }}" class="font-semibold text-sm text-[#0F767E] transition-colors pb-1">Home</a>
                     </li>
                     <li>
-                        <a href="/#fitur" class="font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] transition-colors pb-1">Fitur Utama</a>
+                        <a href="/#fitur" class="font-semibold text-sm text-slate-500 hover:text-[#0F767E] transition-colors pb-1">Fitur Utama</a>
                     </li>
                     <li>
-                        <a href="/#peta" class="font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] transition-colors pb-1">Peta Sebaran</a>
+                        <a href="/#peta" class="font-semibold text-sm text-slate-500 hover:text-[#0F767E] transition-colors pb-1">Peta Sebaran</a>
                     </li>
                     <li>
-                        <a href="{{ route('about') }}" class="font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] transition-colors pb-1">Tentang Aplikasi</a>
+                        <a href="{{ route('about') }}" class="font-semibold text-sm text-slate-500 hover:text-[#0F767E] transition-colors pb-1">Tentang Aplikasi</a>
                     </li>
                     <li>
-                        <a href="{{ route('faq') }}" class="font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] transition-colors pb-1">Tanya Jawab (FAQ)</a>
+                        <a href="{{ route('faq') }}" class="font-semibold text-sm text-slate-500 hover:text-[#0F767E] transition-colors pb-1">Tanya Jawab (FAQ)</a>
                     </li>
                 </ul>
             </div>
 
             <!-- Mobile Menu Toggle -->
-            <button type="button" id="mobile-menu-toggle" aria-label="Buka menu" aria-expanded="false" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl text-[#1E3A8A] hover:bg-slate-100 transition-colors focus:outline-none">
+            <button type="button" id="mobile-menu-toggle" aria-label="Buka menu" aria-expanded="false" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl text-[#0F767E] hover:bg-slate-100 transition-colors focus:outline-none">
                 <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
             </button>
         </nav>
@@ -177,11 +177,11 @@
             <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
             <div class="relative bg-white/95 backdrop-blur-sm shadow-2xl border-b border-slate-100">
                 <nav class="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex flex-col gap-1">
-                    <a href="{{ route('home') }}" class="mobile-nav-link font-semibold text-sm text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Home</a>
-                    <a href="/#fitur" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Fitur Utama</a>
-                    <a href="/#peta" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Peta Sebaran</a>
-                    <a href="{{ route('about') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Tentang Aplikasi</a>
-                    <a href="{{ route('faq') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#1E3A8A] px-4 py-3 rounded-xl transition-colors">Tanya Jawab (FAQ)</a>
+                    <a href="{{ route('home') }}" class="mobile-nav-link font-semibold text-sm text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Home</a>
+                    <a href="/#fitur" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Fitur Utama</a>
+                    <a href="/#peta" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Peta Sebaran</a>
+                    <a href="{{ route('about') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Tentang Aplikasi</a>
+                    <a href="{{ route('faq') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Tanya Jawab (FAQ)</a>
                 </nav>
             </div>
         </div>
@@ -221,9 +221,9 @@
             <!-- Certified Badges Centered -->
             <div class="px-8 pb-4 text-center z-10 relative"> 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs font-semibold text-slate-500"> 
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-[#0F767E]"></i> Terverifikasi BPBD Indramayu</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-[#1E3A8A]"></i> Terverifikasi BPBD Indramayu</span>
                     <span class="hidden sm:inline text-slate-300">|</span>
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-code text-[#1E3A8A]"></i> Didukung Teknologi Mobile GIS</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-code text-[#0F767E]"></i> Didukung Teknologi Mobile GIS</span>
                     <span class="hidden sm:inline text-slate-300">|</span>
                     <span class="flex items-center gap-1.5"><i class="fa-solid fa-users text-[#F97316]"></i> Berbasis Partisipasi Publik</span>
                 </div>
@@ -236,11 +236,11 @@
     <section class="relative z-10 -mt-10 mx-auto max-w-6xl px-4">
         <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 sm:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div class="flex flex-col items-center">
-                <span class="text-3xl sm:text-4xl font-black text-[#1E3A8A] tracking-tight">{{ $stats['total_reports'] ?? 0 }}</span>
+                <span class="text-3xl sm:text-4xl font-black text-[#0F767E] tracking-tight">{{ $stats['total_reports'] ?? 0 }}</span>
                 <span class="text-[10px] uppercase font-extrabold text-slate-400 mt-1">Laporan Warga</span>
             </div>
             <div class="flex flex-col items-center border-l border-slate-100">
-                <span class="text-3xl sm:text-4xl font-black text-[#0F767E] tracking-tight">{{ $stats['active_shelters'] ?? 0 }}</span>
+                <span class="text-3xl sm:text-4xl font-black text-[#1E3A8A] tracking-tight">{{ $stats['active_shelters'] ?? 0 }}</span>
                 <span class="text-[10px] uppercase font-extrabold text-slate-400 mt-1">Shelter Siaga</span>
             </div>
             <div class="flex flex-col items-center border-l border-slate-100">
@@ -269,7 +269,7 @@
                     <div class="w-12 h-12 bg-[#E0F2F1] rounded-2xl flex items-center justify-center text-[#0F767E] mx-auto md:mx-0 shadow-sm">
                         <i class="fa-solid fa-circle-question text-xl"></i>
                     </div>
-                    <h2 class="text-3xl font-extrabold text-[#1E3A8A] leading-tight">
+                    <h2 class="text-3xl font-extrabold text-[#0F767E] leading-tight">
                         Tentang Sistem KALIWEDI
                     </h2>
                     <p class="text-sm text-slate-500 leading-relaxed text-justify">
@@ -287,8 +287,8 @@
     <section id="fitur" class="py-20 bg-slate-50 border-b border-slate-100 relative z-10"> 
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="text-xs font-bold uppercase tracking-widest text-[#0F767E]">Fitur Unggulan</span>
-                <h2 class="text-3xl font-extrabold text-[#1E3A8A] leading-tight mt-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#1E3A8A]">Fitur Unggulan</span>
+                <h2 class="text-3xl font-extrabold text-[#0F767E] leading-tight mt-2">
                     Kenapa Menggunakan KALIWEDI?
                 </h2>
             </div>
@@ -356,7 +356,7 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-xs font-bold uppercase tracking-widest text-[#F97316]">Panduan Siaga</span>
-                <h2 class="text-3xl font-extrabold text-[#1E3A8A] leading-tight mt-2">
+                <h2 class="text-3xl font-extrabold text-[#0F767E] leading-tight mt-2">
                     Langkah Mitigasi Saat Banjir Rob Melanda
                 </h2>
             </div>
@@ -413,7 +413,7 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 flex flex-col gap-3">
                 <span class="text-xs font-bold uppercase tracking-widest text-[#F97316]">Peta Distribusi Siaga</span>
-                <h2 class="text-3xl font-extrabold text-[#1E3A8A] tracking-tight">Kondisi Sebaran Banjir Indramayu</h2>
+                <h2 class="text-3xl font-extrabold text-[#0F767E] tracking-tight">Kondisi Sebaran Banjir Indramayu</h2>
                 <p class="text-slate-500 max-w-xl mx-auto text-xs leading-relaxed">
                     Peta publik interaktif di bawah ini menunjukkan laporan banjir dari warga pesisir yang terverifikasi secara real-time.
                 </p>
@@ -424,13 +424,13 @@
                 <!-- Map (8 Columns) -->
                 <div class="lg:col-span-8 h-[350px] sm:h-[450px] md:h-[500px] rounded-3xl shadow-xl border border-slate-200/60 overflow-hidden relative bg-slate-100" id="public-map">
                     <!-- Map loading overlay -->
-                    <div class="absolute inset-0 bg-slate-50 z-40 flex items-center justify-center font-semibold text-[#1E3A8A]" id="map-loader">
+                    <div class="absolute inset-0 bg-slate-50 z-40 flex items-center justify-center font-semibold text-[#0F767E]" id="map-loader">
                         <i class="fa-solid fa-spinner animate-spin text-2xl mr-3"></i> Memuat Peta Distribusi...
                     </div>
                 </div>
                 
                 <!-- Shelter List (4 Columns) -->
-                <div class="lg:col-span-4 flex flex-col gap-4 max-h-[500px] overflow-y-auto bg-slate-50 rounded-3xl border border-slate-200/60 p-4 sm:p-5">                    <h3 class="font-bold text-sm text-[#1E3A8A] flex items-center gap-2 mb-1"><i class="fa-solid fa-house-chimney text-[#0F767E]"></i> Shelter Evakuasi Siaga</h3>
+                <div class="lg:col-span-4 flex flex-col gap-4 max-h-[500px] overflow-y-auto bg-slate-50 rounded-3xl border border-slate-200/60 p-4 sm:p-5">                    <h3 class="font-bold text-sm text-[#0F767E] flex items-center gap-2 mb-1"><i class="fa-solid fa-house-chimney text-[#1E3A8A]"></i> Shelter Evakuasi Siaga</h3>
                     
                     @forelse($shelters as $shelter)
                         <div class="bg-white rounded-2xl p-4 border border-slate-200/40 shadow-sm flex flex-col gap-2 hover:scale-[1.01] transition-transform">
@@ -449,7 +449,7 @@
                                 </div>
                                 <div class="bg-slate-50 rounded-lg p-1.5 flex flex-col">
                                     <span class="text-slate-400 font-medium">Keterisian</span>
-                                    <span class="font-bold {{ $shelter->current_occupancy >= $shelter->capacity ? 'text-red-500' : 'text-[#0F767E]' }}">
+                                    <span class="font-bold {{ $shelter->current_occupancy >= $shelter->capacity ? 'text-red-500' : 'text-[#1E3A8A]' }}">
                                         {{ $shelter->current_occupancy }} Jiwa
                                     </span>
                                 </div>
@@ -475,8 +475,8 @@
     <section id="kontak-siaga" class="py-20 bg-slate-50 border-b border-slate-100 relative z-10">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="text-xs font-bold uppercase tracking-widest text-[#0F767E]">Bantuan Segera</span>
-                <h2 class="text-3xl font-extrabold text-[#1E3A8A] leading-tight mt-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#1E3A8A]">Bantuan Segera</span>
+                <h2 class="text-3xl font-extrabold text-[#0F767E] leading-tight mt-2">
                     Kontak Siaga & Darurat Bencana
                 </h2>
                 <p class="text-slate-500 max-w-xl mx-auto text-xs leading-relaxed mt-2">
@@ -499,7 +499,7 @@
                             <i class="{{ $btnPrefix }} fa-{{ $contact->icon }}"></i>
                         </div>
                         <div>
-                            <span class="text-[9px] text-[#0F767E] uppercase font-bold tracking-wider">{{ \App\Support\UiHelper::contactType($contact->type) }}</span>
+                            <span class="text-[9px] text-[#1E3A8A] uppercase font-bold tracking-wider">{{ \App\Support\UiHelper::contactType($contact->type) }}</span>
                             <h3 class="font-bold text-sm text-slate-800 line-clamp-1 mt-0.5">{{ $contact->title }}</h3>
                             <p class="text-xs text-slate-500 font-semibold truncate mt-1">{{ $contact->value }}</p>
                         </div>
@@ -517,7 +517,7 @@
     </section>
 
     <!-- Download CTA Section -->
-    <section id="unduh" class="py-16 px-6 sm:px-8 bg-gradient-to-r from-[#1E3A8A] to-[#0F767E] text-white text-center relative overflow-hidden">
+    <section id="unduh" class="py-16 px-6 sm:px-8 bg-[#0F767E] text-white text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto relative z-10 flex flex-col gap-6 items-center">
             <h2 class="text-3xl font-black tracking-tight leading-tight">Bersama Tangguh Hadapi Bencana Rob</h2>
             <p class="text-white/80 text-sm max-w-lg leading-relaxed">
@@ -556,7 +556,7 @@
 
             <!-- Middle links -->
             <div class="md:col-span-3 flex flex-col gap-3.5">
-                <h4 class="font-bold text-sm tracking-wider uppercase text-[#0F767E]">Navigasi Web</h4>
+                <h4 class="font-bold text-sm tracking-wider uppercase text-[#1E3A8A]">Navigasi Web</h4>
                 <div class="flex flex-col gap-2 text-xs text-slate-400">
                     <a href="{{ route('home') }}" class="hover:text-white transition-colors">Home</a>
                     <a href="/#fitur" class="hover:text-white transition-colors">Fitur Utama</a>

@@ -93,7 +93,7 @@
                     <p class="text-[10px] text-gray-400 uppercase font-bold">Laporan</p>
                 </div>
                 <div>
-                    <p class="text-2xl font-black text-[#1E3A8A]">{{ $user->created_at?->format('d/m/Y') }}</p>
+                    <p class="text-2xl font-black text-[#0F767E]">{{ $user->created_at?->format('d/m/Y') }}</p>
                     <p class="text-[10px] text-gray-400 uppercase font-bold">Terdaftar</p>
                 </div>
             </div>
@@ -114,7 +114,7 @@
         <!-- Notification settings -->
         @php $ns = $user->notificationSetting ?? null; @endphp
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <h4 class="text-sm font-extrabold text-[#1F2937] mb-1"><i class="fa-solid fa-bell text-[#1E3A8A] mr-2"></i> Preferensi Notifikasi</h4>
+            <h4 class="text-sm font-extrabold text-[#1F2937] mb-1"><i class="fa-solid fa-bell text-[#0F767E] mr-2"></i> Preferensi Notifikasi</h4>
             <p class="text-xs text-gray-400 mb-4">Jenis notifikasi yang diterima pengguna di aplikasi.</p>
             <form action="{{ route('admin.users.notifications', $user) }}" method="POST" class="space-y-3">
                 @csrf
@@ -129,7 +129,7 @@
                         <input type="checkbox" name="{{ $key }}" value="1" {{ ($ns && $ns->{$key}) ? 'checked' : '' }} class="accent-[#0F767E] w-5 h-5">
                     </label>
                 @endforeach
-                <button type="submit" class="w-full mt-2 bg-[#1E3A8A]/10 hover:bg-[#1E3A8A]/20 text-[#1E3A8A] text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
+                <button type="submit" class="w-full mt-2 bg-[#0F767E]/10 hover:bg-[#0F767E]/20 text-[#0F767E] text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
                     <i class="fa-solid fa-floppy-disk mr-1.5"></i> Simpan Preferensi
                 </button>
             </form>

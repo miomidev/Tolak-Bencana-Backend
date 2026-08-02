@@ -52,7 +52,7 @@
     <div class="space-y-6">
         <!-- Info penulis -->
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <h4 class="text-sm font-extrabold text-[#1F2937] mb-4"><i class="fa-solid fa-user text-[#1E3A8A] mr-2"></i> Penulis Komentar</h4>
+            <h4 class="text-sm font-extrabold text-[#1F2937] mb-4"><i class="fa-solid fa-user text-[#0F767E] mr-2"></i> Penulis Komentar</h4>
             @if($comment->user)
                 <div class="flex items-center gap-3 mb-5">
                     @if($comment->user->avatar_url)
@@ -89,7 +89,7 @@
                         </dd>
                     </div>
                 </dl>
-                <a href="{{ route('admin.users.edit', $comment->user_id) }}" class="flex items-center justify-center gap-2 mt-5 w-full bg-[#1E3A8A]/10 hover:bg-[#1E3A8A]/20 text-[#1E3A8A] text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
+                <a href="{{ route('admin.users.edit', $comment->user_id) }}" class="flex items-center justify-center gap-2 mt-5 w-full bg-[#0F767E]/10 hover:bg-[#0F767E]/20 text-[#0F767E] text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
                     <i class="fa-solid fa-user-pen"></i> Kelola Akun Pengguna
                 </a>
             @else
