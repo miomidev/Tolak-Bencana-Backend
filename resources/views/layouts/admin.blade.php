@@ -81,7 +81,7 @@
                     <span class="sb-text">Komentar</span>
                 </a>
 
-                <a href="{{ route('admin.broadcast.create') }}" title="Broadcast Siaga" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.broadcast.*') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
+                <a href="{{ route('admin.broadcast.history') }}" title="Broadcast Siaga" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.broadcast.*') ? 'bg-gradient-to-r from-[#0F767E] to-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">
                     <span class="sb-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-cyan-300 transition-opacity {{ request()->routeIs('admin.broadcast.*') ? 'opacity-100' : 'opacity-0 group-hover:opacity-50' }}"></span>
                     <i class="sb-icon fa-solid fa-bullhorn w-5 text-center text-lg"></i>
                     <span class="sb-text">Broadcast Siaga</span>

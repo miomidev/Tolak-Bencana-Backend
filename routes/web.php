@@ -132,6 +132,7 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     // Broadcast Siaga
     Route::get('/admin/broadcast/create', [BroadcastController::class, 'create'])->name('admin.broadcast.create');
     Route::post('/admin/broadcast/send', [BroadcastController::class, 'send'])->name('admin.broadcast.send');
+    Route::get('/admin/broadcast/history', [BroadcastController::class, 'history'])->name('admin.broadcast.history');
 
     // Moderasi Komentar
     Route::get('/admin/comments', [ReportCommentController::class, 'index'])->name('admin.comments.index');

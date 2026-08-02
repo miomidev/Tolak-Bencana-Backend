@@ -21,6 +21,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: 22
           script: |
+            git config --global --add safe.directory /home/miomideveloper/Kaliwedi
             cd /home/miomideveloper/Kaliwedi
             git fetch --all
             git reset --hard origin/main
