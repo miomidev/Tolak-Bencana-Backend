@@ -98,13 +98,13 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.app-info.apk.upload') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.app-info.apk.upload') }}" method="POST">
         @csrf
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-                <label class="block text-sm font-bold text-gray-600 mb-1.5">File APK (.apk)</label>
-                <input type="file" name="apk_file" accept=".apk,application/vnd.android.package-archive" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40 bg-white">
-                @error('apk_file') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+                <label class="block text-sm font-bold text-gray-600 mb-1.5">Link APK (Google Drive/Lainnya)</label>
+                <input type="url" name="apk_link" placeholder="https://..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40 bg-white">
+                @error('apk_link') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
             <div>
                 <label class="block text-sm font-bold text-gray-600 mb-1.5">Versi (opsional)</label>

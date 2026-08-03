@@ -24,6 +24,15 @@
         body {
             font-family: 'Outfit', sans-serif;
         }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .sidebar-nav-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .sidebar-nav-scroll {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
     </style>
 
     <!-- Vite Styles and Scripts -->
@@ -52,7 +61,7 @@
             </div>
 
             <!-- Sidebar Nav Links -->
-            <nav class="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto overflow-x-hidden">
+            <nav class="sidebar-nav-scroll flex-1 px-3 py-4 space-y-0.5 overflow-y-auto overflow-x-hidden">
 
                 <!-- Dashboard -->
                 <a href="{{ route('admin.dashboard') }}" title="Dashboard" class="group sb-link relative flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.dashboard') ? 'bg-[#0E8C94] text-white shadow-lg shadow-[#0F767E]/30' : 'text-white/75 hover:bg-white/10 hover:text-white' }}">

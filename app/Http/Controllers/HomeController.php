@@ -81,11 +81,19 @@ class HomeController extends Controller
     /**
      * Download the latest uploaded APK from storage.
      */
-    public function downloadApk(): StreamedResponse
+    public function downloadApk()
     {
         $appInfo = AppInfo::first();
 
-        if (! $appInfo || ! $appInfo->apk_path || ! Storage::disk('public')->exists($appInfo->apk_path)) {
+        if (! $appInfo || ! $appInfo->apk_path) {
+            abort(404, 'File APK belum tersedia.');
+        }
+
+        if (filter_var($appInfo->apk_path, FILTER_VALIDATE_URL)) {
+            return redirect()->away($appInfo->apk_path);
+        }
+
+        if (! Storage::disk('public')->exists($appInfo->apk_path)) {
             abort(404, 'File APK belum tersedia.');
         }
 

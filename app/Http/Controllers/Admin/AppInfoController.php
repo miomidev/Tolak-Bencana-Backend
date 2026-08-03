@@ -53,33 +53,29 @@ class AppInfoController extends Controller
 
     public function uploadApk(Request $request)
     {
-        $appInfo = AppInfo::firstOrFail();
-
         $data = $request->validate([
-            'apk_file' => 'required|file|mimes:apk,zip|max:204800',
+            'apk_link' => 'required|url',
             'apk_version' => 'nullable|string|max:50',
         ], [
-            'apk_file.required' => 'File APK wajib diunggah.',
-            'apk_file.mimes' => 'File harus berformat APK (.apk).',
-            'apk_file.max' => 'Ukuran file maksimal 200 MB.',
+            'apk_link.required' => 'Link APK wajib diisi.',
+            'apk_link.url' => 'Format link tidak valid.',
         ]);
 
-        // Hapus file lama jika ada
-        if ($appInfo->apk_path && Storage::disk('public')->exists($appInfo->apk_path)) {
+        $appInfo = AppInfo::firstOrFail();
+
+        // Hapus file lama jika ada (untuk membersihkan file sebelumnya jika ada)
+        if ($appInfo->apk_path && !filter_var($appInfo->apk_path, FILTER_VALIDATE_URL) && Storage::disk('public')->exists($appInfo->apk_path)) {
             Storage::disk('public')->delete($appInfo->apk_path);
         }
 
-        $file = $request->file('apk_file');
-        $path = $file->storeAs('apks', 'kaliwedi-v'.now()->format('YmdHis').'.apk', 'public');
-
         $appInfo->update([
-            'apk_path' => $path,
-            'apk_filename' => $file->getClientOriginalName(),
+            'apk_path' => $data['apk_link'],
+            'apk_filename' => 'External Link',
             'apk_version' => $data['apk_version'] ?? null,
             'apk_uploaded_at' => now(),
         ]);
 
-        Audit::log('app.apk_uploaded', 'APK aplikasi diunggah (versi '.($data['apk_version'] ?? '-').', '.$file->getClientOriginalName().').', $appInfo);
+        Audit::log('app.apk_uploaded', 'Link APK aplikasi diperbarui (versi '.($data['apk_version'] ?? '-').').', $appInfo);
 
         return redirect()->route('admin.app-info.edit')
             ->with('success', 'APK berhasil diunggah. Tombol unduh di landing page kini aktif.');
@@ -89,7 +85,7 @@ class AppInfoController extends Controller
     {
         $appInfo = AppInfo::firstOrFail();
 
-        if ($appInfo->apk_path && Storage::disk('public')->exists($appInfo->apk_path)) {
+        if ($appInfo->apk_path && !filter_var($appInfo->apk_path, FILTER_VALIDATE_URL) && Storage::disk('public')->exists($appInfo->apk_path)) {
             Storage::disk('public')->delete($appInfo->apk_path);
         }
 
