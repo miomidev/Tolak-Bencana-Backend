@@ -207,7 +207,7 @@
                     </h1>
                     
                     <p class="text-sm sm:text-base font-light text-white/80 max-w-2xl leading-relaxed">
-                        Mitigasi genangan dan banjir rob di pesisir Indramayu kini lebih andal dan terpadu. Hubungkan laporan warga, dapatkan rekomendasi evakuasi aman berbasis Mobile GIS.
+                        Mitigasi banjir rob, luapan sungai, dan genangan kota di Kabupaten Indramayu kini lebih andal dan terpadu. Hubungkan laporan warga, dapatkan rekomendasi evakuasi aman berbasis Mobile GIS.
                     </p>
 
                     <!-- CTA Button -->
@@ -273,10 +273,10 @@
                         Tentang Sistem KALIWEDI
                     </h2>
                     <p class="text-sm text-slate-500 leading-relaxed text-justify">
-                        <strong>KALIWEDI</strong> merupakan solusi inovatif kebencanaan yang mengawinkan partisipasi warga (*crowdsourcing*) dan pemetaan *Mobile Geographic Information System (Mobile GIS)*. 
+                        Kabupaten Indramayu memiliki karakteristik geografis unik sebagai wilayah hilir dan pesisir. Hal ini membuat Indramayu tidak hanya rentan terhadap banjir rob (pasang laut) di sepanjang pantai, tetapi juga rawan terhadap banjir luapan sungai (kiriman) akibat jebolnya tanggul, serta banjir genangan kota akibat buruknya sistem drainase dan solokan saat curah hujan tinggi.
                     </p>
                     <p class="text-sm text-slate-500 leading-relaxed text-justify">
-                        Sistem ini dikembangkan khusus guna merespons kerentanan genangan banjir rob di pesisir utara Kabupaten Indramayu. Melalui sinergi warga sebagai pelapor dan Badan Penanggulangan Bencana Daerah (BPBD) sebagai verifikator, informasi siaga bencana dapat disalurkan secara cepat, tepat, dan transparan.
+                        Sistem KALIWEDI hadir guna merespons kompleksitas kerentanan tersebut. Melalui sinergi warga sebagai pelapor dan Badan Penanggulangan Bencana Daerah (BPBD) sebagai verifikator, informasi siaga dan tanggap bencana banjir dapat disalurkan secara cepat, tepat, dan transparan.
                     </p>
                 </div>
             </div>
@@ -344,7 +344,7 @@
                     <img src="https://alhazen.academy/assets/kids/index-why/icon-why6.png" alt="STEM/GIS" class="w-12 h-12 object-contain" loading="lazy" decoding="async">
                     <h3 class="text-lg font-bold text-slate-800">Analisis Spasial GIS</h3>
                     <p class="text-xs text-slate-500 leading-relaxed text-justify">
-                        Melakukan visualisasi data titik banjir secara geografis (SIG) untuk mempermudah pemerintah dalam menganalisis daerah rawan genangan rob.
+                        Melakukan visualisasi data titik banjir secara geografis (SIG) untuk mempermudah pemerintah dalam menganalisis daerah rawan banjir rob, luapan sungai, maupun genangan kota.
                     </p>
                 </div>
             </div>
@@ -357,7 +357,7 @@
             <div class="text-center mb-16">
                 <span class="text-xs font-bold uppercase tracking-widest text-[#F97316]">Panduan Siaga</span>
                 <h2 class="text-3xl font-extrabold text-[#0F767E] leading-tight mt-2">
-                    Langkah Mitigasi Saat Banjir Rob Melanda
+                    Langkah Mitigasi Saat Banjir Melanda
                 </h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -519,7 +519,7 @@
     <!-- Download CTA Section -->
     <section id="unduh" class="py-16 px-6 sm:px-8 bg-[#0F767E] text-white text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto relative z-10 flex flex-col gap-6 items-center">
-            <h2 class="text-3xl font-black tracking-tight leading-tight">Bersama Tangguh Hadapi Bencana Rob</h2>
+            <h2 class="text-3xl font-black tracking-tight leading-tight">Bersama Tangguh Hadapi Bencana Banjir</h2>
             <p class="text-white/80 text-sm max-w-lg leading-relaxed">
                 Unduh KALIWEDI Apps secara gratis. Laporkan genangan air di sekitar Anda dan dapatkan panduan evakuasi tercepat ke shelter terdekat.
             </p>
