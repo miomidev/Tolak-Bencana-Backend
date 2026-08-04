@@ -25,5 +25,4 @@ jobs:
             cd /home/miomideveloper/Kaliwedi
             git fetch --all
             git reset --hard origin/main
-            chmod +x deploy.sh
-            ./deploy.sh
+            bash deploy.sh
