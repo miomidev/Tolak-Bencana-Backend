@@ -26,6 +26,7 @@ Route::get('/app-info', [AppInfoController::class, 'index']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/map-data', [MapDataController::class, 'index']);
 Route::get('/shelters', [ShelterController::class, 'index']);
+Route::get('/reports/{id}', [ReportController::class, 'show']);
 Route::get('/reports/{id}/comments', [ReportCommentController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {

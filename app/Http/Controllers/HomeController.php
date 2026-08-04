@@ -79,6 +79,19 @@ class HomeController extends Controller
     }
 
     /**
+     * Public share page for a single report (deep link target).
+     */
+    public function showReport(Report $report)
+    {
+        $report->load(['user:id,name,username,avatar_url'])
+            ->loadCount(['likes', 'activeComments']);
+
+        $appInfo = AppInfo::first();
+
+        return view('report.show', compact('report', 'appInfo'));
+    }
+
+    /**
      * Download the latest uploaded APK from storage.
      */
     public function downloadApk()

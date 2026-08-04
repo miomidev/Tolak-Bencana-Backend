@@ -84,6 +84,45 @@ class ReportController extends Controller
         ]);
     }
     /**
+     * Get a single report (public — used by share links & deep links).
+     */
+    public function show(Request $request, $id)
+    {
+        $report = Report::with(['user:id,name,username,avatar_url'])
+            ->withCount(['likes', 'activeComments'])
+            ->findOrFail($id);
+
+        $user = $request->user('sanctum');
+        if ($user) {
+            $report->loadExists(['likes as is_liked' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'report' => [
+                'id' => $report->id,
+                'user_id' => $report->user_id,
+                'latitude' => $report->latitude,
+                'longitude' => $report->longitude,
+                'address' => $report->address,
+                'description' => $report->description,
+                'photo_url' => $report->photo_url,
+                'severity' => $report->severity,
+                'status' => $report->status,
+                'category' => $report->category ?? 'Bencana',
+                'reported_at' => $report->reported_at->toIso8601String(),
+                'time_ago' => $report->reported_at->diffForHumans(),
+                'likes_count' => $report->likes_count ?? 0,
+                'comments_count' => $report->active_comments_count ?? 0,
+                'is_liked' => (bool) ($report->is_liked ?? false),
+                'user' => $report->user,
+            ],
+        ]);
+    }
+
+    /**
      * Update an existing report (only owner and only if still pending).
      */
     public function update(Request $request, $id)
