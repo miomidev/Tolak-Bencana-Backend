@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -253,5 +255,96 @@ class AuthController extends Controller
             'message' => 'Foto profil berhasil dihapus',
             'user' => $user,
         ]);
+    }
+
+    /**
+     * Login with Google using ID Token from Flutter app.
+     * Flutter sends the Google ID Token, backend verifies it via Socialite.
+     */
+    public function googleLogin(Request $request)
+    {
+        $request->validate([
+            'id_token' => 'required|string',
+        ]);
+
+        try {
+            // Verify the Google ID token using Socialite
+            $googleUser = Socialite::driver('google')
+                ->stateless()
+                ->userFromToken($request->id_token);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Token Google tidak valid atau sudah kedaluwarsa.',
+                'error' => $e->getMessage(),
+            ], 401);
+        }
+
+        // Find existing user by google_id or email
+        $user = User::where('google_id', $googleUser->getId())->first();
+
+        if (! $user) {
+            // Try to find by email (user might have registered manually before)
+            $user = User::where('email', $googleUser->getEmail())->first();
+
+            if ($user) {
+                // Link existing account with Google
+                $user->google_id = $googleUser->getId();
+                if (! $user->avatar_url && $googleUser->getAvatar()) {
+                    $user->avatar_url = $googleUser->getAvatar();
+                }
+                $user->save();
+            } else {
+                // Create new user from Google account
+                $username = $this->generateUniqueUsername($googleUser->getName(), $googleUser->getEmail());
+
+                $user = User::create([
+                    'name' => $googleUser->getName(),
+                    'email' => $googleUser->getEmail(),
+                    'google_id' => $googleUser->getId(),
+                    'username' => $username,
+                    'avatar_url' => $googleUser->getAvatar(),
+                    'email_verified_at' => now(),
+                    'role' => 'user',
+                    'is_active' => true,
+                ]);
+            }
+        }
+
+        // Check if user is active
+        if (isset($user->is_active) && ! $user->is_active) {
+            return response()->json([
+                'message' => 'Akun Anda telah dinonaktifkan. Hubungi administrator.',
+            ], 403);
+        }
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Login dengan Google berhasil',
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * Generate a unique username from name or email.
+     */
+    private function generateUniqueUsername(string $name, string $email): string
+    {
+        // Try name-based username first
+        $base = Str::slug(Str::lower($name), '.');
+        $base = preg_replace('/[^a-z0-9._]/', '', $base);
+        $base = $base ?: Str::before($email, '@');
+
+        $username = $base;
+        $counter = 1;
+
+        while (User::where('username', $username)->exists()) {
+            $username = $base . $counter;
+            $counter++;
+        }
+
+        return $username;
     }
 }
