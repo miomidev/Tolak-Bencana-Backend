@@ -11,7 +11,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <!-- Edit form -->
     <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8">
-        <h3 class="text-lg font-extrabold text-[#1F2937] mb-6"><i class="fa-solid fa-pen text-[#0F767E] mr-2"></i> Edit Pengguna</h3>
+        <h3 class="text-lg font-extrabold text-[#1F2937] mb-6"><i class="fa-solid fa-pen text-[#15803D] mr-2"></i> Edit Pengguna</h3>
 
         @if ($errors->has('toggle'))
             <div class="mb-5 p-4 bg-rose-50 border-l-4 border-rose-500 rounded-r-lg text-rose-800 text-sm">
@@ -26,26 +26,26 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-1.5">Nama Lengkap</label>
-                    <input type="text" name="name" value="{{ old('name', $user->name) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                    <input type="text" name="name" value="{{ old('name', $user->name) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
                     @error('name') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                 </div>
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-1.5">Email</label>
-                    <input type="email" name="email" value="{{ old('email', $user->email) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                    <input type="email" name="email" value="{{ old('email', $user->email) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
                     @error('email') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                 </div>
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-1.5">Username</label>
-                    <input type="text" name="username" value="{{ old('username', $user->username) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                    <input type="text" name="username" value="{{ old('username', $user->username) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
                     @error('username') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                 </div>
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-1.5">Nomor Telepon</label>
-                    <input type="text" name="phone" value="{{ old('phone', $user->phone) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                    <input type="text" name="phone" value="{{ old('phone', $user->phone) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
                 </div>
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-1.5">Role</label>
-                    <select name="role" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40" {{ $user->id === auth()->id() ? 'disabled' : '' }}>
+                    <select name="role" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40" {{ $user->id === auth()->id() ? 'disabled' : '' }}>
                         <option value="superadmin" @selected(old('role', $user->role) === 'superadmin')>Super Admin</option>
                         <option value="admin" @selected(old('role', $user->role) === 'admin')>Admin</option>
                         <option value="user" @selected(old('role', $user->role) === 'user')>Warga</option>
@@ -57,7 +57,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-1.5">Status Akun</label>
-                    <select name="is_active" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40" {{ $user->id === auth()->id() ? 'disabled' : '' }}>
+                    <select name="is_active" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40" {{ $user->id === auth()->id() ? 'disabled' : '' }}>
                         <option value="1" @selected((bool) old('is_active', $user->is_active))>Aktif</option>
                         <option value="0" @selected(!(bool) old('is_active', $user->is_active))>Nonaktif</option>
                     </select>
@@ -68,7 +68,7 @@
             </div>
 
             <div class="flex gap-3 pt-6">
-                <button type="submit" class="bg-[#0F767E] hover:bg-[#0a5258] text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-sm transition-colors">
+                <button type="submit" class="bg-[#15803D] hover:bg-[#0a5258] text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-sm transition-colors">
                     <i class="fa-solid fa-floppy-disk mr-1.5"></i> Simpan Perubahan
                 </button>
                 <a href="{{ route('admin.users.index') }}" class="bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm font-bold px-6 py-2.5 rounded-xl transition-colors">Batal</a>
@@ -83,17 +83,17 @@
             @if($user->avatar_url)
                 <img src="{{ \Illuminate\Support\Str::startsWith($user->avatar_url, 'http') ? $user->avatar_url : asset('storage/' . str_replace('storage/', '', $user->avatar_url)) }}" class="w-20 h-20 rounded-full object-cover border border-gray-200 mx-auto mb-3" alt="">
             @else
-                <div class="w-20 h-20 rounded-full bg-[#0F767E] flex items-center justify-center text-white text-2xl font-bold mx-auto mb-3">{{ strtoupper(substr($user->name, 0, 2)) }}</div>
+                <div class="w-20 h-20 rounded-full bg-[#15803D] flex items-center justify-center text-white text-2xl font-bold mx-auto mb-3">{{ strtoupper(substr($user->name, 0, 2)) }}</div>
             @endif
             <h4 class="font-extrabold text-[#1F2937]">{{ $user->name }}</h4>
             <p class="text-xs text-gray-400">{{ $user->email }}</p>
             <div class="grid grid-cols-2 gap-3 mt-5 pt-5 border-t border-gray-100">
                 <div>
-                    <p class="text-2xl font-black text-[#0F767E]">{{ $user->reports_count }}</p>
+                    <p class="text-2xl font-black text-[#15803D]">{{ $user->reports_count }}</p>
                     <p class="text-[10px] text-gray-400 uppercase font-bold">Laporan</p>
                 </div>
                 <div>
-                    <p class="text-2xl font-black text-[#0F767E]">{{ $user->created_at?->format('d/m/Y') }}</p>
+                    <p class="text-2xl font-black text-[#15803D]">{{ $user->created_at?->format('d/m/Y') }}</p>
                     <p class="text-[10px] text-gray-400 uppercase font-bold">Terdaftar</p>
                 </div>
             </div>
@@ -114,22 +114,22 @@
         <!-- Notification settings -->
         @php $ns = $user->notificationSetting ?? null; @endphp
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <h4 class="text-sm font-extrabold text-[#1F2937] mb-1"><i class="fa-solid fa-bell text-[#0F767E] mr-2"></i> Preferensi Notifikasi</h4>
+            <h4 class="text-sm font-extrabold text-[#1F2937] mb-1"><i class="fa-solid fa-bell text-[#15803D] mr-2"></i> Preferensi Notifikasi</h4>
             <p class="text-xs text-gray-400 mb-4">Jenis notifikasi yang diterima pengguna di aplikasi.</p>
             <form action="{{ route('admin.users.notifications', $user) }}" method="POST" class="space-y-3">
                 @csrf
                 @foreach ([
-                    'flood_alert' => 'Siaga Banjir',
+                    'flood_alert' => 'siaga bencana',
                     'report_update' => 'Pembaruan Laporan',
                     'emergency_alert' => 'Peringatan Darurat',
                     'location_alert' => 'Siaga Lokasi Sekitar',
                 ] as $key => $label)
                     <label class="flex items-center justify-between cursor-pointer">
                         <span class="text-sm text-gray-600">{{ $label }}</span>
-                        <input type="checkbox" name="{{ $key }}" value="1" {{ ($ns && $ns->{$key}) ? 'checked' : '' }} class="accent-[#0F767E] w-5 h-5">
+                        <input type="checkbox" name="{{ $key }}" value="1" {{ ($ns && $ns->{$key}) ? 'checked' : '' }} class="accent-[#15803D] w-5 h-5">
                     </label>
                 @endforeach
-                <button type="submit" class="w-full mt-2 bg-[#0F767E]/10 hover:bg-[#0F767E]/20 text-[#0F767E] text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
+                <button type="submit" class="w-full mt-2 bg-[#15803D]/10 hover:bg-[#15803D]/20 text-[#15803D] text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
                     <i class="fa-solid fa-floppy-disk mr-1.5"></i> Simpan Preferensi
                 </button>
             </form>

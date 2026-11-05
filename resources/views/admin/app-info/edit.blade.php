@@ -7,7 +7,7 @@
 <div class="mb-6">
     <div>
         <h3 class="text-lg font-extrabold text-[#1F2937]">Pengaturan Informasi Aplikasi</h3>
-        <p class="text-sm text-gray-400">Data ini tampil di halaman Tentang / Profil aplikasi KALIWEDI</p>
+        <p class="text-sm text-gray-400">Data ini tampil di halaman Tentang / Profil aplikasi Tolak Bencana</p>
     </div>
 </div>
 
@@ -19,44 +19,44 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
                 <label class="block text-sm font-bold text-gray-600 mb-1.5">Nama Aplikasi</label>
-                <input type="text" name="app_name" value="{{ old('app_name', $appInfo->app_name) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                <input type="text" name="app_name" value="{{ old('app_name', $appInfo->app_name) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
                 @error('app_name') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
             <div>
                 <label class="block text-sm font-bold text-gray-600 mb-1.5">Developer</label>
-                <input type="text" name="developer" value="{{ old('developer', $appInfo->developer) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                <input type="text" name="developer" value="{{ old('developer', $appInfo->developer) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
                 @error('developer') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
             <div>
                 <label class="block text-sm font-bold text-gray-600 mb-1.5">Website</label>
-                <input type="url" name="website" value="{{ old('website', $appInfo->website) }}" placeholder="https://..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                <input type="url" name="website" value="{{ old('website', $appInfo->website) }}" placeholder="https://..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
                 @error('website') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
             <div>
                 <label class="block text-sm font-bold text-gray-600 mb-1.5">Email Dukungan</label>
-                <input type="email" name="support_email" value="{{ old('support_email', $appInfo->support_email) }}" placeholder="email@domain.com" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                <input type="email" name="support_email" value="{{ old('support_email', $appInfo->support_email) }}" placeholder="email@domain.com" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
                 @error('support_email') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
             <div>
                 <label class="block text-sm font-bold text-gray-600 mb-1.5">URL Kebijakan Privasi</label>
-                <input type="url" name="privacy_policy_url" value="{{ old('privacy_policy_url', $appInfo->privacy_policy_url) }}" placeholder="https://..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                <input type="url" name="privacy_policy_url" value="{{ old('privacy_policy_url', $appInfo->privacy_policy_url) }}" placeholder="https://..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
                 @error('privacy_policy_url') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
             <div>
                 <label class="block text-sm font-bold text-gray-600 mb-1.5">URL Syarat & Ketentuan</label>
-                <input type="url" name="terms_url" value="{{ old('terms_url', $appInfo->terms_url) }}" placeholder="https://..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                <input type="url" name="terms_url" value="{{ old('terms_url', $appInfo->terms_url) }}" placeholder="https://..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
                 @error('terms_url') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
         </div>
 
         <div class="mt-5">
             <label class="block text-sm font-bold text-gray-600 mb-1.5">Deskripsi Aplikasi</label>
-            <textarea name="description" rows="4" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40" placeholder="Deskripsi singkat aplikasi">{{ old('description', $appInfo->description) }}</textarea>
+            <textarea name="description" rows="4" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40" placeholder="Deskripsi singkat aplikasi">{{ old('description', $appInfo->description) }}</textarea>
             @error('description') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
         </div>
 
         <div class="flex gap-3 pt-6">
-            <button type="submit" class="bg-[#0F767E] hover:bg-[#0a5258] text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-sm transition-colors">
+            <button type="submit" class="bg-[#15803D] hover:bg-[#0a5258] text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-sm transition-colors">
                 <i class="fa-solid fa-floppy-disk mr-1.5"></i> Simpan Konfigurasi
             </button>
             <button type="reset" class="bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm font-bold px-6 py-2.5 rounded-xl transition-colors">Reset Form</button>
@@ -66,7 +66,7 @@
 
 <!-- APK Upload -->
 <div class="mt-6 bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8 max-w-4xl">
-    <h3 class="text-lg font-extrabold text-[#1F2937] mb-1"><i class="fa-solid fa-file-arrow-up text-[#0F767E] mr-2"></i> File Aplikasi (APK)</h3>
+    <h3 class="text-lg font-extrabold text-[#1F2937] mb-1"><i class="fa-solid fa-file-arrow-up text-[#15803D] mr-2"></i> File Aplikasi (APK)</h3>
     <p class="text-sm text-gray-400 mb-5">Unggah file APK agar tombol "Download APK" di landing page aktif dan terunduh dari sistem.</p>
 
     @if($appInfo->apk_path)
@@ -80,7 +80,7 @@
                     @if($appInfo->apk_version)Versi {{ $appInfo->apk_version }} · @endif
                     Diunggah {{ $appInfo->apk_uploaded_at?->format('d M Y H:i') }}
                 </p>
-                <a href="{{ route('download.apk') }}" target="_blank" class="text-xs font-bold text-[#0F767E] hover:underline inline-flex items-center gap-1 mt-1">
+                <a href="{{ route('download.apk') }}" target="_blank" class="text-xs font-bold text-[#15803D] hover:underline inline-flex items-center gap-1 mt-1">
                     <i class="fa-solid fa-down-left-and-up-right-to-center"></i> Pratinjau unduhan
                 </a>
             </div>
@@ -103,17 +103,17 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
                 <label class="block text-sm font-bold text-gray-600 mb-1.5">Link APK (Google Drive/Lainnya)</label>
-                <input type="url" name="apk_link" placeholder="https://..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40 bg-white">
+                <input type="url" name="apk_link" placeholder="https://..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40 bg-white">
                 @error('apk_link') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
             <div>
                 <label class="block text-sm font-bold text-gray-600 mb-1.5">Versi (opsional)</label>
-                <input type="text" name="apk_version" value="{{ old('apk_version', $appInfo->apk_version) }}" placeholder="Contoh: 1.2.0" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                <input type="text" name="apk_version" value="{{ old('apk_version', $appInfo->apk_version) }}" placeholder="Contoh: 1.2.0" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
                 @error('apk_version') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
         </div>
         <div class="flex gap-3 pt-6">
-            <button type="submit" class="bg-[#0F767E] hover:bg-[#0a5258] text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-sm transition-colors">
+            <button type="submit" class="bg-[#15803D] hover:bg-[#0a5258] text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-sm transition-colors">
                 <i class="fa-solid fa-cloud-arrow-up mr-1.5"></i> Unggah APK
             </button>
         </div>

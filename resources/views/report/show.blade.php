@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Detail laporan banjir KALIWEDI">
-    <title>Laporan Banjir | KALIWEDI</title>
+    <meta name="description" content="Detail laporan bencana TOLAK BENCANA">
+    <title>Laporan Bencana | TOLAK BENCANA</title>
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,10 +42,10 @@
     <!-- Header -->
     <header class="bg-teal-700 text-white">
         <div class="max-w-3xl mx-auto px-4 py-4 flex items-center gap-3">
-            <img src="{{ asset('images/logo.png') }}" alt="KALIWEDI" class="h-10 w-10 rounded-full bg-white p-0.5 object-contain">
+            <img src="{{ asset('images/logo.png') }}" alt="TOLAK BENCANA" class="h-10 w-10 rounded-full bg-white p-0.5 object-contain">
             <div>
                 <p class="text-[10px] font-bold uppercase tracking-wider text-teal-100">Pelaporan Banjir</p>
-                <h1 class="text-lg font-display font-bold leading-tight">KALIWEDI</h1>
+                <h1 class="text-lg font-display font-bold leading-tight">TOLAK BENCANA</h1>
             </div>
             <div class="ml-auto text-right">
                 <span class="text-[10px] uppercase tracking-wide text-teal-100">Kode Laporan</span>
@@ -110,7 +110,7 @@
 
         <!-- Open in app CTA -->
         <div class="bg-white rounded-2xl p-5 shadow-sm mb-4 text-center">
-            <p class="text-sm text-slate-600 mb-3">Lihat laporan ini langsung di aplikasi KALIWEDI</p>
+            <p class="text-sm text-slate-600 mb-3">Lihat laporan ini langsung di aplikasi Tolak Bencana</p>
             <a href="kaliwedi://report/{{ $report->id }}"
                class="inline-flex w-full items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-bold text-sm px-5 py-3 rounded-xl transition">
                 <i class="fas fa-mobile-screen-button"></i> Buka di Aplikasi
@@ -121,8 +121,8 @@
 
     <footer class="bg-slate-800 text-slate-300">
         <div class="max-w-3xl mx-auto px-4 py-5 text-center text-xs">
-            <p class="font-bold text-white">KALIWEDI</p>
-            <p class="mt-1">Kanal Laporan Informasi Warga dan Evakuasi Dinamis Indramayu &mdash; PKM-KC 2026</p>
+            <p class="font-bold text-white">TOLAK BENCANA</p>
+            <p class="mt-1">Platform Tanggap Bencana dan Informasi Evakuasi Terpadu &mdash; PKM-KC 2026</p>
         </div>
     </footer>
 

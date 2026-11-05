@@ -7,9 +7,9 @@
 <div class="mb-6 flex items-end justify-between gap-4">
     <div>
         <h3 class="text-lg font-extrabold text-[#1F2937]">Daftar Pengguna</h3>
-        <p class="text-sm text-gray-400">Kelola akun pengguna aplikasi KALIWEDI</p>
+        <p class="text-sm text-gray-400">Kelola akun pengguna aplikasi Tolak Bencana</p>
     </div>
-    <a href="{{ route('admin.users.create') }}" class="shrink-0 bg-[#0F767E] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors">
+    <a href="{{ route('admin.users.create') }}" class="shrink-0 bg-[#15803D] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors">
         <i class="fa-solid fa-user-plus mr-1.5"></i> Tambah Pengguna
     </a>
 </div>
@@ -18,9 +18,9 @@
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 mb-6">
     <form method="GET" action="{{ route('admin.users.index') }}" class="flex flex-wrap items-center gap-3">
         <div class="flex-1 min-w-[220px]">
-            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari nama / email / username..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari nama / email / username..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
         </div>
-        <select name="role" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+        <select name="role" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
             <option value="">Semua Role</option>
             <option value="superadmin" @selected(request('role') === 'superadmin')>Super Admin</option>
             <option value="admin" @selected(request('role') === 'admin')>Admin</option>
@@ -59,7 +59,7 @@
                                 @if($user->avatar_url)
                                     <img src="{{ \Illuminate\Support\Str::startsWith($user->avatar_url, 'http') ? $user->avatar_url : asset('storage/' . str_replace('storage/', '', $user->avatar_url)) }}" class="w-9 h-9 rounded-full object-cover border border-gray-200" alt="">
                                 @else
-                                    <div class="w-9 h-9 rounded-full bg-[#0F767E] flex items-center justify-center text-white text-xs font-bold shrink-0">{{ strtoupper(substr($user->name, 0, 2)) }}</div>
+                                    <div class="w-9 h-9 rounded-full bg-[#15803D] flex items-center justify-center text-white text-xs font-bold shrink-0">{{ strtoupper(substr($user->name, 0, 2)) }}</div>
                                 @endif
                                 <div class="min-w-0">
                                     <p class="font-bold text-[#1F2937] truncate">{{ $user->name }}</p>
@@ -87,7 +87,7 @@
                         </td>
                         <td class="px-5 py-4">
                             <div class="flex items-center justify-end gap-2">
-                                <a href="{{ route('admin.users.edit', $user) }}" class="text-[#0F767E] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Edit">
+                                <a href="{{ route('admin.users.edit', $user) }}" class="text-[#15803D] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Edit">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                             </div>

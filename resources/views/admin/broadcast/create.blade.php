@@ -7,8 +7,8 @@
 <div class="max-w-3xl">
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
         <div class="p-5 border-b border-gray-150 bg-gray-50">
-            <h4 class="font-extrabold text-base text-[#0F767E]"><i class="fa-solid fa-bullhorn mr-2 text-[#F97316]"></i> Kirim Siaran Peringatan</h4>
-            <p class="text-[11px] text-gray-400 font-normal mt-0.5">Pesan akan dikirim sebagai notifikasi ke semua pengguna aktif aplikasi KALIWEDI.</p>
+            <h4 class="font-extrabold text-base text-[#15803D]"><i class="fa-solid fa-bullhorn mr-2 text-[#F97316]"></i> Kirim Siaran Peringatan</h4>
+            <p class="text-[11px] text-gray-400 font-normal mt-0.5">Pesan akan dikirim sebagai notifikasi ke semua pengguna aktif aplikasi Tolak Bencana.</p>
         </div>
 
         <form action="{{ route('admin.broadcast.send') }}" method="POST" class="p-6 space-y-5">
@@ -16,13 +16,13 @@
 
             <div>
                 <label class="block text-xs font-bold text-gray-600 mb-1.5">Judul Siaran</label>
-                <input type="text" name="title" value="{{ old('title') }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40" placeholder="contoh: Siaga Tingkat 3 Banjir Rob">
+                <input type="text" name="title" value="{{ old('title') }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40" placeholder="contoh: Siaga Tingkat 3 Banjir Rob">
                 @error('title') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div>
                 <label class="block text-xs font-bold text-gray-600 mb-1.5">Isi Pesan</label>
-                <textarea name="body" rows="5" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40" placeholder="Deskripsi kondisi, lokasi terdampak, dan arahan evakuasi...">{{ old('body') }}</textarea>
+                <textarea name="body" rows="5" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40" placeholder="Deskripsi kondisi, lokasi terdampak, dan arahan evakuasi...">{{ old('body') }}</textarea>
                 @error('body') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
 
@@ -40,13 +40,13 @@
                         <input type="radio" name="type" value="flood_alert" class="mt-0.5 accent-[#F97316]" {{ old('type') === 'flood_alert' ? 'checked' : '' }}>
                         <span>
                             <span class="block text-sm font-extrabold text-orange-600"><i class="fa-solid fa-droplet mr-1"></i> Banjir</span>
-                            <span class="block text-[10px] text-gray-500 mt-0.5">Siaga banjir / rob</span>
+                            <span class="block text-[10px] text-gray-500 mt-0.5">siaga bencana / rob</span>
                         </span>
                     </label>
-                    <label class="cursor-pointer border rounded-xl p-4 flex items-start gap-3 transition-colors has-[:checked]:border-[#0F767E] has-[:checked]:bg-[#E0F2F1]">
-                        <input type="radio" name="type" value="info" class="mt-0.5 accent-[#0F767E]" {{ old('type') === 'info' ? 'checked' : '' }}>
+                    <label class="cursor-pointer border rounded-xl p-4 flex items-start gap-3 transition-colors has-[:checked]:border-[#15803D] has-[:checked]:bg-[#DCFCE7]">
+                        <input type="radio" name="type" value="info" class="mt-0.5 accent-[#15803D]" {{ old('type') === 'info' ? 'checked' : '' }}>
                         <span>
-                            <span class="block text-sm font-extrabold text-[#0F767E]"><i class="fa-solid fa-circle-info mr-1"></i> Informasi</span>
+                            <span class="block text-sm font-extrabold text-[#15803D]"><i class="fa-solid fa-circle-info mr-1"></i> Informasi</span>
                             <span class="block text-[10px] text-gray-500 mt-0.5">Pemberitahuan umum</span>
                         </span>
                     </label>

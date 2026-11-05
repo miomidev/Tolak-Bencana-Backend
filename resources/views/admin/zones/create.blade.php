@@ -9,7 +9,7 @@
 </div>
 
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8">
-    <h3 class="text-lg font-extrabold text-[#1F2937] mb-6"><i class="fa-solid fa-circle-exclamation text-[#0F767E] mr-2"></i> Tambah Zona Rawan Banjir</h3>
+    <h3 class="text-lg font-extrabold text-[#1F2937] mb-6"><i class="fa-solid fa-circle-exclamation text-[#15803D] mr-2"></i> Tambah Zona Rawan Banjir</h3>
     <form action="{{ route('admin.zones.store') }}" method="POST">
         @csrf
         @include('admin.zones._form')

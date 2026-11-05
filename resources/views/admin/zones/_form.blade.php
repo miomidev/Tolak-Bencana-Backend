@@ -9,13 +9,13 @@
     <div class="space-y-5">
         <div>
             <label class="block text-sm font-bold text-gray-600 mb-1.5">Nama Zona</label>
-            <input type="text" name="name" value="{{ old('name', $zone?->name) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40" placeholder="contoh: Zona Rawan Sukra Wetan">
+            <input type="text" name="name" value="{{ old('name', $zone?->name) }}" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40" placeholder="contoh: Zona Rawan Sukra Wetan">
             @error('name') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
         </div>
 
         <div>
             <label class="block text-sm font-bold text-gray-600 mb-1.5">Tingkat Risiko</label>
-            <select name="risk_level" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+            <select name="risk_level" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
                 <option value="low" @selected($riskLevel === 'low')>Rendah</option>
                 <option value="medium" @selected($riskLevel === 'medium')>Sedang</option>
                 <option value="high" @selected($riskLevel === 'high')>Tinggi</option>
@@ -26,7 +26,7 @@
 
         <div>
             <label class="block text-sm font-bold text-gray-600 mb-1.5">Deskripsi</label>
-            <textarea name="description" rows="5" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40" placeholder="Informasi tambahan zona ini">{{ old('description', $zone?->description) }}</textarea>
+            <textarea name="description" rows="5" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40" placeholder="Informasi tambahan zona ini">{{ old('description', $zone?->description) }}</textarea>
             @error('description') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
         </div>
 
@@ -34,7 +34,7 @@
         @error('polygon') <p class="text-xs text-red-500">{{ $message }}</p> @enderror
 
         <div class="flex gap-3 pt-2">
-            <button type="submit" class="bg-[#0F767E] hover:bg-[#0a5258] text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-sm transition-colors">
+            <button type="submit" class="bg-[#15803D] hover:bg-[#0a5258] text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-sm transition-colors">
                 <i class="fa-solid fa-floppy-disk mr-1.5"></i> {{ isset($zone) ? 'Simpan Perubahan' : 'Simpan Zona' }}
             </button>
             <a href="{{ route('admin.zones.index') }}" class="bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm font-bold px-6 py-2.5 rounded-xl transition-colors">Batal</a>

@@ -13,9 +13,9 @@
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 mb-6">
     <form method="GET" action="{{ route('admin.comments.index') }}" class="flex flex-wrap items-center gap-3">
         <div class="flex-1 min-w-[220px]">
-            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari isi komentar..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari isi komentar..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
         </div>
-        <select name="status" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+        <select name="status" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
             <option value="">Semua Status</option>
             <option value="active" @selected(request('status') === 'active')>Tampil</option>
             <option value="hidden" @selected(request('status') === 'hidden')>Tersembunyi</option>
@@ -54,7 +54,7 @@
                             <p class="text-[11px] text-gray-400">{{ $comment->user?->email }}</p>
                         </td>
                         <td class="px-5 py-4">
-                            <a href="{{ route('admin.reports.show', $comment->report_id) }}" class="text-[#0F767E] hover:underline line-clamp-1 max-w-[220px] block" title="Lihat laporan">
+                            <a href="{{ route('admin.reports.show', $comment->report_id) }}" class="text-[#15803D] hover:underline line-clamp-1 max-w-[220px] block" title="Lihat laporan">
                                 <i class="fa-solid fa-file-lines mr-1 text-gray-300"></i>{{ $comment->report?->address ?? 'Laporan dihapus' }}
                             </a>
                         </td>
@@ -68,7 +68,7 @@
                         <td class="px-5 py-4 text-gray-400 text-xs">{{ $comment->created_at?->format('d M Y H:i') }}</td>
                         <td class="px-5 py-4">
                             <div class="flex items-center justify-end gap-2">
-                                <a href="{{ route('admin.comments.show', $comment) }}" class="text-[#0F767E] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Lihat detail">
+                                <a href="{{ route('admin.comments.show', $comment) }}" class="text-[#15803D] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Lihat detail">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
                                 <form action="{{ route('admin.comments.destroy', $comment) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus komentar ini?')">

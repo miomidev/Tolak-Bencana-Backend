@@ -22,7 +22,7 @@
         <form method="GET" action="{{ route('admin.broadcast.history') }}" class="flex flex-wrap gap-3 items-end">
             <div>
                 <label class="block text-xs font-bold text-gray-500 mb-1">Tipe Siaran</label>
-                <select name="type" class="text-sm border border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40 bg-white">
+                <select name="type" class="text-sm border border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40 bg-white">
                     <option value="">Semua Tipe</option>
                     <option value="emergency_alert" {{ request('type') === 'emergency_alert' ? 'selected' : '' }}>Darurat</option>
                     <option value="flood_alert" {{ request('type') === 'flood_alert' ? 'selected' : '' }}>Banjir</option>
@@ -32,12 +32,12 @@
             <div>
                 <label class="block text-xs font-bold text-gray-500 mb-1">Dari Tanggal</label>
                 <input type="date" name="date_from" value="{{ request('date_from') }}"
-                       class="text-sm border border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                       class="text-sm border border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
             </div>
             <div>
                 <label class="block text-xs font-bold text-gray-500 mb-1">Sampai Tanggal</label>
                 <input type="date" name="date_to" value="{{ request('date_to') }}"
-                       class="text-sm border border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+                       class="text-sm border border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
             </div>
             <div class="flex gap-2">
                 <button type="submit"
@@ -58,7 +58,7 @@
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
         <div class="p-5 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
             <h4 class="font-extrabold text-base text-[#1E3A8A]">
-                <i class="fa-solid fa-clock-rotate-left mr-2 text-[#0F767E]"></i> Riwayat Siaran
+                <i class="fa-solid fa-clock-rotate-left mr-2 text-[#15803D]"></i> Riwayat Siaran
             </h4>
             <span class="text-xs text-gray-400 font-medium">{{ $broadcasts->total() }} siaran ditemukan</span>
         </div>
@@ -68,7 +68,7 @@
                 <i class="fa-solid fa-bullhorn text-4xl text-gray-300"></i>
                 <p class="text-sm font-medium">Belum ada siaran yang dikirim.</p>
                 <a href="{{ route('admin.broadcast.create') }}"
-                   class="text-[#0F767E] text-xs font-bold hover:underline">Kirim siaran pertama →</a>
+                   class="text-[#15803D] text-xs font-bold hover:underline">Kirim siaran pertama →</a>
             </div>
         @else
             <div class="overflow-x-auto">

@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Tanya Jawab (FAQ) Aplikasi KALIWEDI - Kanal Laporan Informasi Warga dan Evakuasi Dinamis Indramayu.">
+    <meta name="description" content="Tanya Jawab (FAQ) Aplikasi Tolak Bencana - Platform Tanggap Bencana dan Informasi Evakuasi Terpadu.">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
 
-    <title>Tanya Jawab (FAQ) - KALIWEDI</title>
+    <title>Tanya Jawab (FAQ) - TOLAK BENCANA</title>
 
     <!-- Google Fonts: Poppins & Fredoka -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,7 @@
             width: 350px;
             height: 350px;
             border-radius: 50%;
-            background-color: #0f767e;
+            background-color: #15803D;
             opacity: 0.05;
             filter: blur(50px);
             z-index: 0;
@@ -133,9 +133,9 @@
     <header class="sticky top-0 z-40 nav-backdrop">
         <nav role="navigation" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="{{ route('home') }}" class="flex items-center gap-3">
-                <img src="{{ asset('images/logo.png') }}" alt="KALIWEDI Logo" class="h-10 w-auto rounded-xl bg-white p-0.5 shadow-sm object-contain" loading="lazy">
+                <img src="{{ asset('images/logo.png') }}" alt="TOLAK BENCANA Logo" class="h-10 w-auto rounded-xl bg-white p-0.5 shadow-sm object-contain" loading="lazy">
                 <div>
-                    <span class="font-extrabold text-xl tracking-wider text-[#0F767E] block">KALIWEDI</span>
+                    <span class="font-extrabold text-xl tracking-wider text-[#15803D] block">TOLAK BENCANA</span>
                     <span class="text-[9px] text-[#1E3A8A] uppercase tracking-widest font-extrabold block -mt-1">PKM-KC Mitigasi Banjir</span>
                 </div>
             </a>
@@ -143,25 +143,25 @@
             <div class="hidden md:flex items-center gap-6">
                 <ul class="flex items-center gap-6">
                     <li>
-                        <a href="{{ route('home') }}" class="font-semibold text-sm text-slate-500 hover:text-[#0F767E] transition-colors pb-1">Home</a>
+                        <a href="{{ route('home') }}" class="font-semibold text-sm text-slate-500 hover:text-[#15803D] transition-colors pb-1">Home</a>
                     </li>
                     <li>
-                        <a href="/#fitur" class="font-semibold text-sm text-slate-500 hover:text-[#0F767E] transition-colors pb-1">Fitur Utama</a>
+                        <a href="/#fitur" class="font-semibold text-sm text-slate-500 hover:text-[#15803D] transition-colors pb-1">Fitur Utama</a>
                     </li>
                     <li>
-                        <a href="/#peta" class="font-semibold text-sm text-slate-500 hover:text-[#0F767E] transition-colors pb-1">Peta Sebaran</a>
+                        <a href="/#peta" class="font-semibold text-sm text-slate-500 hover:text-[#15803D] transition-colors pb-1">Peta Sebaran</a>
                     </li>
                     <li>
-                        <a href="{{ route('about') }}" class="font-semibold text-sm text-slate-500 hover:text-[#0F767E] transition-colors pb-1">Tentang Aplikasi</a>
+                        <a href="{{ route('about') }}" class="font-semibold text-sm text-slate-500 hover:text-[#15803D] transition-colors pb-1">Tentang Aplikasi</a>
                     </li>
                     <li>
-                        <a href="{{ route('faq') }}" class="font-semibold text-sm text-[#0F767E] transition-colors pb-1 border-b-2 border-[#0F767E]">Tanya Jawab (FAQ)</a>
+                        <a href="{{ route('faq') }}" class="font-semibold text-sm text-[#15803D] transition-colors pb-1 border-b-2 border-[#15803D]">Tanya Jawab (FAQ)</a>
                     </li>
                 </ul>
             </div>
 
             <!-- Mobile Menu Toggle -->
-            <button type="button" id="mobile-menu-toggle" aria-label="Buka menu" aria-expanded="false" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl text-[#0F767E] hover:bg-slate-100 transition-colors focus:outline-none">
+            <button type="button" id="mobile-menu-toggle" aria-label="Buka menu" aria-expanded="false" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl text-[#15803D] hover:bg-slate-100 transition-colors focus:outline-none">
                 <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
             </button>
         </nav>
@@ -171,11 +171,11 @@
             <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
             <div class="relative bg-white/95 backdrop-blur-sm shadow-2xl border-b border-slate-100">
                 <nav class="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex flex-col gap-1">
-                    <a href="{{ route('home') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Home</a>
-                    <a href="/#fitur" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Fitur Utama</a>
-                    <a href="/#peta" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Peta Sebaran</a>
-                    <a href="{{ route('about') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Tentang Aplikasi</a>
-                    <a href="{{ route('faq') }}" class="mobile-nav-link font-semibold text-sm text-[#0F767E] px-4 py-3 rounded-xl transition-colors">Tanya Jawab (FAQ)</a>
+                    <a href="{{ route('home') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#15803D] px-4 py-3 rounded-xl transition-colors">Home</a>
+                    <a href="/#fitur" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#15803D] px-4 py-3 rounded-xl transition-colors">Fitur Utama</a>
+                    <a href="/#peta" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#15803D] px-4 py-3 rounded-xl transition-colors">Peta Sebaran</a>
+                    <a href="{{ route('about') }}" class="mobile-nav-link font-semibold text-sm text-slate-500 hover:text-[#15803D] px-4 py-3 rounded-xl transition-colors">Tentang Aplikasi</a>
+                    <a href="{{ route('faq') }}" class="mobile-nav-link font-semibold text-sm text-[#15803D] px-4 py-3 rounded-xl transition-colors">Tanya Jawab (FAQ)</a>
                 </nav>
             </div>
         </div>
@@ -186,14 +186,14 @@
         
         <!-- Header -->
         <div class="text-center flex flex-col items-center gap-3 mb-16">
-            <div class="w-12 h-12 rounded-2xl bg-[#E0F2F1] text-[#0F767E] flex items-center justify-center text-xl shadow-sm font-bold">
+            <div class="w-12 h-12 rounded-2xl bg-[#DCFCE7] text-[#15803D] flex items-center justify-center text-xl shadow-sm font-bold">
                 <i class="fa-solid fa-comments"></i>
             </div>
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-[#0F767E] mt-2">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-[#15803D] mt-2">
                 Tanya Jawab (FAQ)
             </h1>
             <p class="text-slate-550 max-w-md mx-auto text-sm leading-relaxed">
-                Temukan jawaban cepat atas pertanyaan umum seputar cara kerja, laporan, dan validitas sistem siaga banjir KALIWEDI.
+                Temukan jawaban cepat atas pertanyaan umum seputar cara kerja, laporan, dan validitas sistem siaga dan tanggap bencana TOLAK BENCANA.
             </p>
         </div>
 
@@ -203,7 +203,7 @@
                 <div class="faq-item rounded-2xl p-5 cursor-pointer hover:border-gray-300" onclick="toggleFaq(this)">
                     <div class="flex items-center justify-between gap-4 select-none">
                         <span class="font-bold text-sm text-slate-800">{{ $faq->question }}</span>
-                        <div class="w-7 h-7 rounded-full bg-slate-50 border border-gray-200 flex items-center justify-center text-[#0F767E] shrink-0 transition-transform duration-300 faq-icon">
+                        <div class="w-7 h-7 rounded-full bg-slate-50 border border-gray-200 flex items-center justify-center text-[#15803D] shrink-0 transition-transform duration-300 faq-icon">
                             <i class="fa-solid fa-chevron-down text-[10px]"></i>
                         </div>
                     </div>
@@ -228,13 +228,13 @@
             <!-- Left Info -->
             <div class="md:col-span-5 flex flex-col gap-4">
                 <div class="flex items-center gap-3">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo KALIWEDI" class="w-8 h-8 rounded-lg bg-white p-0.5 object-contain">
-                    <span class="font-extrabold text-lg tracking-wider">KALIWEDI</span>
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo TOLAK BENCANA" class="w-8 h-8 rounded-lg bg-white p-0.5 object-contain">
+                    <span class="font-extrabold text-lg tracking-wider">TOLAK BENCANA</span>
                 </div>
                 <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
-                    Kanal Laporan Informasi Warga dan Evakuasi Dinamis Indramayu. Dikembangkan dalam Program Kreativitas Mahasiswa bidang Karsa Cipta (PKM-KC) 2026.
+                    Platform Tanggap Bencana dan Informasi Evakuasi Terpadu. Dikembangkan dalam Program Kreativitas Mahasiswa bidang Karsa Cipta (PKM-KC) 2026.
                 </p>
-                <span class="text-[10px] text-slate-500 block mt-2">&copy; 2026 Tim PKM-KC KALIWEDI. Politeknik Negeri Indramayu.</span>
+                <span class="text-[10px] text-slate-500 block mt-2">&copy; 2026 Tim PKM-KC TOLAK BENCANA. Politeknik Negeri Indramayu.</span>
             </div>
 
             <!-- Middle links -->
@@ -255,7 +255,7 @@
                 <div class="flex flex-col gap-2 text-xs text-slate-400 mb-4">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-phone w-4 text-center"></i> BPBD Indramayu: (0234) 276996</span>
                     <span class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot w-4 text-center"></i> Jl. Gatot Subroto No.10, Indramayu</span>
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-envelope w-4 text-center"></i> support@kaliwedi.id</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-envelope w-4 text-center"></i> support@tolakbencana.id</span>
                 </div>
                 
                 <!-- Discreet Admin Login portal link in footer -->

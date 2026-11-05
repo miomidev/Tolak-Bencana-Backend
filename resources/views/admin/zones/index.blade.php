@@ -7,9 +7,9 @@
 <div class="flex items-center justify-between mb-6">
     <div>
         <h3 class="text-lg font-extrabold text-[#1F2937]">Daftar Zona Rawan Banjir</h3>
-        <p class="text-sm text-gray-400">Area rawan banjir yang dimonitor di wilayah KALIWEDI</p>
+        <p class="text-sm text-gray-400">Area rawan bencana yang dimonitor di wilayah TOLAK BENCANA</p>
     </div>
-    <a href="{{ route('admin.zones.create') }}" class="bg-[#0F767E] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors flex items-center gap-2">
+    <a href="{{ route('admin.zones.create') }}" class="bg-[#15803D] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors flex items-center gap-2">
         <i class="fa-solid fa-plus"></i> Tambah Zona
     </a>
 </div>
@@ -18,9 +18,9 @@
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 mb-6">
     <form method="GET" action="{{ route('admin.zones.index') }}" class="flex flex-wrap items-center gap-3">
         <div class="flex-1 min-w-[220px]">
-            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari nama zona..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari nama zona..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
         </div>
-        <select name="risk" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+        <select name="risk" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
             <option value="">Semua Risiko</option>
             <option value="low" @selected(request('risk') === 'low')>Rendah</option>
             <option value="medium" @selected(request('risk') === 'medium')>Sedang</option>
@@ -61,7 +61,7 @@
                         <td class="px-5 py-4 text-gray-400 text-xs">{{ $zone->created_at?->format('d M Y') }}</td>
                         <td class="px-5 py-4">
                             <div class="flex items-center justify-end gap-2">
-                                <a href="{{ route('admin.zones.edit', $zone) }}" class="text-[#0F767E] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Edit">
+                                <a href="{{ route('admin.zones.edit', $zone) }}" class="text-[#15803D] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Edit">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                                 <form action="{{ route('admin.zones.destroy', $zone) }}" method="POST" onsubmit="return confirm('Hapus zona ini?')">
@@ -78,7 +78,7 @@
                     <tr>
                         <td colspan="5" class="px-5 py-12 text-center text-gray-400">
                             <i class="fa-solid fa-circle-exclamation text-3xl block mb-2 text-gray-300"></i>
-                            Belum ada zona rawan banjir. <a href="{{ route('admin.zones.create') }}" class="text-[#0F767E] font-bold">Tambah sekarang</a>
+                            Belum ada zona rawan banjir. <a href="{{ route('admin.zones.create') }}" class="text-[#15803D] font-bold">Tambah sekarang</a>
                         </td>
                     </tr>
                 @endforelse

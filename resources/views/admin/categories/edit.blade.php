@@ -9,7 +9,7 @@
 </div>
 
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8 max-w-3xl">
-    <h3 class="text-lg font-extrabold text-[#1F2937] mb-6"><i class="fa-solid fa-pen text-[#0F767E] mr-2"></i> Edit Kategori: {{ $category->name }}</h3>
+    <h3 class="text-lg font-extrabold text-[#1F2937] mb-6"><i class="fa-solid fa-pen text-[#15803D] mr-2"></i> Edit Kategori: {{ $category->name }}</h3>
     <form action="{{ route('admin.categories.update', $category) }}" method="POST">
         @csrf
         @method('PUT')

@@ -31,7 +31,7 @@ class AdminOtpMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Kode OTP Reset Kata Sandi KALIWEDI Admin',
+            subject: 'Kode OTP Reset Kata Sandi Tolak Bencana Admin',
         );
     }
 

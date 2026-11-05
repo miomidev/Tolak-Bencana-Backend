@@ -9,7 +9,7 @@
         <h3 class="text-lg font-extrabold text-[#1F2937]">Daftar Kontak Darurat</h3>
         <p class="text-sm text-gray-400">Kontak bantuan yang ditampilkan di halaman Bantuan aplikasi</p>
     </div>
-    <a href="{{ route('admin.contacts.create') }}" class="bg-[#0F767E] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors flex items-center gap-2">
+    <a href="{{ route('admin.contacts.create') }}" class="bg-[#15803D] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors flex items-center gap-2">
         <i class="fa-solid fa-plus"></i> Tambah Kontak
     </a>
 </div>
@@ -38,7 +38,7 @@
                                     @php
                                         $prefix = ($contact->icon === 'whatsapp') ? 'fa-brands' : 'fa-solid';
                                     @endphp
-                                    <i class="{{ $prefix }} fa-{{ $contact->icon }} text-[#0F767E]"></i>
+                                    <i class="{{ $prefix }} fa-{{ $contact->icon }} text-[#15803D]"></i>
                                 @endif
                                 {{ $contact->title }}
                             </span>
@@ -58,7 +58,7 @@
                         </td>
                         <td class="px-5 py-4">
                             <div class="flex items-center justify-end gap-2">
-                                <a href="{{ route('admin.contacts.edit', $contact) }}" class="text-[#0F767E] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Edit">
+                                <a href="{{ route('admin.contacts.edit', $contact) }}" class="text-[#15803D] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Edit">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                                 <form action="{{ route('admin.contacts.destroy', $contact) }}" method="POST" onsubmit="return confirm('Hapus kontak ini?')">
@@ -75,7 +75,7 @@
                     <tr>
                         <td colspan="7" class="px-5 py-12 text-center text-gray-400">
                             <i class="fa-solid fa-phone-flip text-3xl block mb-2 text-gray-300"></i>
-                            Belum ada kontak darurat. <a href="{{ route('admin.contacts.create') }}" class="text-[#0F767E] font-bold">Tambah sekarang</a>
+                            Belum ada kontak darurat. <a href="{{ route('admin.contacts.create') }}" class="text-[#15803D] font-bold">Tambah sekarang</a>
                         </td>
                     </tr>
                 @endforelse

@@ -3,7 +3,7 @@
 
 Halo,
 
-Kode OTP untuk mereset kata sandi akun administrator **KALIWEDI** Anda adalah:
+Kode OTP untuk mereset kata sandi akun administrator **Tolak Bencana** Anda adalah:
 
 ## {{ $otp }}
 
@@ -12,5 +12,5 @@ Kode ini berlaku selama **{{ $expiresIn }}** sejak dikirim.
 Jika Anda tidak meminta reset kata sandi, abaikan email ini.
 
 Salam,<br>
-**Tim KALIWEDI**
+**Tim Tolak Bencana**
 </x-mail::message>

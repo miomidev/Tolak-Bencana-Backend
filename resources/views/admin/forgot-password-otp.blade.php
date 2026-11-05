@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
-    <title>Verifikasi OTP - KALIWEDI</title>
+    <title>Verifikasi OTP - TOLAK BENCANA</title>
 
     <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-[#E0F2F1] via-slate-100 to-teal-50 min-h-screen flex items-center justify-center p-6 sm:p-8 relative overflow-hidden">
+<body class="bg-gradient-to-br from-[#DCFCE7] via-slate-100 to-teal-50 min-h-screen flex items-center justify-center p-6 sm:p-8 relative overflow-hidden">
     
     <!-- Floating background blur shapes -->
     <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-teal-100/30 rounded-full blur-3xl -translate-y-16 translate-x-16"></div>
@@ -33,9 +33,9 @@
         <!-- Logo and Brand Title -->
         <div class="flex flex-col items-center mb-8">
             <a href="{{ route('home') }}" class="flex flex-col items-center gap-3">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo KALIWEDI" class="w-16 h-16 rounded-2xl bg-white p-1.5 shadow-md object-contain hover:scale-105 transition-transform">
-                <span class="font-extrabold text-3xl tracking-widest text-[#0F767E] mt-1">KALIWEDI</span>
-                <span class="text-xs text-[#0F767E] uppercase tracking-widest font-extrabold -mt-1">PKM-KC Admin Console</span>
+                <img src="{{ asset('images/logo.png') }}" alt="Logo TOLAK BENCANA" class="w-16 h-16 rounded-2xl bg-white p-1.5 shadow-md object-contain hover:scale-105 transition-transform">
+                <span class="font-extrabold text-3xl tracking-widest text-[#15803D] mt-1">TOLAK BENCANA</span>
+                <span class="text-xs text-[#15803D] uppercase tracking-widest font-extrabold -mt-1">PKM-KC Admin Console</span>
             </a>
         </div>
 
@@ -46,9 +46,9 @@
 
             <!-- Dev/Simulation Help Block -->
             @if (session('simulated_otp'))
-                <div class="mb-6 p-4 bg-[#E0F2F1] border-2 border-[#0F767E]/30 rounded-2xl text-center">
-                    <span class="text-[10px] text-[#0F767E] uppercase font-bold tracking-widest block">Simulasi Pengiriman Email (Dev Mode)</span>
-                    <span class="text-2xl font-black text-[#0F767E] block mt-1 tracking-[6px]">{{ session('simulated_otp') }}</span>
+                <div class="mb-6 p-4 bg-[#DCFCE7] border-2 border-[#15803D]/30 rounded-2xl text-center">
+                    <span class="text-[10px] text-[#15803D] uppercase font-bold tracking-widest block">Simulasi Pengiriman Email (Dev Mode)</span>
+                    <span class="text-2xl font-black text-[#15803D] block mt-1 tracking-[6px]">{{ session('simulated_otp') }}</span>
                     <span class="text-[9px] text-gray-450 block mt-1">Gunakan kode di atas untuk memverifikasi.</span>
                 </div>
             @endif
@@ -75,12 +75,12 @@
                     <label for="otp" class="text-xs font-bold text-[#1F2937] uppercase tracking-wider text-center">Kode Verifikasi</label>
                     <div class="relative">
                         <input type="text" name="otp" id="otp" required maxlength="6" autofocus placeholder="0 0 0 0 0 0" 
-                               class="w-full text-center tracking-[12px] text-2xl font-bold py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-[#0F767E]/25 focus:border-[#0F767E] focus:outline-none transition-all">
+                               class="w-full text-center tracking-[12px] text-2xl font-bold py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-[#15803D]/25 focus:border-[#15803D] focus:outline-none transition-all">
                     </div>
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="w-full bg-[#0F767E] hover:bg-[#0a5258] text-white font-bold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-[1.01] mt-2 flex items-center justify-center gap-2">
+                <button type="submit" class="w-full bg-[#15803D] hover:bg-[#0a5258] text-white font-bold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-[1.01] mt-2 flex items-center justify-center gap-2">
                     <span>Verifikasi Kode</span>
                     <i class="fa-solid fa-shield-check"></i>
                 </button>
@@ -88,7 +88,7 @@
         </div>
 
         <div class="text-center mt-6">
-            <a href="{{ route('admin.forgot-password') }}" class="text-xs font-semibold text-gray-500 hover:text-[#0F767E] flex items-center justify-center gap-1.5 hover:underline">
+            <a href="{{ route('admin.forgot-password') }}" class="text-xs font-semibold text-gray-500 hover:text-[#15803D] flex items-center justify-center gap-1.5 hover:underline">
                 <i class="fa-solid fa-circle-arrow-left"></i>
                 <span>Kembali ke Langkah Sebelumnya</span>
             </a>

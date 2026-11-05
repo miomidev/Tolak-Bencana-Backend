@@ -110,6 +110,6 @@ class HomeController extends Controller
             abort(404, 'File APK belum tersedia.');
         }
 
-        return Storage::disk('public')->download($appInfo->apk_path, $appInfo->apk_filename ?? 'kaliwedi.apk');
+        return Storage::disk('public')->download($appInfo->apk_path, $appInfo->apk_filename ?? 'tolakbencana.apk');
     }
 }

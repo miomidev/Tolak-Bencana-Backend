@@ -139,7 +139,7 @@ class ReportController extends Controller
 
         $spreadsheet = new Spreadsheet;
         $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setTitle('Laporan Banjir');
+        $sheet->setTitle('Laporan Bencana');
 
         $headers = ['No', 'Nama Pelapor', 'Kategori', 'Lokasi / Alamat', 'Deskripsi Kejadian', 'Tingkat Keparahan', 'Status', 'Koordinat', 'Tanggal Laporan'];
         $sheet->fromArray($headers, null, 'A1');

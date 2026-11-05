@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
-@section('title', 'Laporan Banjir')
-@section('header_title', 'Moderasi Laporan Banjir')
+@section('title', 'Laporan Bencana')
+@section('header_title', 'Moderasi Laporan Bencana')
 
 @section('content')
 <div class="flex items-center justify-between mb-6">
     <div>
         <h3 class="text-lg font-extrabold text-[#1F2937]">Daftar Laporan</h3>
-        <p class="text-sm text-gray-400">Verifikasi laporan banjir yang masuk dari warga</p>
+        <p class="text-sm text-gray-400">Verifikasi laporan bencana yang masuk dari warga</p>
     </div>
     <a href="{{ route('admin.reports.export', request()->only(['status', 'from', 'to'])) }}" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors flex items-center gap-2">
-        <i class="fa-solid fa-file-excel text-[#0F767E]"></i> Export Excel
+        <i class="fa-solid fa-file-excel text-[#15803D]"></i> Export Excel
     </a>
 </div>
 
@@ -18,30 +18,30 @@
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 mb-6">
     <form method="GET" action="{{ route('admin.reports.index') }}" class="flex flex-wrap items-center gap-3">
         <div class="flex-1 min-w-[200px]">
-            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari alamat / deskripsi..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari alamat / deskripsi..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
         </div>
-        <select name="status" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+        <select name="status" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
             <option value="">Semua Status</option>
             <option value="pending" @selected(request('status') === 'pending')>Pending</option>
             <option value="verified" @selected(request('status') === 'verified')>Terverifikasi</option>
             <option value="resolved" @selected(request('status') === 'resolved')>Selesai</option>
             <option value="rejected" @selected(request('status') === 'rejected')>Ditolak</option>
         </select>
-        <select name="severity" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+        <select name="severity" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
             <option value="">Semua Severity</option>
             <option value="low" @selected(request('severity') === 'low')>Rendah</option>
             <option value="medium" @selected(request('severity') === 'medium')>Waspada</option>
             <option value="high" @selected(request('severity') === 'high')>Siaga</option>
             <option value="critical" @selected(request('severity') === 'critical')>Kritis</option>
         </select>
-        <select name="category" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+        <select name="category" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
             <option value="">Semua Kategori</option>
             @foreach($categories as $category)
                 <option value="{{ $category }}" @selected(request('category') === $category)>{{ $category }}</option>
             @endforeach
         </select>
-        <input type="date" name="from" value="{{ request('from') }}" class="text-sm border border-gray-200 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40" title="Dari tanggal">
-        <input type="date" name="to" value="{{ request('to') }}" class="text-sm border border-gray-200 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40" title="Sampai tanggal">
+        <input type="date" name="from" value="{{ request('from') }}" class="text-sm border border-gray-200 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40" title="Dari tanggal">
+        <input type="date" name="to" value="{{ request('to') }}" class="text-sm border border-gray-200 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40" title="Sampai tanggal">
         <button type="submit" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
             <i class="fa-solid fa-filter"></i> Filter
         </button>
@@ -98,7 +98,7 @@
                         <td class="px-5 py-4 text-gray-400 text-xs">{{ $report->reported_at?->format('d M Y H:i') }}</td>
                         <td class="px-5 py-4">
                             <div class="flex items-center justify-end gap-2">
-                                <a href="{{ route('admin.reports.show', $report) }}" class="bg-[#0F767E] hover:bg-[#0a5258] text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                                <a href="{{ route('admin.reports.show', $report) }}" class="bg-[#15803D] hover:bg-[#0a5258] text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
                                     Detail
                                 </a>
                             </div>

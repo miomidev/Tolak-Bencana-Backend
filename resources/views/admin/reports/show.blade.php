@@ -12,7 +12,7 @@
 @section('content')
 <div class="mb-6 flex items-center justify-between">
     <a href="{{ route('admin.reports.index', request()->except('page')) }}" class="text-sm text-gray-400 hover:text-gray-600"><i class="fa-solid fa-arrow-left mr-1"></i> Kembali ke daftar</a>
-    <a href="{{ route('admin.reports.export', ['status' => $report->status]) }}" class="text-sm text-gray-400 hover:text-gray-600"><i class="fa-solid fa-file-excel mr-1 text-[#0F767E]"></i> Export Excel</a>
+    <a href="{{ route('admin.reports.export', ['status' => $report->status]) }}" class="text-sm text-gray-400 hover:text-gray-600"><i class="fa-solid fa-file-excel mr-1 text-[#15803D]"></i> Export Excel</a>
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -43,7 +43,7 @@
                     <form action="{{ route('admin.reports.status', $report) }}" method="POST">
                         @csrf
                         <input type="hidden" name="status" value="verified">
-                        <button type="submit" class="w-full bg-[#0F767E] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
+                        <button type="submit" class="w-full bg-[#15803D] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
                             <i class="fa-solid fa-check mr-1.5"></i> Validasi (Terverifikasi)
                         </button>
                     </form>
@@ -73,7 +73,7 @@
     <!-- Info -->
     <div class="lg:col-span-2 space-y-6">
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <h4 class="text-sm font-extrabold text-[#1F2937] mb-4"><i class="fa-solid fa-circle-info text-[#0F767E] mr-2"></i> Informasi Laporan</h4>
+            <h4 class="text-sm font-extrabold text-[#1F2937] mb-4"><i class="fa-solid fa-circle-info text-[#15803D] mr-2"></i> Informasi Laporan</h4>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-sm">
                 <div>
                     <p class="text-[10px] text-gray-400 uppercase font-bold mb-1">Pelapor</p>
@@ -102,22 +102,22 @@
             </div>
 
             <div class="mt-5 pt-5 border-t border-gray-100 flex gap-6 text-sm">
-                <span class="text-gray-500"><i class="fa-solid fa-thumbs-up mr-1.5 text-[#0F767E]"></i>{{ $report->likes_count }} suka</span>
-                <span class="text-gray-500"><i class="fa-solid fa-comment mr-1.5 text-[#0F767E]"></i>{{ $report->comments_count }} komentar</span>
+                <span class="text-gray-500"><i class="fa-solid fa-thumbs-up mr-1.5 text-[#15803D]"></i>{{ $report->likes_count }} suka</span>
+                <span class="text-gray-500"><i class="fa-solid fa-comment mr-1.5 text-[#15803D]"></i>{{ $report->comments_count }} komentar</span>
             </div>
         </div>
 
         <!-- Map -->
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
             <div class="p-5 border-b border-gray-100 bg-gray-50">
-                <h4 class="text-sm font-extrabold text-[#1F2937]"><i class="fa-solid fa-map-location-dot text-[#0F767E] mr-2"></i> Lokasi Kejadian</h4>
+                <h4 class="text-sm font-extrabold text-[#1F2937]"><i class="fa-solid fa-map-location-dot text-[#15803D] mr-2"></i> Lokasi Kejadian</h4>
             </div>
             <div id="report-map" class="w-full h-72 z-0"></div>
         </div>
 
         <!-- Comments -->
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <h4 class="text-sm font-extrabold text-[#1F2937] mb-4"><i class="fa-solid fa-comment text-[#0F767E] mr-2"></i> Komentar ({{ $report->comments_count }})</h4>
+            <h4 class="text-sm font-extrabold text-[#1F2937] mb-4"><i class="fa-solid fa-comment text-[#15803D] mr-2"></i> Komentar ({{ $report->comments_count }})</h4>
             <div class="space-y-4">
                 @forelse($report->comments as $comment)
                     <div class="flex gap-3">

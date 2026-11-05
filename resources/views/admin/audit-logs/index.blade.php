@@ -6,23 +6,23 @@
 @section('content')
 <div class="mb-6">
     <h3 class="text-lg font-extrabold text-[#1F2937]">Catatan Aktivitas Administrator</h3>
-    <p class="text-sm text-gray-400">Jejak perubahan data dan aksi admin pada panel KALIWEDI</p>
+    <p class="text-sm text-gray-400">Jejak perubahan data dan aksi admin pada panel TOLAK BENCANA</p>
 </div>
 
 <!-- Filter bar -->
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 mb-6">
     <form method="GET" action="{{ route('admin.audit-logs.index') }}" class="flex flex-wrap items-center gap-3">
         <div class="flex-1 min-w-[220px]">
-            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari aksi / deskripsi..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari aksi / deskripsi..." class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
         </div>
-        <select name="action" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40">
+        <select name="action" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40">
             <option value="">Semua Aksi</option>
             @foreach($actions as $action)
                 <option value="{{ $action }}" @selected(request('action') === $action)>{{ str_replace('_', ' ', $action) }}</option>
             @endforeach
         </select>
-        <input type="date" name="from" value="{{ request('from') }}" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40" title="Dari tanggal">
-        <input type="date" name="to" value="{{ request('to') }}" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0F767E]/40" title="Sampai tanggal">
+        <input type="date" name="from" value="{{ request('from') }}" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40" title="Dari tanggal">
+        <input type="date" name="to" value="{{ request('to') }}" class="text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#15803D]/40" title="Sampai tanggal">
         <button type="submit" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
             <i class="fa-solid fa-filter"></i> Filter
         </button>
@@ -49,7 +49,7 @@
                 @forelse($logs as $log)
                     <tr class="hover:bg-gray-50 transition-colors">
                         <td class="px-5 py-3.5">
-                            <span class="text-[11px] bg-[#0F767E]/10 text-[#0F767E] border border-[#0F767E]/20 px-2.5 py-1 rounded font-bold uppercase whitespace-nowrap">{{ str_replace('_', ' ', $log->action) }}</span>
+                            <span class="text-[11px] bg-[#15803D]/10 text-[#15803D] border border-[#15803D]/20 px-2.5 py-1 rounded font-bold uppercase whitespace-nowrap">{{ str_replace('_', ' ', $log->action) }}</span>
                         </td>
                         <td class="px-5 py-3.5 text-gray-600 max-w-md">{{ $log->description }}</td>
                         <td class="px-5 py-3.5 text-gray-600">{{ $log->user?->name ?? '-' }}</td>

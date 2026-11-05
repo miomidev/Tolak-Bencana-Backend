@@ -15,7 +15,7 @@
     <div class="lg:col-span-2 space-y-6">
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8">
             <div class="flex items-center justify-between gap-3 mb-5">
-                <h3 class="text-lg font-extrabold text-[#1F2937]"><i class="fa-solid fa-comment text-[#0F767E] mr-2"></i> Isi Komentar</h3>
+                <h3 class="text-lg font-extrabold text-[#1F2937]"><i class="fa-solid fa-comment text-[#15803D] mr-2"></i> Isi Komentar</h3>
                 @if($comment->is_active)
                     <span class="text-[11px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded font-bold uppercase">Tampil</span>
                 @else
@@ -31,7 +31,7 @@
 
         <!-- Laporan terkait -->
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <h4 class="text-sm font-extrabold text-[#1F2937] mb-4"><i class="fa-solid fa-file-waveform text-[#0F767E] mr-2"></i> Komentar Pada Laporan</h4>
+            <h4 class="text-sm font-extrabold text-[#1F2937] mb-4"><i class="fa-solid fa-file-waveform text-[#15803D] mr-2"></i> Komentar Pada Laporan</h4>
             @php $repStatus = \App\Support\UiHelper::status($comment->report?->status ?? 'pending'); $repSev = \App\Support\UiHelper::severity($comment->report?->severity ?? 'low'); @endphp
             @if($comment->report)
                 <div class="flex flex-wrap items-center gap-2 mb-3">
@@ -39,7 +39,7 @@
                     <span class="text-[11px] {{ $repSev['text'] }} {{ $repSev['bg'] }} border {{ $repSev['border'] }} px-2.5 py-1 rounded font-bold uppercase">Severitas: {{ $repSev['label'] }}</span>
                 </div>
                 <p class="text-sm text-gray-600">{{ $comment->report->address }}</p>
-                <a href="{{ route('admin.reports.show', $comment->report_id) }}" class="inline-flex items-center gap-2 mt-4 text-sm font-bold text-[#0F767E] hover:underline">
+                <a href="{{ route('admin.reports.show', $comment->report_id) }}" class="inline-flex items-center gap-2 mt-4 text-sm font-bold text-[#15803D] hover:underline">
                     <i class="fa-solid fa-up-right-from-square"></i> Lihat detail laporan
                 </a>
             @else
@@ -52,13 +52,13 @@
     <div class="space-y-6">
         <!-- Info penulis -->
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <h4 class="text-sm font-extrabold text-[#1F2937] mb-4"><i class="fa-solid fa-user text-[#0F767E] mr-2"></i> Penulis Komentar</h4>
+            <h4 class="text-sm font-extrabold text-[#1F2937] mb-4"><i class="fa-solid fa-user text-[#15803D] mr-2"></i> Penulis Komentar</h4>
             @if($comment->user)
                 <div class="flex items-center gap-3 mb-5">
                     @if($comment->user->avatar_url)
                         <img src="{{ \Illuminate\Support\Str::startsWith($comment->user->avatar_url, 'http') ? $comment->user->avatar_url : asset('storage/' . str_replace('storage/', '', $comment->user->avatar_url)) }}" class="w-14 h-14 rounded-full object-cover border border-gray-200" alt="">
                     @else
-                        <div class="w-14 h-14 rounded-full bg-[#0F767E] flex items-center justify-center text-white text-lg font-bold shrink-0">{{ strtoupper(substr($comment->user->name, 0, 2)) }}</div>
+                        <div class="w-14 h-14 rounded-full bg-[#15803D] flex items-center justify-center text-white text-lg font-bold shrink-0">{{ strtoupper(substr($comment->user->name, 0, 2)) }}</div>
                     @endif
                     <div class="min-w-0">
                         <p class="font-extrabold text-[#1F2937] truncate">{{ $comment->user->name }}</p>
@@ -89,7 +89,7 @@
                         </dd>
                     </div>
                 </dl>
-                <a href="{{ route('admin.users.edit', $comment->user_id) }}" class="flex items-center justify-center gap-2 mt-5 w-full bg-[#0F767E]/10 hover:bg-[#0F767E]/20 text-[#0F767E] text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
+                <a href="{{ route('admin.users.edit', $comment->user_id) }}" class="flex items-center justify-center gap-2 mt-5 w-full bg-[#15803D]/10 hover:bg-[#15803D]/20 text-[#15803D] text-sm font-bold px-4 py-2.5 rounded-xl transition-colors">
                     <i class="fa-solid fa-user-pen"></i> Kelola Akun Pengguna
                 </a>
             @else

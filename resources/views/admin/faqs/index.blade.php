@@ -9,7 +9,7 @@
         <h3 class="text-lg font-extrabold text-[#1F2937]">Daftar FAQ</h3>
         <p class="text-sm text-gray-400">Pertanyaan yang sering diajukan di halaman Bantuan aplikasi</p>
     </div>
-    <a href="{{ route('admin.faqs.create') }}" class="bg-[#0F767E] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors flex items-center gap-2">
+    <a href="{{ route('admin.faqs.create') }}" class="bg-[#15803D] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors flex items-center gap-2">
         <i class="fa-solid fa-plus"></i> Tambah FAQ
     </a>
 </div>
@@ -44,7 +44,7 @@
                         </td>
                         <td class="px-5 py-4">
                             <div class="flex items-center justify-end gap-2">
-                                <a href="{{ route('admin.faqs.edit', $faq) }}" class="text-[#0F767E] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Edit">
+                                <a href="{{ route('admin.faqs.edit', $faq) }}" class="text-[#15803D] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Edit">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                                 <form action="{{ route('admin.faqs.destroy', $faq) }}" method="POST" onsubmit="return confirm('Hapus FAQ ini?')">
@@ -61,7 +61,7 @@
                     <tr>
                         <td colspan="6" class="px-5 py-12 text-center text-gray-400">
                             <i class="fa-solid fa-circle-question text-3xl block mb-2 text-gray-300"></i>
-                            Belum ada FAQ. <a href="{{ route('admin.faqs.create') }}" class="text-[#0F767E] font-bold">Tambah sekarang</a>
+                            Belum ada FAQ. <a href="{{ route('admin.faqs.create') }}" class="text-[#15803D] font-bold">Tambah sekarang</a>
                         </td>
                     </tr>
                 @endforelse

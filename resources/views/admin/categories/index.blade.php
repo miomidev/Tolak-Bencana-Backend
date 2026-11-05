@@ -9,7 +9,7 @@
         <h3 class="text-lg font-extrabold text-[#1F2937]">Daftar Kategori Laporan</h3>
         <p class="text-sm text-gray-400">Kategori yang dapat dipilih warga saat melaporkan kejadian</p>
     </div>
-    <a href="{{ route('admin.categories.create') }}" class="bg-[#0F767E] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors flex items-center gap-2">
+    <a href="{{ route('admin.categories.create') }}" class="bg-[#15803D] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors flex items-center gap-2">
         <i class="fa-solid fa-plus"></i> Tambah Kategori
     </a>
 </div>
@@ -32,7 +32,7 @@
                     <tr class="hover:bg-gray-50 transition-colors">
                         <td class="px-5 py-4 text-gray-400">{{ $categories->firstItem() + $loop->index }}</td>
                         <td class="px-5 py-4 font-bold text-[#1F2937]">{{ $category->name }}</td>
-                        <td class="px-5 py-4 text-[#0F767E]"><i class="fa-solid fa-{{ $category->icon }}"></i> <span class="text-gray-400 text-xs ml-1">{{ $category->icon }}</span></td>
+                        <td class="px-5 py-4 text-[#15803D]"><i class="fa-solid fa-{{ $category->icon }}"></i> <span class="text-gray-400 text-xs ml-1">{{ $category->icon }}</span></td>
                         <td class="px-5 py-4 text-gray-400 text-xs">{{ $category->sort_order }}</td>
                         <td class="px-5 py-4">
                             <form action="{{ route('admin.categories.toggle', $category) }}" method="POST">
@@ -44,7 +44,7 @@
                         </td>
                         <td class="px-5 py-4">
                             <div class="flex items-center justify-end gap-2">
-                                <a href="{{ route('admin.categories.edit', $category) }}" class="text-[#0F767E] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Edit">
+                                <a href="{{ route('admin.categories.edit', $category) }}" class="text-[#15803D] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Edit">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                                 <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" onsubmit="return confirm('Hapus kategori ini? Laporan lama tidak terpengaruh.')">
@@ -61,7 +61,7 @@
                     <tr>
                         <td colspan="6" class="px-5 py-12 text-center text-gray-400">
                             <i class="fa-solid fa-tags text-3xl block mb-2 text-gray-300"></i>
-                            Belum ada kategori. <a href="{{ route('admin.categories.create') }}" class="text-[#0F767E] font-bold">Tambah sekarang</a>
+                            Belum ada kategori. <a href="{{ route('admin.categories.create') }}" class="text-[#15803D] font-bold">Tambah sekarang</a>
                         </td>
                     </tr>
                 @endforelse

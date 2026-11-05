@@ -16,8 +16,8 @@ class AppInfoController extends Controller
 
         if (! $appInfo) {
             $appInfo = AppInfo::create([
-                'app_name' => 'Kaliwedi',
-                'developer' => 'KALIWEDI PKM-KC',
+                'app_name' => 'Tolak Bencana',
+                'developer' => 'Tim Tolak Bencana',
             ]);
         }
 

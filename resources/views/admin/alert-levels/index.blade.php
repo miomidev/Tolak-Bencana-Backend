@@ -7,9 +7,9 @@
 <div class="flex items-center justify-between mb-6">
     <div>
         <h3 class="text-lg font-extrabold text-[#1F2937]">Daftar Level Siaga</h3>
-        <p class="text-sm text-gray-400">Ambang tinggi air (cm) untuk penentuan status siaga banjir</p>
+        <p class="text-sm text-gray-400">Ambang tinggi air (cm) untuk penentuan status siaga bencana</p>
     </div>
-    <a href="{{ route('admin.alert-levels.create') }}" class="bg-[#0F767E] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors flex items-center gap-2">
+    <a href="{{ route('admin.alert-levels.create') }}" class="bg-[#15803D] hover:bg-[#0a5258] text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors flex items-center gap-2">
         <i class="fa-solid fa-plus"></i> Tambah Level
     </a>
 </div>
@@ -17,7 +17,7 @@
 <!-- Visual scale -->
 @if($levels->isNotEmpty())
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-5 mb-6">
-    <h4 class="text-sm font-extrabold text-[#1F2937] mb-4"><i class="fa-solid fa-gauge-high text-[#0F767E] mr-2"></i> Skala Level Siaga</h4>
+    <h4 class="text-sm font-extrabold text-[#1F2937] mb-4"><i class="fa-solid fa-gauge-high text-[#15803D] mr-2"></i> Skala Level Siaga</h4>
     <div class="flex h-4 rounded-full overflow-hidden">
         @foreach($levels as $level)
             @php
@@ -73,7 +73,7 @@
                         </td>
                         <td class="px-5 py-4">
                             <div class="flex items-center justify-end gap-2">
-                                <a href="{{ route('admin.alert-levels.edit', $level) }}" class="text-[#0F767E] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Edit">
+                                <a href="{{ route('admin.alert-levels.edit', $level) }}" class="text-[#15803D] hover:bg-teal-50 p-2 rounded-lg transition-colors" title="Edit">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                                 <form action="{{ route('admin.alert-levels.destroy', $level) }}" method="POST" onsubmit="return confirm('Hapus level siaga ini?')">
@@ -90,7 +90,7 @@
                     <tr>
                         <td colspan="6" class="px-5 py-12 text-center text-gray-400">
                             <i class="fa-solid fa-gauge-high text-3xl block mb-2 text-gray-300"></i>
-                            Belum ada level siaga. <a href="{{ route('admin.alert-levels.create') }}" class="text-[#0F767E] font-bold">Tambah sekarang</a>
+                            Belum ada level siaga. <a href="{{ route('admin.alert-levels.create') }}" class="text-[#15803D] font-bold">Tambah sekarang</a>
                         </td>
                     </tr>
                 @endforelse

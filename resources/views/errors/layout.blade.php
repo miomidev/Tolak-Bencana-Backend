@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
 
-    <title>@yield('title', 'Error') | KALIWEDI</title>
+    <title>@yield('title', 'Error') | TOLAK BENCANA</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,17 +17,17 @@
 <body class="min-h-screen antialiased flex items-center justify-center relative overflow-hidden bg-[#0F172A]">
     <!-- Background decoration -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden">
-        <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[#0F767E]/20 blur-3xl"></div>
+        <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[#15803D]/20 blur-3xl"></div>
         <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-[#F97316]/20 blur-3xl"></div>
-        <div class="absolute top-1/3 left-1/2 w-72 h-72 rounded-full bg-[#0F767E]/30 blur-3xl -translate-x-1/2"></div>
+        <div class="absolute top-1/3 left-1/2 w-72 h-72 rounded-full bg-[#15803D]/30 blur-3xl -translate-x-1/2"></div>
     </div>
 
     <div class="relative z-10 w-full max-w-lg px-6 py-12 text-center">
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white/10 border border-white/10 mb-8 shadow-2xl">
-            <img src="{{ asset('images/logo.png') }}" alt="KALIWEDI" class="w-12 h-12 object-contain">
+            <img src="{{ asset('images/logo.png') }}" alt="TOLAK BENCANA" class="w-12 h-12 object-contain">
         </div>
 
-        <p class="font-black text-8xl sm:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-[#0F767E] via-[#0E8C94] to-[#22D3EE] tracking-tight select-none">
+        <p class="font-black text-8xl sm:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-[#15803D] via-[#0E8C94] to-[#22D3EE] tracking-tight select-none">
             @yield('code')
         </p>
 
@@ -41,7 +41,7 @@
         </p>
 
         <div class="flex flex-wrap items-center justify-center gap-3">
-            <a href="{{ url('/') }}" class="inline-flex items-center gap-2 rounded-xl px-6 py-3 bg-[#0F767E] hover:bg-[#0a5258] text-white font-bold text-sm shadow-lg shadow-[#0F767E]/30 transition-all hover:scale-105">
+            <a href="{{ url('/') }}" class="inline-flex items-center gap-2 rounded-xl px-6 py-3 bg-[#15803D] hover:bg-[#0a5258] text-white font-bold text-sm shadow-lg shadow-[#15803D]/30 transition-all hover:scale-105">
                 <i class="fa-solid fa-house"></i> Kembali ke Beranda
             </a>
             <button type="button" onclick="history.back()" class="inline-flex items-center gap-2 rounded-xl px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-bold text-sm transition-all">
@@ -49,7 +49,7 @@
             </button>
         </div>
 
-        <p class="mt-10 text-[10px] text-white/30 uppercase tracking-widest font-bold">KALIWEDI · PKM-KC Mitigasi Banjir</p>
+        <p class="mt-10 text-[10px] text-white/30 uppercase tracking-widest font-bold">TOLAK BENCANA · PKM-KC Mitigasi Banjir</p>
     </div>
 </body>
 </html>
