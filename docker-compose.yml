@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: kaliwedi-web
+    container_name: tolakbencana-web
     restart: always
     ports:
       - "8091:80"
@@ -13,9 +13,13 @@ services:
       # Mount environment file agar tidak hilang saat rebuild
       - ./.env:/var/www/html/.env
     networks:
-      - shared_network
+      - db_network
+      - npm_network
 
 networks:
-  shared_network:
+  db_network:
     external: true
-    name: miomidev-web_miomidev-network
+    name: bimbelrbs_network
+  npm_network:
+    external: true
+    name: npm_default

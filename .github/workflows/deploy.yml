@@ -1,4 +1,4 @@
-name: Kaliwedi Auto Deploy CI/CD
+name: Auto Deploy CI/CD
 
 on:
   push:
@@ -21,8 +21,8 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: 22
           script: |
-            git config --global --add safe.directory /home/miomideveloper/Kaliwedi
-            cd /home/miomideveloper/Kaliwedi
+            git config --global --add safe.directory /home/miomideveloper/web-tolakbencana
+            cd /home/miomideveloper/web-tolakbencana
             git fetch --all
             git reset --hard origin/main
             bash deploy.sh
