@@ -29,14 +29,20 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
+# Copy composer definitions first for layer caching
+COPY composer.json composer.lock ./
+
+# Install dependencies PHP (production only)
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+
 # Copy source code ke container
 COPY . .
 
 # Copy compiled assets dari Stage 1
 COPY --from=assets-builder /app/public/build ./public/build
 
-# Install dependencies PHP (production only)
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+# Finish autoloader
+RUN composer dump-autoload --optimize
 
 # PHP configuration untuk upload & performance
 RUN echo "upload_max_filesize=10M" > /usr/local/etc/php/conf.d/uploads.ini \

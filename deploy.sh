@@ -19,9 +19,8 @@ chmod -R 777 storage bootstrap/cache || true
 # 2. Rebuild Docker Image & Recreate Container using local docker-compose
 echo "🐳 2. Rebuilding Docker Image and Restarting Container..."
 
-# Safely stop and remove any old manual container to avoid name conflicts
-docker stop tolakbencana-web kaliwedi-web || true
-docker rm -f tolakbencana-web kaliwedi-web || true
+# Safely cleanup old legacy container name if still lingering
+docker rm -f kaliwedi-web 2>/dev/null || true
 
 # Check if modern 'docker compose' is supported, otherwise fallback to legacy 'docker-compose'
 if docker compose version >/dev/null 2>&1; then
