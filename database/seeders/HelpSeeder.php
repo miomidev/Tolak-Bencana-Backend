@@ -27,7 +27,7 @@ class HelpSeeder extends Seeder
             [
                 'type' => 'email',
                 'title' => 'Email',
-                'value' => 'bantuan@kaliwedi.id',
+                'value' => 'bantuan@tolakbencana.id',
                 'icon' => 'email',
                 'sort_order' => 2,
                 'is_active' => true,
@@ -37,7 +37,7 @@ class HelpSeeder extends Seeder
             [
                 'type' => 'website',
                 'title' => 'Website Resmi',
-                'value' => 'kaliwedi.indramayu.go.id',
+                'value' => 'tolak-bencana.miomidev.com',
                 'icon' => 'website',
                 'sort_order' => 3,
                 'is_active' => true,

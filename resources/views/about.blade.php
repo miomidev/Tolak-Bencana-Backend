@@ -118,7 +118,7 @@
                 <img src="{{ asset('images/logo.png') }}" alt="TOLAK BENCANA Logo" class="h-10 w-auto rounded-xl bg-white p-0.5 shadow-sm object-contain" loading="lazy">
                 <div>
                     <span class="font-extrabold text-xl tracking-wider text-[#15803D] block">TOLAK BENCANA</span>
-                    <span class="text-[9px] text-[#1E3A8A] uppercase tracking-widest font-extrabold block -mt-1">PKM-KC Mitigasi Banjir</span>
+                    <span class="text-[9px] text-[#1E3A8A] uppercase tracking-widest font-extrabold block -mt-1">Mitigasi & Tanggap Bencana</span>
                 </div>
             </a>
             
@@ -233,9 +233,9 @@
                     <span class="font-extrabold text-lg tracking-wider">TOLAK BENCANA</span>
                 </div>
                 <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
-                    Platform Tanggap Bencana dan Informasi Evakuasi Terpadu. Dikembangkan dalam Program Kreativitas Mahasiswa bidang Karsa Cipta (PKM-KC) 2026.
+                    Platform Tanggap Bencana dan Informasi Evakuasi Terpadu berbasis Mobile GIS untuk mitigasi bencana, pemetaan posko evakuasi, dan pelaporan darurat secara real-time.
                 </p>
-                <span class="text-[10px] text-slate-500 block mt-2">&copy; 2026 Tim PKM-KC TOLAK BENCANA. Politeknik Negeri Indramayu.</span>
+                <span class="text-[10px] text-slate-500 block mt-2">&copy; 2026 TOLAK BENCANA. Hak Cipta Dilindungi.</span>
             </div>
 
             <!-- Middle links -->

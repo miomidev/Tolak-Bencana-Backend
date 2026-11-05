@@ -49,7 +49,7 @@
             </button>
         </div>
 
-        <p class="mt-10 text-[10px] text-white/30 uppercase tracking-widest font-bold">TOLAK BENCANA · PKM-KC Mitigasi Banjir</p>
+        <p class="mt-10 text-[10px] text-white/30 uppercase tracking-widest font-bold">TOLAK BENCANA · Mitigasi & Tanggap Bencana</p>
     </div>
 </body>
 </html>

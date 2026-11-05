@@ -111,7 +111,7 @@
         <!-- Open in app CTA -->
         <div class="bg-white rounded-2xl p-5 shadow-sm mb-4 text-center">
             <p class="text-sm text-slate-600 mb-3">Lihat laporan ini langsung di aplikasi Tolak Bencana</p>
-            <a href="kaliwedi://report/{{ $report->id }}"
+            <a href="tolakbencana://report/{{ $report->id }}"
                class="inline-flex w-full items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-bold text-sm px-5 py-3 rounded-xl transition">
                 <i class="fas fa-mobile-screen-button"></i> Buka di Aplikasi
             </a>
@@ -122,7 +122,7 @@
     <footer class="bg-slate-800 text-slate-300">
         <div class="max-w-3xl mx-auto px-4 py-5 text-center text-xs">
             <p class="font-bold text-white">TOLAK BENCANA</p>
-            <p class="mt-1">Platform Tanggap Bencana dan Informasi Evakuasi Terpadu &mdash; PKM-KC 2026</p>
+            <p class="mt-1">Platform Tanggap Bencana dan Informasi Evakuasi Terpadu</p>
         </div>
     </footer>
 

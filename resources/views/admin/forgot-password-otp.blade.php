@@ -35,7 +35,7 @@
             <a href="{{ route('home') }}" class="flex flex-col items-center gap-3">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo TOLAK BENCANA" class="w-16 h-16 rounded-2xl bg-white p-1.5 shadow-md object-contain hover:scale-105 transition-transform">
                 <span class="font-extrabold text-3xl tracking-widest text-[#15803D] mt-1">TOLAK BENCANA</span>
-                <span class="text-xs text-[#15803D] uppercase tracking-widest font-extrabold -mt-1">PKM-KC Admin Console</span>
+                <span class="text-xs text-[#15803D] uppercase tracking-widest font-extrabold -mt-1">Admin Console</span>
             </a>
         </div>
 

@@ -352,7 +352,7 @@
             const isMobile = () => window.innerWidth < 1024;
 
             // Restore desktop collapse state
-            if (sidebar && !isMobile() && localStorage.getItem('kaliwedi_sidebar_collapsed') === '1') {
+            if (sidebar && !isMobile() && (localStorage.getItem('tolakbencana_sidebar_collapsed') === '1' || localStorage.getItem('kaliwedi_sidebar_collapsed') === '1')) {
                 document.body.classList.add('sidebar-collapsed');
             }
 
@@ -379,7 +379,7 @@
                     } else {
                         document.body.classList.toggle('sidebar-collapsed');
                         localStorage.setItem(
-                            'kaliwedi_sidebar_collapsed',
+                            'tolakbencana_sidebar_collapsed',
                             document.body.classList.contains('sidebar-collapsed') ? '1' : '0'
                         );
                     }
