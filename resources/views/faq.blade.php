@@ -83,11 +83,11 @@
         .faq-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+            transition: max-height 0.35s ease-out, padding 0.3s ease;
         }
         
         .faq-item.active .faq-content {
-            max-height: 200px; /* Adjust according to text length, fits average faq answers */
+            max-height: 500px;
             padding-top: 1rem;
         }
 
@@ -124,10 +124,12 @@
     </div>
     @endif
 
-    <!-- Background Decoration Bubbles -->
-    <div class="kw-glow-1 top-20 -left-20"></div>
-    <div class="kw-glow-2 top-[120vh] -right-20"></div>
-    <div class="kw-glow-3 top-[220vh] left-[20vw]"></div>
+    <!-- Background Decoration Bubbles (bounded to prevent ghost whitespace) -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="kw-glow-1 top-20 -left-20"></div>
+        <div class="kw-glow-2 top-1/2 -right-20"></div>
+        <div class="kw-glow-3 bottom-10 left-[20vw]"></div>
+    </div>
 
     <!-- Navigation Bar -->
     <header class="sticky top-0 z-40 nav-backdrop">
@@ -223,7 +225,7 @@
     </main>
 
     <!-- Footer (Premium Dark Slate Style) -->
-    <footer class="bg-[#0F172A] text-white py-16 px-6 sm:px-8 border-t border-slate-800">
+    <footer class="mt-auto bg-[#0F172A] text-white py-16 px-6 sm:px-8 border-t border-slate-800">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10">
             <!-- Left Info -->
             <div class="md:col-span-5 flex flex-col gap-4">
