@@ -42,7 +42,7 @@
         <!-- Login Card -->
         <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-2xl border border-gray-150/80">
             <h2 class="text-xl font-bold text-[#1F2937] text-center mb-1">Masuk Administrator</h2>
-            <p class="text-xs text-gray-400 text-center mb-8 font-normal">Silakan masuk menggunakan kredensial admin BPBD Anda.</p>
+            <p class="text-xs text-gray-400 text-center mb-8 font-normal">Silakan masuk menggunakan kredensial administrator Anda.</p>
 
             <!-- Success Alert -->
             @if (session('success'))

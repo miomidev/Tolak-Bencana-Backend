@@ -255,7 +255,7 @@
             <div class="md:col-span-4 flex flex-col gap-3.5">
                 <h4 class="font-bold text-sm tracking-wider uppercase text-[#F97316]">Kontak Siaga Darurat</h4>
                 <div class="flex flex-col gap-2 text-xs text-slate-400 mb-4">
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-phone w-4 text-center"></i> BPBD Indramayu: (0234) 276996</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-phone w-4 text-center"></i> Layanan Siaga: (0234) 276996</span>
                     <span class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot w-4 text-center"></i> Jl. Gatot Subroto No.10, Indramayu</span>
                     <span class="flex items-center gap-2"><i class="fa-solid fa-envelope w-4 text-center"></i> support@tolakbencana.id</span>
                 </div>
@@ -263,7 +263,7 @@
                 <!-- Discreet Admin Login portal link in footer -->
                 <div class="border-t border-slate-800 pt-3">
                     <a href="{{ route('admin.login') }}" class="text-[10px] text-slate-500 hover:text-white transition-colors flex items-center gap-1.5">
-                        <i class="fa-solid fa-lock"></i> Portal Admin BPBD
+                        <i class="fa-solid fa-lock"></i> Login Admin
                     </a>
                 </div>
             </div>

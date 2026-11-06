@@ -102,7 +102,7 @@ class ReportController extends Controller
         }
 
         $messages = [
-            'verified' => ['Laporan Anda Terverifikasi', 'Laporan banjir Anda di "'.$report->address.'" telah diverifikasi oleh tim BPBD. Terima kasih atas partisipasinya.'],
+            'verified' => ['Laporan Anda Terverifikasi', 'Laporan banjir Anda di "'.$report->address.'" telah diverifikasi oleh tim verifikator. Terima kasih atas partisipasinya.'],
             'resolved' => ['Laporan Anda Selesai Ditangani', 'Kondisi di "'.$report->address.'" telah surut dan laporan Anda ditandai selesai.'],
             'rejected' => ['Laporan Anda Ditolak', 'Laporan Anda di "'.$report->address.'" ditolak. '.($report->rejection_reason ? 'Alasan: '.$report->rejection_reason : 'Silakan kirim laporan ulang dengan data yang lebih lengkap.')],
         ];

@@ -205,7 +205,7 @@
                     
                     <!-- Badge row -->
                     <div class="flex flex-wrap items-center justify-center gap-4 text-[9px] font-extrabold tracking-widest text-white/80">
-                        <span class="bg-white/15 px-2 py-0.5 rounded-md"><i class="fa-solid fa-shield-halved mr-1"></i> Terverifikasi BPBD Indramayu</span>
+                        <span class="bg-white/15 px-2 py-0.5 rounded-md"><i class="fa-solid fa-shield-halved mr-1"></i> Terverifikasi Tim Tanggap Bencana</span>
                         <span class="hidden sm:inline text-white/30">|</span>
                         <span class="bg-white/15 px-2 py-0.5 rounded-md"><i class="fa-solid fa-code mr-1"></i> Didukung Mobile GIS</span>
                         <span class="hidden sm:inline text-white/30">|</span>
@@ -276,7 +276,7 @@
                         Kabupaten Indramayu memiliki karakteristik geografis unik sebagai wilayah hilir dan pesisir. Hal ini membuat Indramayu tidak hanya rentan terhadap banjir rob (pasang laut) di sepanjang pantai, tetapi juga rawan terhadap banjir luapan sungai (kiriman) akibat jebolnya tanggul, serta banjir genangan kota akibat buruknya sistem drainase dan solokan saat curah hujan tinggi.
                     </p>
                     <p class="text-sm text-slate-500 leading-relaxed text-justify">
-                        Sistem TOLAK BENCANA hadir guna merespons kompleksitas kerentanan tersebut. Melalui sinergi warga sebagai pelapor dan Badan Penanggulangan Bencana Daerah (BPBD) sebagai verifikator, informasi siaga dan tanggap bencana banjir dapat disalurkan secara cepat, tepat, dan transparan.
+                        Sistem TOLAK BENCANA hadir guna merespons kompleksitas kerentanan tersebut. Melalui sinergi warga sebagai pelapor dan tim verifikator siaga, informasi mitigasi dan tanggap bencana dapat disalurkan secara cepat, tepat, dan transparan.
                     </p>
                 </div>
             </div>
@@ -332,10 +332,10 @@
 
                 <!-- Box 5 -->
                 <div class="kw-card bg-white p-7 rounded-2xl flex flex-col gap-4">
-                    <img src="https://alhazen.academy/assets/kids/index-why/icon-why5.png" alt="BPBD Validation" class="w-12 h-12 object-contain" loading="lazy" decoding="async">
-                    <h3 class="text-lg font-bold text-slate-800">Dashboard Kontrol BPBD</h3>
+                    <img src="https://alhazen.academy/assets/kids/index-why/icon-why5.png" alt="Validation Dashboard" class="w-12 h-12 object-contain" loading="lazy" decoding="async">
+                    <h3 class="text-lg font-bold text-slate-800">Dashboard Kontrol Terpadu</h3>
                     <p class="text-xs text-slate-500 leading-relaxed text-justify">
-                        Admin BPBD memvalidasi laporan warga, memetakan shelter aktif, dan mengaktifkan sirene darurat dari satu dashboard terpusat yang aman.
+                        Tim verifikator memvalidasi laporan warga, memetakan shelter aktif, dan mengoordinasikan respon darurat dari satu dashboard terpusat yang aman.
                     </p>
                 </div>
 
@@ -612,7 +612,7 @@
             <div class="md:col-span-4 flex flex-col gap-3.5">
                 <h4 class="font-bold text-sm tracking-wider uppercase text-[#F97316]">Kontak Siaga Darurat</h4>
                 <div class="flex flex-col gap-2 text-xs text-slate-400 mb-4">
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-phone w-4 text-center"></i> BPBD Indramayu: (0234) 276996</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-phone w-4 text-center"></i> Layanan Siaga: (0234) 276996</span>
                     <span class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot w-4 text-center"></i> Jl. Gatot Subroto No.10, Indramayu</span>
                     <span class="flex items-center gap-2"><i class="fa-solid fa-envelope w-4 text-center"></i> support@tolakbencana.id</span>
                 </div>
@@ -620,7 +620,7 @@
                 <!-- Discreet Admin Login portal link in footer -->
                 <div class="border-t border-slate-800 pt-3">
                     <a href="{{ route('admin.login') }}" class="text-[10px] text-slate-500 hover:text-white transition-colors flex items-center gap-1.5">
-                        <i class="fa-solid fa-lock"></i> Portal Admin BPBD
+                        <i class="fa-solid fa-lock"></i> Login Admin
                     </a>
                 </div>
             </div>

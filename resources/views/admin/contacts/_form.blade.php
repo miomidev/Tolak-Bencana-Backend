@@ -34,7 +34,7 @@
                     'envelope' => 'Email',
                     'globe' => 'Website',
                     'whatsapp' => 'WhatsApp',
-                    'shield-halved' => 'BPBD',
+                    'shield-halved' => 'Posko Siaga',
                     'truck-medical' => 'Ambulans',
                     'circle-exclamation' => 'Bahaya',
                     'location-dot' => 'Kantor'

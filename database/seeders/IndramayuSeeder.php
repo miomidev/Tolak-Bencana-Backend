@@ -318,7 +318,7 @@ class IndramayuSeeder extends Seeder
                 'capacity' => 500,
                 'current_occupancy' => 495,
                 'status' => 'full',
-                'contact' => '087711223344 (BPBD Posko Jatibarang)',
+                'contact' => '087711223344 (Posko Siaga Jatibarang)',
             ],
             [
                 'name' => 'Gedung Serbaguna Haurgeulis',
@@ -384,10 +384,10 @@ class IndramayuSeeder extends Seeder
         AppInfo::create([
             'app_name' => 'Tolak Bencana - Disaster Response & Mitigation',
             'description' => 'Aplikasi Peringatan Dini dan Pelaporan Bencana Kabupaten Indramayu. Memudahkan masyarakat mendapatkan informasi shelter, zona rawan, serta mengirim laporan bencana secara real-time.',
-            'developer' => 'Badan Penanggulangan Bencana Daerah (BPBD) Kabupaten Indramayu',
-            'website' => 'https://bpbd.indramayukab.go.id',
-            'support_email' => 'hubungi@bpbd.indramayukab.go.id',
-            'privacy_policy_url' => 'https://bpbd.indramayukab.go.id/privacy-policy',
+            'developer' => 'Tim Pengembang Tolak Bencana',
+            'website' => 'https://tolak-bencana.miomidev.com',
+            'support_email' => 'support@tolakbencana.id',
+            'privacy_policy_url' => 'https://tolak-bencana.miomidev.com/privacy-policy',
             'privacy_policy_content' => 'Tolak Bencana berkomitmen melindungi privasi seluruh penggunanya.
 
 Data yang dikumpulkan: Nama, email, nomor telepon, dan lokasi yang Anda berikan saat membuat laporan.
@@ -399,7 +399,7 @@ Keamanan data: Data Anda disimpan dengan enkripsi dan tidak dibagikan kepada pih
 Hak pengguna: Anda berhak mengakses, memperbarui, atau menghapus data pribadi Anda kapan saja melalui menu Edit Profil.
 
 Kebijakan ini berlaku sejak 15 Januari 2026 dan dapat diperbarui sewaktu-waktu.',
-            'terms_url' => 'https://bpbd.indramayukab.go.id/terms-of-service',
+            'terms_url' => 'https://tolak-bencana.miomidev.com/terms-of-service',
             'terms_content' => 'Dengan menggunakan Tolak Bencana, Anda menyetujui syarat berikut:
 
 Penggunaan yang diperbolehkan: Aplikasi ini hanya untuk melaporkan kondisi bencana nyata di wilayah Kabupaten Indramayu. Laporan harus berisi informasi yang akurat dan dapat dipertanggungjawabkan.
@@ -448,7 +448,7 @@ Berlaku sejak 15 Januari 2026.',
         // 10. Seed Announcements (Running Text Landing Page)
         Announcement::create([
             'key' => 'SIAGA ROB',
-            'message' => 'Peringatan Dini Banjir Pasang Air Laut (Rob) Wilayah Pesisir Indramayu: Tetap Waspada untuk Daerah Cantigi, Sukra, Kandanghaur, dan Krangkeng. Pantau Jalur Evakuasi dan Shelter Aktif Melalui Aplikasi TOLAK BENCANA. Layanan Call Center BPBD Indramayu Aktif 24 Jam.',
+            'message' => 'Peringatan Dini Banjir Pasang Air Laut (Rob) Wilayah Pesisir Indramayu: Tetap Waspada untuk Daerah Cantigi, Sukra, Kandanghaur, dan Krangkeng. Pantau Jalur Evakuasi dan Shelter Aktif Melalui Aplikasi TOLAK BENCANA. Layanan Call Center Posko Siaga Aktif 24 Jam.',
             'sort_order' => 0,
             'is_active' => true,
         ]);
