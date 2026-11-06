@@ -411,36 +411,97 @@
     <!-- Public Live Map Section -->
     <section id="peta" class="py-20 bg-white border-b border-slate-100 relative z-10">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 flex flex-col gap-3">
+            <div class="text-center mb-6 flex flex-col gap-3">
                 <span class="text-xs font-bold uppercase tracking-widest text-[#F97316]">Peta Distribusi Siaga</span>
                 <h2 class="text-3xl font-extrabold text-[#15803D] tracking-tight">Kondisi Sebaran Banjir Indramayu</h2>
                 <p class="text-slate-500 max-w-xl mx-auto text-xs leading-relaxed">
-                    Peta publik interaktif di bawah ini menunjukkan laporan bencana dari warga pesisir yang terverifikasi secara real-time.
+                    Peta publik interaktif di bawah ini menunjukkan sebaran genangan dan posko evakuasi darurat di Kabupaten Indramayu secara real-time.
                 </p>
+            </div>
+
+            <!-- Quick Summary Badges -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-red-50 text-red-700 border border-red-200 shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
+                    {{ $reports->whereIn('severity', ['high', 'critical'])->where('status', '!=', 'resolved')->count() }} Titik Banjir Tinggi
+                </span>
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200 shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                    {{ $reports->where('severity', 'medium')->where('status', '!=', 'resolved')->count() }} Titik Siaga Waspada
+                </span>
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    {{ $reports->where('status', 'resolved')->count() }} Titik Telah Surut
+                </span>
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-blue-50 text-[#1E3A8A] border border-blue-200 shadow-sm">
+                    <i class="fa-solid fa-house-chimney-medical text-xs"></i>
+                    {{ $shelters->count() }} Posko Shelter Siaga
+                </span>
             </div>
 
             <!-- Map and Shelter Grid layout -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                 <!-- Map (8 Columns) -->
-                <div class="lg:col-span-8 h-[350px] sm:h-[450px] md:h-[500px] rounded-3xl shadow-xl border border-slate-200/60 overflow-hidden relative bg-slate-100" id="public-map">
+                <div class="lg:col-span-8 h-[400px] sm:h-[480px] md:h-[540px] rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden relative bg-slate-100" id="public-map">
                     <!-- Map loading overlay -->
                     <div class="absolute inset-0 bg-slate-50 z-40 flex items-center justify-center font-semibold text-[#15803D]" id="map-loader">
                         <i class="fa-solid fa-spinner animate-spin text-2xl mr-3"></i> Memuat Peta Distribusi...
                     </div>
+
+                    <!-- Floating Layer Switcher (Streets vs Satellite) -->
+                    <div class="absolute top-4 right-4 z-[400] bg-white/95 backdrop-blur-md rounded-xl p-1 shadow-lg border border-slate-200 flex items-center gap-1 text-xs font-bold">
+                        <button type="button" id="btn-tile-osm" class="px-3 py-1.5 rounded-lg bg-[#15803D] text-white transition-all shadow-sm flex items-center gap-1.5">
+                            <i class="fa-solid fa-map"></i> Peta Jalan
+                        </button>
+                        <button type="button" id="btn-tile-sat" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-satellite"></i> Satelit
+                        </button>
+                    </div>
+
+                    <!-- Floating Map Legend -->
+                    <div class="absolute bottom-4 left-4 z-[400] bg-white/95 backdrop-blur-md rounded-2xl p-3.5 shadow-lg border border-slate-200/80 text-[11px] hidden sm:flex flex-col gap-1.5">
+                        <span class="font-extrabold text-slate-700 text-[10px] uppercase tracking-wider mb-0.5 flex items-center gap-1.5">
+                            <i class="fa-solid fa-layer-group text-[#15803D]"></i> Legenda Peta
+                        </span>
+                        <div class="flex items-center gap-2 text-slate-600">
+                            <span class="w-3 h-3 rounded-full bg-red-600 border border-white shadow-sm shrink-0"></span>
+                            <span>Banjir Tinggi / Bahaya</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-600">
+                            <span class="w-3 h-3 rounded-full bg-orange-500 border border-white shadow-sm shrink-0"></span>
+                            <span>Genangan / Waspada</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-600">
+                            <span class="w-3 h-3 rounded-full bg-emerald-500 border border-white shadow-sm shrink-0"></span>
+                            <span>Kondisi Surut / Aman</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-600">
+                            <span class="w-3.5 h-3.5 rounded-full bg-[#15803D] text-white flex items-center justify-center text-[8px] shadow-sm shrink-0"><i class="fa-solid fa-house-chimney"></i></span>
+                            <span>Posko Shelter Evakuasi</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Shelter List (4 Columns) -->
-                <div class="lg:col-span-4 flex flex-col gap-4 max-h-[500px] overflow-y-auto bg-slate-50 rounded-3xl border border-slate-200/60 p-4 sm:p-5">                    <h3 class="font-bold text-sm text-[#15803D] flex items-center gap-2 mb-1"><i class="fa-solid fa-house-chimney text-[#1E3A8A]"></i> Shelter Evakuasi Siaga</h3>
+                <div class="lg:col-span-4 flex flex-col gap-3.5 max-h-[540px] overflow-y-auto bg-slate-50/80 rounded-3xl border border-slate-200/80 p-4 sm:p-5">
+                    <div class="flex items-center justify-between pb-2 border-b border-slate-200/60 mb-1">
+                        <h3 class="font-extrabold text-sm text-[#15803D] flex items-center gap-2">
+                            <i class="fa-solid fa-house-chimney-medical text-[#1E3A8A]"></i> Posko & Shelter Siaga
+                        </h3>
+                        <span class="text-[10px] font-bold text-slate-400">Klik untuk sorot</span>
+                    </div>
                     
                     @forelse($shelters as $shelter)
-                        <div class="bg-white rounded-2xl p-4 border border-slate-200/40 shadow-sm flex flex-col gap-2 hover:scale-[1.01] transition-transform">
+                        <div onclick="focusShelter({{ $shelter->latitude }}, {{ $shelter->longitude }}, '{{ addslashes($shelter->name) }}')"
+                             id="shelter-card-{{ $shelter->id }}"
+                             class="shelter-item-card bg-white rounded-2xl p-4 border border-slate-200/60 shadow-sm flex flex-col gap-2 hover:border-[#15803D] hover:shadow-md cursor-pointer transition-all group">
                             <div class="flex justify-between items-start gap-2">
-                                <span class="font-bold text-xs text-slate-800 line-clamp-1">{{ $shelter->name }}</span>
+                                <span class="font-bold text-xs text-slate-800 group-hover:text-[#15803D] transition-colors line-clamp-1">{{ $shelter->name }}</span>
                                 <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded {{ $shelter->status === 'active' ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500' }}">
                                     {{ $shelter->status === 'active' ? 'AKTIF' : 'PENUH' }}
                                 </span>
                             </div>
-                            <p class="text-[10px] text-slate-400 line-clamp-2"><i class="fa-solid fa-location-dot"></i> {{ $shelter->address }}</p>
+                            <p class="text-[10px] text-slate-400 line-clamp-2"><i class="fa-solid fa-location-dot text-[#15803D]/70 mr-1"></i> {{ $shelter->address }}</p>
                             
                             <div class="grid grid-cols-2 gap-2 mt-1 text-[10px]">
                                 <div class="bg-slate-50 rounded-lg p-1.5 flex flex-col">
@@ -455,11 +516,16 @@
                                 </div>
                             </div>
                             
-                            @if($shelter->contact)
-                                <a href="tel:{{ $shelter->contact }}" class="text-center font-bold text-[9px] text-[#15803D] hover:text-[#0a5258] mt-1 border-t border-slate-100 pt-2 flex items-center justify-center gap-1.5">
-                                    <i class="fa-solid fa-phone"></i> Hubungi Penanggung Jawab
-                                </a>
-                            @endif
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100 mt-1">
+                                <span class="text-[10px] font-bold text-[#15803D] group-hover:underline flex items-center gap-1">
+                                    <i class="fa-solid fa-crosshairs"></i> Sorot di Peta
+                                </span>
+                                @if($shelter->contact)
+                                    <a href="tel:{{ $shelter->contact }}" onclick="event.stopPropagation()" class="text-[10px] font-bold text-slate-500 hover:text-[#15803D] flex items-center gap-1">
+                                        <i class="fa-solid fa-phone"></i> Kontak
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                     @empty
                         <div class="text-center text-xs text-slate-400 py-12">
@@ -684,35 +750,76 @@
                 minZoom: 10,
                 maxZoom: 18,
                 maxBounds: indramayuBounds,
-                maxBoundsViscosity: 1.0
+                maxBoundsViscosity: 1.0,
+                zoomControl: true
             });
 
-            // Set Minimal Light Map Tiles (CartoDB Positron)
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-                maxZoom: 18,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+            // Base Tile Layers (No API Key Required - High Performance)
+            const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
 
-            // Add Custom Marker Icons based on Severity/Status
+            const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 18,
+                attribution: '&copy; Esri, Maxar, Earthstar Geographics'
+            });
+
+            // Toggle Streets vs Satellite view
+            const btnOsm = document.getElementById('btn-tile-osm');
+            const btnSat = document.getElementById('btn-tile-sat');
+
+            if (btnOsm && btnSat) {
+                btnOsm.addEventListener('click', function () {
+                    if (!map.hasLayer(osmLayer)) {
+                        map.removeLayer(satelliteLayer);
+                        map.addLayer(osmLayer);
+                        btnOsm.className = "px-3 py-1.5 rounded-lg bg-[#15803D] text-white transition-all shadow-sm flex items-center gap-1.5";
+                        btnSat.className = "px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-1.5";
+                    }
+                });
+
+                btnSat.addEventListener('click', function () {
+                    if (!map.hasLayer(satelliteLayer)) {
+                        map.removeLayer(osmLayer);
+                        map.addLayer(satelliteLayer);
+                        btnSat.className = "px-3 py-1.5 rounded-lg bg-[#15803D] text-white transition-all shadow-sm flex items-center gap-1.5";
+                        btnOsm.className = "px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-1.5";
+                    }
+                });
+            }
+
+            // Custom Marker Icons based on Severity/Status
             const redIcon = L.divIcon({
                 className: 'custom-div-icon',
-                html: "<div class='w-6 h-6 rounded-full bg-red-650 border border-white shadow-lg flex items-center justify-center text-white'><i class='fa-solid fa-triangle-exclamation text-[9px] animate-pulse'></i></div>",
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: "<div class='w-7 h-7 rounded-full bg-red-600 border-2 border-white shadow-xl flex items-center justify-center text-white'><i class='fa-solid fa-triangle-exclamation text-[10px] animate-pulse'></i></div>",
+                iconSize: [28, 28],
+                iconAnchor: [14, 14],
+                popupAnchor: [0, -14]
             });
 
             const orangeIcon = L.divIcon({
                 className: 'custom-div-icon',
-                html: "<div class='w-6 h-6 rounded-full bg-orange-500 border border-white shadow-lg flex items-center justify-center text-white'><i class='fa-solid fa-triangle-exclamation text-[9px]'></i></div>",
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: "<div class='w-7 h-7 rounded-full bg-amber-500 border-2 border-white shadow-xl flex items-center justify-center text-white'><i class='fa-solid fa-triangle-exclamation text-[10px]'></i></div>",
+                iconSize: [28, 28],
+                iconAnchor: [14, 14],
+                popupAnchor: [0, -14]
             });
 
             const greenIcon = L.divIcon({
                 className: 'custom-div-icon',
-                html: "<div class='w-6 h-6 rounded-full bg-emerald-500 border border-white shadow-lg flex items-center justify-center text-white'><i class='fa-solid fa-check text-[9px]'></i></div>",
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: "<div class='w-7 h-7 rounded-full bg-emerald-500 border-2 border-white shadow-xl flex items-center justify-center text-white'><i class='fa-solid fa-check text-[10px]'></i></div>",
+                iconSize: [28, 28],
+                iconAnchor: [14, 14],
+                popupAnchor: [0, -14]
+            });
+
+            const shelterIcon = L.divIcon({
+                className: 'custom-div-icon',
+                html: "<div class='w-8 h-8 rounded-full bg-[#15803D] border-2 border-white shadow-xl flex items-center justify-center text-white'><i class='fa-solid fa-house-chimney-medical text-xs'></i></div>",
+                iconSize: [32, 32],
+                iconAnchor: [16, 16],
+                popupAnchor: [0, -16]
             });
 
             // Load real data from database via HomeController
@@ -721,57 +828,88 @@
             reports.forEach(function (report) {
                 if (!report.latitude || !report.longitude) return;
 
-                // Determine icon based on status or severity
-                let icon = orangeIcon; // Default warning
-                let severityLabel = 'SIAGA PERINGATAN';
-                let colorClass = 'text-orange-500';
+                let icon = orangeIcon;
+                let severityLabel = 'SIAGA WASPADA';
+                let colorBadge = 'bg-amber-100 text-amber-800';
 
                 if (report.status === 'resolved') {
                     icon = greenIcon;
-                    severityLabel = 'KONDISI AMAN (SURUT)';
-                    colorClass = 'text-emerald-650';
+                    severityLabel = 'KONDISI SURUT / AMAN';
+                    colorBadge = 'bg-emerald-100 text-emerald-800';
                 } else if (report.severity === 'high' || report.severity === 'critical') {
                     icon = redIcon;
-                    severityLabel = 'SIAGA DANGER / TINGGI';
-                    colorClass = 'text-red-600';
+                    severityLabel = 'SIAGA BANJIR TINGGI';
+                    colorBadge = 'bg-red-100 text-red-800';
                 }
 
-                // Add marker
+                const popupHtml = `
+                    <div class="p-2.5 w-60 text-slate-800 bg-white rounded-xl font-sans">
+                        <div class="flex items-center justify-between mb-1.5 pb-1 border-b border-slate-100">
+                            <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${colorBadge}">${severityLabel}</span>
+                            <span class="text-[9px] text-slate-400 font-medium">${report.time_ago || 'Terkini'}</span>
+                        </div>
+                        <h4 class="font-bold text-xs text-slate-900 line-clamp-1">${report.address || 'Pesisir Indramayu'}</h4>
+                        <p class="text-[10px] text-slate-500 mt-1 leading-relaxed line-clamp-2">${report.description || 'Laporan kondisi genangan banjir.'}</p>
+                        <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=${report.latitude},${report.longitude}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-bold text-[#15803D] hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-diamond-turn-right text-[9px]"></i> Rute Lokasi
+                            </a>
+                            <a href="/report/${report.id}" class="text-[10px] font-bold text-blue-600 hover:underline">
+                                Detail &rarr;
+                            </a>
+                        </div>
+                    </div>
+                `;
+
                 L.marker([parseFloat(report.latitude), parseFloat(report.longitude)], {icon: icon})
                     .addTo(map)
-                    .bindPopup(
-                        "<div class='p-1.5 w-44 text-[#1F2937] bg-white rounded-lg'>" +
-                        "<span class='font-bold text-xs block " + colorClass + "'>" + severityLabel + "</span>" +
-                        "<span class='font-bold text-sm block mt-0.5 text-gray-900'>" + (report.address || 'Pesisir Indramayu') + "</span>" +
-                        "<span class='text-[10px] text-gray-500 block mt-1 leading-relaxed'>" + (report.description || 'Laporan banjir rob') + "</span>" +
-                        "</div>"
-                    );
+                    .bindPopup(popupHtml, { closeButton: false });
             });
 
-            // Add Custom Shelter Icon
-            const shelterIcon = L.divIcon({
-                className: 'custom-div-icon',
-                html: "<div class='w-7 h-7 rounded-full bg-[#15803D] border-2 border-white shadow-lg flex items-center justify-center text-white'><i class='fa-solid fa-house-chimney-medical text-[11px]'></i></div>",
-                iconSize: [28, 28],
-                iconAnchor: [14, 14]
-            });
+            // Dictionary for interactive shelter focus
+            const shelterMarkers = {};
 
             // Load real shelters from database via HomeController
             const shelters = @json($shelters);
             shelters.forEach(function (s) {
                 if (!s.latitude || !s.longitude) return;
 
-                L.marker([parseFloat(s.latitude), parseFloat(s.longitude)], {icon: shelterIcon})
+                const shelterPopup = `
+                    <div class="p-2.5 w-60 text-slate-800 bg-white rounded-xl font-sans">
+                        <div class="flex items-center justify-between mb-1.5 pb-1 border-b border-slate-100">
+                            <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 flex items-center gap-1">
+                                <i class="fa-solid fa-house-chimney-medical text-[8px]"></i> POSKO EVAKUASI
+                            </span>
+                            <span class="text-[9px] font-bold text-slate-500">${s.capacity} Jiwa</span>
+                        </div>
+                        <h4 class="font-bold text-xs text-slate-900 line-clamp-1">${s.name}</h4>
+                        <p class="text-[10px] text-slate-500 mt-1 leading-relaxed line-clamp-2">${s.address}</p>
+                        <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=${s.latitude},${s.longitude}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-bold text-[#15803D] hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-diamond-turn-right text-[9px]"></i> Rute Posko
+                            </a>
+                            ${s.contact ? `<a href="tel:${s.contact}" class="text-[10px] font-bold text-orange-600 hover:underline"><i class="fa-solid fa-phone text-[8px]"></i> Hubungi</a>` : ''}
+                        </div>
+                    </div>
+                `;
+
+                const marker = L.marker([parseFloat(s.latitude), parseFloat(s.longitude)], {icon: shelterIcon})
                     .addTo(map)
-                    .bindPopup(
-                        "<div class='p-1.5 w-44 text-[#1F2937] bg-white rounded-lg'>" +
-                        "<span class='font-bold text-xs block text-[#15803D]'><i class='fa-solid fa-house-shield'></i> SHELTER SIAGA</span>" +
-                        "<span class='font-bold text-sm block mt-0.5 text-gray-900'>" + s.name + "</span>" +
-                        "<span class='text-[10px] text-gray-500 block mt-1 leading-relaxed'>" + s.address + "</span>" +
-                        "<span class='text-[9px] font-bold text-slate-650 block mt-1'>Kapasitas: " + s.capacity + " Jiwa</span>" +
-                        "</div>"
-                    );
+                    .bindPopup(shelterPopup, { closeButton: false });
+
+                shelterMarkers[s.name] = marker;
             });
+
+            // Global focus function for sidebar cards
+            window.focusShelter = function (lat, lng, name) {
+                if (!lat || !lng) return;
+                map.flyTo([lat, lng], 15, { duration: 1.2 });
+                if (shelterMarkers[name]) {
+                    setTimeout(function () {
+                        shelterMarkers[name].openPopup();
+                    }, 1200);
+                }
+            };
         });
     </script>
 </body>
