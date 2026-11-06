@@ -36,9 +36,10 @@
                             <span class="inline-flex items-center gap-2">
                                 @if($contact->icon)
                                     @php
-                                        $prefix = ($contact->icon === 'whatsapp') ? 'fa-brands' : 'fa-solid';
+                                        $iconName = ['email' => 'envelope', 'website' => 'globe'][$contact->icon] ?? $contact->icon;
+                                        $prefix = ($iconName === 'whatsapp') ? 'fa-brands' : 'fa-solid';
                                     @endphp
-                                    <i class="{{ $prefix }} fa-{{ $contact->icon }} text-[#15803D]"></i>
+                                    <i class="{{ $prefix }} fa-{{ $iconName }} text-[#15803D]"></i>
                                 @endif
                                 {{ $contact->title }}
                             </span>

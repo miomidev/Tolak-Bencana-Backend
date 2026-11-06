@@ -484,27 +484,69 @@
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            @php
+                $contactCount = $helpContacts->count();
+                $gridClass = match(true) {
+                    $contactCount === 1 => 'max-w-md mx-auto grid-cols-1',
+                    $contactCount === 2 => 'max-w-2xl mx-auto grid-cols-1 sm:grid-cols-2',
+                    $contactCount === 3 => 'max-w-5xl mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+                    default => 'max-w-6xl mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
+                };
+            @endphp
+
+            <div class="grid {{ $gridClass }} gap-6 justify-center">
                 @forelse($helpContacts as $contact)
                     @php
-                        $btnPrefix = ($contact->icon === 'whatsapp') ? 'fa-brands' : 'fa-solid';
+                        $rawIcon = $contact->icon;
+                        $iconMap = [
+                            'email' => 'envelope',
+                            'website' => 'globe',
+                            'phone' => 'phone',
+                            'whatsapp' => 'whatsapp',
+                        ];
+                        $iconName = $iconMap[$rawIcon] ?? $rawIcon;
+                        if (empty($iconName)) {
+                            $iconName = match($contact->type) {
+                                'email' => 'envelope',
+                                'website' => 'globe',
+                                'whatsapp' => 'whatsapp',
+                                default => 'phone',
+                            };
+                        }
+                        $iconPrefix = ($iconName === 'whatsapp') ? 'fa-brands' : 'fa-solid';
+
                         $actionUrl = '#';
-                        if ($contact->type === 'phone') $actionUrl = 'tel:' . $contact->value;
+                        if ($contact->type === 'phone') $actionUrl = 'tel:' . preg_replace('/[^0-9+]/', '', $contact->value);
                         elseif ($contact->type === 'email') $actionUrl = 'mailto:' . $contact->value;
-                        elseif ($contact->type === 'website') $actionUrl = $contact->value;
+                        elseif ($contact->type === 'website') $actionUrl = str_starts_with($contact->value, 'http') ? $contact->value : 'https://' . $contact->value;
                         elseif ($contact->type === 'whatsapp') $actionUrl = 'https://wa.me/' . preg_replace('/[^0-9]/', '', $contact->value);
+
+                        $actionBtnText = match($contact->type) {
+                            'phone' => 'Panggil Sekarang',
+                            'email' => 'Kirim Email',
+                            'website' => 'Kunjungi Website',
+                            'whatsapp' => 'Hubungi WhatsApp',
+                            default => 'Hubungi Sekarang',
+                        };
+                        $actionBtnIcon = match($contact->type) {
+                            'phone' => 'fa-solid fa-phone',
+                            'email' => 'fa-solid fa-envelope',
+                            'website' => 'fa-solid fa-arrow-up-right-from-square',
+                            'whatsapp' => 'fa-brands fa-whatsapp',
+                            default => 'fa-solid fa-paper-plane',
+                        };
                     @endphp
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/40 shadow-sm flex flex-col gap-4 hover:scale-[1.02] transition-transform">
-                        <div class="w-12 h-12 rounded-xl bg-[#DCFCE7] text-[#15803D] flex items-center justify-center text-xl shrink-0">
-                            <i class="{{ $btnPrefix }} fa-{{ $contact->icon }}"></i>
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/50 shadow-sm flex flex-col gap-4 hover:scale-[1.02] hover:shadow-md transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-[#DCFCE7] text-[#15803D] flex items-center justify-center text-xl shrink-0 shadow-sm">
+                            <i class="{{ $iconPrefix }} fa-{{ $iconName }}"></i>
                         </div>
                         <div>
                             <span class="text-[9px] text-[#1E3A8A] uppercase font-bold tracking-wider">{{ \App\Support\UiHelper::contactType($contact->type) }}</span>
                             <h3 class="font-bold text-sm text-slate-800 line-clamp-1 mt-0.5">{{ $contact->title }}</h3>
                             <p class="text-xs text-slate-500 font-semibold truncate mt-1">{{ $contact->value }}</p>
                         </div>
-                        <a href="{{ $actionUrl }}" target="_blank" class="w-full text-center font-bold text-xs bg-[#15803D] hover:bg-[#0a5258] text-white py-2 rounded-xl mt-auto transition-colors flex items-center justify-center gap-1.5">
-                            <i class="fa-solid fa-paper-plane"></i> Hubungi Sekarang
+                        <a href="{{ $actionUrl }}" target="_blank" rel="noopener noreferrer" class="w-full text-center font-bold text-xs bg-[#15803D] hover:bg-[#166534] text-white py-2.5 rounded-xl mt-auto transition-colors flex items-center justify-center gap-2 shadow-sm">
+                            <i class="{{ $actionBtnIcon }}"></i> {{ $actionBtnText }}
                         </a>
                     </div>
                 @empty
