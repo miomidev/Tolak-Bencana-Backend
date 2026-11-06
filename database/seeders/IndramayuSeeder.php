@@ -386,7 +386,7 @@ class IndramayuSeeder extends Seeder
             'description' => 'Aplikasi Peringatan Dini dan Pelaporan Bencana Kabupaten Indramayu. Memudahkan masyarakat mendapatkan informasi shelter, zona rawan, serta mengirim laporan bencana secara real-time.',
             'developer' => 'Tim Pengembang Tolak Bencana',
             'website' => 'https://tolak-bencana.miomidev.com',
-            'support_email' => 'support@tolakbencana.id',
+            'support_email' => 'bantuan@tolak-bencana.miomidev.com',
             'privacy_policy_url' => 'https://tolak-bencana.miomidev.com/privacy-policy',
             'privacy_policy_content' => 'Tolak Bencana berkomitmen melindungi privasi seluruh penggunanya.
 

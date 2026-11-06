@@ -563,6 +563,8 @@
             <div class="grid {{ $gridClass }} gap-6 justify-center">
                 @forelse($helpContacts as $contact)
                     @php
+                        $isWhatsapp = ($contact->type === 'whatsapp' || $contact->icon === 'whatsapp' || str_contains(strtolower($contact->value), 'whatsapp') || str_contains(strtolower($contact->title), 'whatsapp'));
+
                         $rawIcon = $contact->icon;
                         $iconMap = [
                             'email' => 'envelope',
@@ -572,35 +574,51 @@
                         ];
                         $iconName = $iconMap[$rawIcon] ?? $rawIcon;
                         if (empty($iconName)) {
-                            $iconName = match($contact->type) {
-                                'email' => 'envelope',
-                                'website' => 'globe',
-                                'whatsapp' => 'whatsapp',
-                                default => 'phone',
-                            };
+                            if ($isWhatsapp) {
+                                $iconName = 'whatsapp';
+                            } else {
+                                $iconName = match($contact->type) {
+                                    'email' => 'envelope',
+                                    'website' => 'globe',
+                                    default => 'phone',
+                                };
+                            }
+                        }
+                        if ($isWhatsapp && $iconName === 'phone') {
+                            $iconName = 'whatsapp';
                         }
                         $iconPrefix = ($iconName === 'whatsapp') ? 'fa-brands' : 'fa-solid';
 
-                        $actionUrl = '#';
-                        if ($contact->type === 'phone') $actionUrl = 'tel:' . preg_replace('/[^0-9+]/', '', $contact->value);
-                        elseif ($contact->type === 'email') $actionUrl = 'mailto:' . $contact->value;
-                        elseif ($contact->type === 'website') $actionUrl = str_starts_with($contact->value, 'http') ? $contact->value : 'https://' . $contact->value;
-                        elseif ($contact->type === 'whatsapp') $actionUrl = 'https://wa.me/' . preg_replace('/[^0-9]/', '', $contact->value);
+                        // Number cleaner
+                        $cleanDigits = preg_replace('/[^0-9]/', '', $contact->value);
+                        if (str_starts_with($cleanDigits, '0')) {
+                            $cleanDigits = '62' . substr($cleanDigits, 1);
+                        }
 
-                        $actionBtnText = match($contact->type) {
-                            'phone' => 'Panggil Sekarang',
-                            'email' => 'Kirim Email',
-                            'website' => 'Kunjungi Website',
-                            'whatsapp' => 'Hubungi WhatsApp',
-                            default => 'Hubungi Sekarang',
-                        };
-                        $actionBtnIcon = match($contact->type) {
-                            'phone' => 'fa-solid fa-phone',
-                            'email' => 'fa-solid fa-envelope',
-                            'website' => 'fa-solid fa-arrow-up-right-from-square',
-                            'whatsapp' => 'fa-brands fa-whatsapp',
-                            default => 'fa-solid fa-paper-plane',
-                        };
+                        $actionUrl = '#';
+                        $secondaryCallUrl = null;
+
+                        if ($isWhatsapp) {
+                            $actionUrl = 'https://wa.me/' . $cleanDigits;
+                            $actionBtnText = 'Hubungi WhatsApp';
+                            $actionBtnIcon = 'fa-brands fa-whatsapp';
+                            $secondaryCallUrl = 'tel:' . preg_replace('/[^0-9+]/', '', explode(' ', $contact->value)[0] ?? $cleanDigits);
+                        } elseif ($contact->type === 'phone') {
+                            $actionUrl = 'tel:' . preg_replace('/[^0-9+]/', '', $contact->value);
+                            $actionBtnText = 'Panggil Sekarang';
+                            $actionBtnIcon = 'fa-solid fa-phone';
+                        } elseif ($contact->type === 'email') {
+                            $actionUrl = 'mailto:' . trim($contact->value);
+                            $actionBtnText = 'Kirim Email';
+                            $actionBtnIcon = 'fa-solid fa-envelope';
+                        } elseif ($contact->type === 'website') {
+                            $actionUrl = str_starts_with($contact->value, 'http') ? $contact->value : 'https://' . $contact->value;
+                            $actionBtnText = 'Kunjungi Website';
+                            $actionBtnIcon = 'fa-solid fa-arrow-up-right-from-square';
+                        } else {
+                            $actionBtnText = 'Hubungi Sekarang';
+                            $actionBtnIcon = 'fa-solid fa-paper-plane';
+                        }
                     @endphp
                     <div class="bg-white rounded-2xl p-6 border border-slate-200/50 shadow-sm flex flex-col gap-4 hover:scale-[1.02] hover:shadow-md transition-all">
                         <div class="w-12 h-12 rounded-xl bg-[#DCFCE7] text-[#15803D] flex items-center justify-center text-xl shrink-0 shadow-sm">
@@ -611,9 +629,16 @@
                             <h3 class="font-bold text-sm text-slate-800 line-clamp-1 mt-0.5">{{ $contact->title }}</h3>
                             <p class="text-xs text-slate-500 font-semibold truncate mt-1">{{ $contact->value }}</p>
                         </div>
-                        <a href="{{ $actionUrl }}" target="_blank" rel="noopener noreferrer" class="w-full text-center font-bold text-xs bg-[#15803D] hover:bg-[#166534] text-white py-2.5 rounded-xl mt-auto transition-colors flex items-center justify-center gap-2 shadow-sm">
-                            <i class="{{ $actionBtnIcon }}"></i> {{ $actionBtnText }}
-                        </a>
+                        <div class="mt-auto flex flex-col gap-1.5">
+                            <a href="{{ $actionUrl }}" target="_blank" rel="noopener noreferrer" class="w-full text-center font-bold text-xs bg-[#15803D] hover:bg-[#166534] text-white py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-sm">
+                                <i class="{{ $actionBtnIcon }}"></i> {{ $actionBtnText }}
+                            </a>
+                            @if($secondaryCallUrl)
+                                <a href="{{ $secondaryCallUrl }}" class="text-[10px] text-slate-400 hover:text-[#15803D] font-semibold text-center transition-colors">
+                                    <i class="fa-solid fa-phone text-[9px] mr-1"></i> atau Panggil Telepon Biasa
+                                </a>
+                            @endif
+                        </div>
                     </div>
                 @empty
                     <div class="col-span-full text-center text-slate-400 text-xs py-8">
@@ -678,9 +703,9 @@
             <div class="md:col-span-4 flex flex-col gap-3.5">
                 <h4 class="font-bold text-sm tracking-wider uppercase text-[#F97316]">Kontak Siaga Darurat</h4>
                 <div class="flex flex-col gap-2 text-xs text-slate-400 mb-4">
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-phone w-4 text-center"></i> Layanan Siaga: (0234) 276996</span>
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot w-4 text-center"></i> Jl. Gatot Subroto No.10, Indramayu</span>
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-envelope w-4 text-center"></i> support@tolakbencana.id</span>
+                    <span class="flex items-center gap-2"><i class="fa-brands fa-whatsapp w-4 text-center text-emerald-400"></i> WhatsApp / Siaga: +62 831-8652-3420</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot w-4 text-center"></i> Indramayu, Jawa Barat</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-envelope w-4 text-center"></i> bantuan@tolak-bencana.miomidev.com</span>
                 </div>
                 
                 <!-- Discreet Admin Login portal link in footer -->

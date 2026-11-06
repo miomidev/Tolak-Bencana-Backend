@@ -16,9 +16,9 @@ class HelpSeeder extends Seeder
         HelpContact::insert([
             [
                 'type' => 'phone',
-                'title' => 'Telepon',
-                'value' => '0800-1234-5678 (Gratis)',
-                'icon' => 'phone',
+                'title' => 'Telepon / WhatsApp',
+                'value' => '+62 831-8652-3420 WhatsApp',
+                'icon' => 'whatsapp',
                 'sort_order' => 1,
                 'is_active' => true,
                 'created_at' => now(),
@@ -27,7 +27,7 @@ class HelpSeeder extends Seeder
             [
                 'type' => 'email',
                 'title' => 'Email',
-                'value' => 'bantuan@tolakbencana.id',
+                'value' => 'bantuan@tolak-bencana.miomidev.com',
                 'icon' => 'envelope',
                 'sort_order' => 2,
                 'is_active' => true,

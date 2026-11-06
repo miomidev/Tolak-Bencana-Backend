@@ -195,7 +195,7 @@
                 </div>
                 <div class="bg-slate-50 p-4 rounded-2xl border border-gray-200/60">
                     <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider block">Dukungan Kontak</span>
-                    <span class="font-bold text-[#15803D] text-xs block mt-1"><i class="fa-solid fa-envelope mr-1.5 text-slate-450"></i> {{ $appInfo->support_email ?? 'support@tolakbencana.id' }}</span>
+                    <span class="font-bold text-[#15803D] text-xs block mt-1"><i class="fa-solid fa-envelope mr-1.5 text-slate-450"></i> {{ $appInfo->support_email ?? 'bantuan@tolak-bencana.miomidev.com' }}</span>
                 </div>
             </div>
         </div>
@@ -256,9 +256,9 @@
             <div class="md:col-span-4 flex flex-col gap-3.5">
                 <h4 class="font-bold text-sm tracking-wider uppercase text-[#F97316]">Kontak Siaga Darurat</h4>
                 <div class="flex flex-col gap-2 text-xs text-slate-400 mb-4">
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-phone w-4 text-center"></i> Layanan Siaga: (0234) 276996</span>
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot w-4 text-center"></i> Jl. Gatot Subroto No.10, Indramayu</span>
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-envelope w-4 text-center"></i> support@tolakbencana.id</span>
+                    <span class="flex items-center gap-2"><i class="fa-brands fa-whatsapp w-4 text-center text-emerald-400"></i> WhatsApp / Siaga: +62 831-8652-3420</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot w-4 text-center"></i> Indramayu, Jawa Barat</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-envelope w-4 text-center"></i> bantuan@tolak-bencana.miomidev.com</span>
                 </div>
                 
                 <!-- Discreet Admin Login portal link in footer -->
