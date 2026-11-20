@@ -35,7 +35,7 @@ class IndramayuSeeder extends Seeder
             [
                 'name' => 'Super Administrator',
                 'username' => 'superadmin',
-                'email' => 'superadmin@kaliwedi.id',
+                'email' => 'superadmin@miomidev.com',
                 'password' => Hash::make('password'),
                 'phone' => '081100000000',
                 'role' => 'superadmin',
@@ -44,7 +44,7 @@ class IndramayuSeeder extends Seeder
             [
                 'name' => 'Administrator',
                 'username' => 'admin',
-                'email' => 'admin@kaliwedi.id',
+                'email' => 'admin@miomidev.com',
                 'password' => Hash::make('password'),
                 'phone' => '081122334455',
                 'role' => 'admin',
@@ -53,7 +53,7 @@ class IndramayuSeeder extends Seeder
             [
                 'name' => 'Petugas Lohbener',
                 'username' => 'officer_lohbener',
-                'email' => 'officer_lohbener@kaliwedi.id',
+                'email' => 'officer_lohbener@miomidev.com',
                 'password' => Hash::make('password'),
                 'phone' => '087722334455',
                 'role' => 'admin',
@@ -62,7 +62,7 @@ class IndramayuSeeder extends Seeder
             [
                 'name' => 'Petugas Jatibarang',
                 'username' => 'officer_jatibarang',
-                'email' => 'officer_jatibarang@kaliwedi.id',
+                'email' => 'officer_jatibarang@miomidev.com',
                 'password' => Hash::make('password'),
                 'phone' => '085222334455',
                 'role' => 'admin',
